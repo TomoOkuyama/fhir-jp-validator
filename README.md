@@ -101,6 +101,8 @@ docker compose up -d fhirserver
 
 出力の読み方・issue パターンの解釈・集計 recipe は [docs/output-guide.md](docs/output-guide.md) を参照。
 
+**実データ (Observation 主体の JP EHR) を通す際の推奨構成・落とし穴・頻出 issue** は [docs/real-world-validation.md](docs/real-world-validation.md) にまとめてあります。Observation の日本語 display validation が bottleneck になるため、分割検証パターンを推奨。
+
 ## パフォーマンス
 
 `docs/benchmarks.md` に詳細。実測 (343,478 res, 1/10 sample of a 3.43M dataset):

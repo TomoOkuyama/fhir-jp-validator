@@ -86,6 +86,14 @@
 - メモリは JVM 18 GB (default 6 JVM) + fhirserver 4 GB + client 数 GB で 26 GB 消費予測 (8 JVM なら 32 GB)
 - fhirserver bottleneck が原因で 1/1 スケール時は rps が半減する可能性あり (実行時間 8-10 時間)
 
+## 実データ検証結果と分割戦略
+
+日本の EHR 由来 FHIR data (Observation 主体) を通した際の実測特性・rps・issue 分布・推奨構成は [docs/real-world-validation.md](real-world-validation.md) にまとめています。要点:
+
+- Observation の LOINC 日本語 display 検証が per-code ~700ms かかり、単一 pass では完走困難
+- `Observation` を分離し `HAPI_TX=n/a` で構造/slice のみ、残り 25 種を tx 有効で並行検証すると 179k res が 11 分で完走
+- 実データの ~65% リソースに 1+ error (主因: eCS プロファイル必須 slice/要素の欠落)
+
 ## クラスタサイジング検証 (2026-07-16)
 
 Default 構成 (6 JVM × 1 fhirserver) が本当に最適かを、JVM 数 × fhirserver 数の 2 軸で検証しました。データ: local `fhir_r4/` の 1/20 sample (176k res 中、`--limit 30000` を使用)、chunk=50、cache warm な状態で複数 run。
