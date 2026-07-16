@@ -95,7 +95,7 @@ docker compose up -d fhirserver
 ```
 
 出力:
-- `result.ndjson` — OperationOutcome ストリーム (1 行 = 1 リソース分の検証結果)
+- `result.ndjson` — OperationOutcome ストリーム (1 行 = 1 Bundle 分の検証結果、Bundle 内全リソースの issue が 1 OC に集約)
 - `result.meta.json` — メタ (成功数、失敗数、rps、port 別統計)
 - `result.failed.ndjson` — timeout 等で失敗した Bundle 一覧
 

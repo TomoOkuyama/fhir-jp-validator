@@ -4,9 +4,11 @@
 
 | ファイル | 内容 | 1 行 = |
 |---|---|---|
-| `result.ndjson` | 検証結果 (OperationOutcome) の NDJSON ストリーム | 1 リソース分 |
+| `result.ndjson` | 検証結果 (OperationOutcome) の NDJSON ストリーム | 1 Bundle 分 (Bundle 内全リソースの issue が 1 OC に集約) |
 | `result.meta.json` | run メタ (成功数、rps、port 別統計) | JSON 全体 |
 | `result.failed.ndjson` | HTTP 失敗した Bundle 一覧 (timeout / 5xx / connection error) | 1 Bundle 分 (成功時は空) |
+
+行数の目安: `result.ndjson` の行数 ≒ `meta.json` の `bundles` の値 (chunk_size=50 なら 50 リソースごとに 1 行)。各 OC の `issue[]` を展開して初めてリソース単位の判定ができます (§4 の recipe 参照)。
 
 ## 1. meta.json — まずはここを見る
 
@@ -51,7 +53,7 @@
 
 ## 2. OperationOutcome NDJSON の構造
 
-各行は `resourceType=OperationOutcome` の JSON で、`issue[]` に検証結果が並びます:
+各行は `resourceType=OperationOutcome` の JSON で、`issue[]` に Bundle 内全リソースの検証結果が並びます:
 
 ```json
 {
@@ -61,7 +63,7 @@
       "severity": "error",
       "code": "code-invalid",
       "details": {"text": "Unknown code 'LA27976-8' in the CodeSystem 'http://loinc.org' version '2.82'"},
-      "expression": ["Bundle.entry[0].resource.category[0].coding[0].code"],
+      "expression": ["Bundle.entry[0].resource/*AllergyIntolerance/allergy-POP-000021-1*/.clinicalStatus.coding[0].display"],
       "diagnostics": "..."
     },
     ...
@@ -76,10 +78,10 @@
 | `severity` | `fatal` / `error` / `warning` / `information` | 深刻度 |
 | `code` | `code-invalid` / `invalid` / `not-supported` / `informational` | FHIR 標準の issue type |
 | `details.text` | 人間可読メッセージ | grep 対象になる主要フィールド |
-| `expression[]` | `Bundle.entry[N].resource.<path>` | 違反箇所の FHIRPath |
+| `expression[]` | `Bundle.entry[N].resource/*ResourceType/id*/.<path>` | 違反箇所の FHIRPath (entry index + resource id 込みでリソースを一意特定できる) |
 | `diagnostics` | 追加情報 | 出ない場合が多い |
 
-Bundle は `chunk_size` 単位で構成されるため、`expression` は `Bundle.entry[0..chunk_size-1]` の範囲を取ります。元のリソースを特定するには client が入れた `fullUrl` を Bundle 側から辿るか、entry index と入力 NDJSON の行順を照合してください。
+Bundle は `chunk_size` 単位で構成され、`expression` は `Bundle.entry[0..chunk_size-1]` を取ります。**リソース単位に issue を分解するには `expression` の `Bundle.entry[N]` prefix と `resource/*ResourceType/id*/` パートで group by してください**。
 
 ## 3. 代表的な issue パターンと対処
 
@@ -168,10 +170,31 @@ PY
 
 ### リソース単位の pass/fail 判定 (error が 1 件でもあれば fail)
 
+`result.ndjson` は Bundle 単位なので、Python で `expression` の `Bundle.entry[N]` を key に group by してリソース単位に展開します:
+
 ```bash
-jq -c '{fail: ([.issue[]?|select(.severity=="error")]|length>0)}' "$RES" \
-  | jq -s 'group_by(.fail)|map({fail:.[0].fail,count:length})'
+python3 <<'PY'
+import json, re
+from collections import defaultdict
+per_res = defaultdict(lambda: {"error":0, "warning":0, "information":0})
+pat = re.compile(r'Bundle\.entry\[(\d+)\]\.resource/\*([^/]+)/([^*]+)\*/')
+with open("result.ndjson") as f:
+    for bundle_idx, line in enumerate(f):
+        oc = json.loads(line)
+        for i in oc.get("issue", []):
+            for expr in (i.get("expression") or []):
+                m = pat.search(expr)
+                if m:
+                    key = (bundle_idx, m.group(2), m.group(3))  # (bundle, ResourceType, id)
+                    per_res[key][i.get("severity","information")] += 1
+                    break
+total = len(per_res)
+failed = sum(1 for v in per_res.values() if v["error"] > 0)
+print(f"resources_seen={total}, failed={failed}, pass={total-failed}")
+PY
 ```
+
+注: リソースに一切 issue が付かなかった場合はカウント対象外になります (完全 pass の判定には入力側の総リソース数 = `meta.json` の `resources_total` と比較)。
 
 ## 5. failed.ndjson の意味
 
