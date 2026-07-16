@@ -21,6 +21,8 @@ tx-server-build/loinc-src/
 tx-server-build/snomed-src/
 tx-server-build/terminology/jp-core/
 tx-server-build/terminology/*.cache
+# LB ベンチマーク用に copy された 2 番目の terminology dir (docs/benchmarks.md 参照)
+tx-server-build/terminology-2/
 # LOINC/SNOMED の入手済み zip (ユーザーが自分で loinc.org / UMLS から DL するもの)
 tx-server-build/Loinc_*.zip
 tx-server-build/SnomedCT_*.zip

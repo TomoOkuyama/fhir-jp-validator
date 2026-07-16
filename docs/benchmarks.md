@@ -85,3 +85,55 @@
 - ディスク I/O は問題無し (M3 Max SSD 上、48 GB データ)
 - メモリは JVM 18 GB (default 6 JVM) + fhirserver 4 GB + client 数 GB で 26 GB 消費予測 (8 JVM なら 32 GB)
 - fhirserver bottleneck が原因で 1/1 スケール時は rps が半減する可能性あり (実行時間 8-10 時間)
+
+## クラスタサイジング検証 (2026-07-16)
+
+Default 構成 (6 JVM × 1 fhirserver) が本当に最適かを、JVM 数 × fhirserver 数の 2 軸で検証しました。データ: local `fhir_r4/` の 1/20 sample (176k res 中、`--limit 30000` を使用)、chunk=50、cache warm な状態で複数 run。
+
+### 重要な測定上の注意 — JIT warmup が支配的
+
+HAPI Validator (Java) の JIT compile が rps に強く影響します。JVM 再起動直後は、同一構成でも run 回数によって以下のように変動します (6 JVM × parallel 24、single fhirserver、30k res /run):
+
+| run | rps | 備考 |
+|---:|---:|---|
+| 1 | 217 | JIT cold |
+| 2 | 305 | 温まり中 |
+| 3 | 378 | まだ伸びる |
+| 4 | **511** | ほぼ steady state |
+
+**単発測定は 2x 以上ずれるため、比較用の測定は必ず同条件で 3-4 回連続 run して steady state を取ってください**。
+
+### JVM 数の最適値 (fhirserver は single)
+
+各 JVM 数を **cache warm な状態**で測定:
+
+| JVM 数 | parallel | rps | 相対 |
+|---:|---:|---:|---:|
+| 4 | 16 | 462 | 88% |
+| **6** | **24** | **527** | **100%** |
+| 8 | 32 | 481 | 91% |
+
+- **6 JVM が最適** (M3 Max 14 core、Docker Desktop 18GB 割当)。default 設定と一致
+- 8 JVM は JVM 間の coordination overhead で悪化 (RAM 24GB でも swap は発生せず)
+- 4 JVM は CPU 使い切れずに rps 低下
+
+### fhirserver 複数化 (LB) は逆効果
+
+nginx (`least_conn`, keepalive) を LB として 2 fhirserver (それぞれ別の terminology volume に copy) 構成を測定:
+
+| 構成 | run1 rps | run2 rps | run3 rps |
+|---|---:|---:|---:|
+| 6 JVM × 1 fs (直接) | 217 | 305 | 378 → 511 |
+| 6 JVM × 2 fs (nginx LB) | 163 | 268 | 250 |
+
+**LB steady state 250 rps vs single fs 500 rps — 半減**。原因分析:
+
+- **fhirserver は bottleneck ではなかった** — LB run 2/3 中、fhirserver-1/2 の CPU は共に 0-1% 程度で idle。HAPI 側の txCache (disk) hit が支配的で、fhirserver への tx call が少ない
+- **LB が加える proxy 遅延と cache 分散が逆効果** — 少ない tx call に対して nginx 経由 (1 hop 増)、さらに fhirserver 2 台に in-memory cache が分散されて hit ratio が下がる
+- **HAPI txCache は URL 込みで keyed 可能性** — `-tx` URL を変えると (8181→8180) 既存 disk cache が事実上 fresh になる (要検証だが、LB run 1 の 163 rps はこれで説明可能)
+
+### 推奨
+
+- **default (6 JVM × 1 fhirserver) で十分**。LB は今回の設計 (nginx + separate volume) では改善なし
+- スループット向上の第一手は **HAPI txCache の warmup** (`.hapi-cache/tx-cache/`) を予め build しておくこと
+- 1 台の fhirserver が真に CPU bound (`docker stats` で持続 200%+) になってから初めて LB を検討する余地あり
