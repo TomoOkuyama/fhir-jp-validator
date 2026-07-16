@@ -1,0 +1,34 @@
+# HAPI Validator local cache (large binary, downloaded on demand)
+.hapi-cache/
+
+# Terminology cache files (proprietary/licensed — must be built locally)
+*.cache
+
+# Terminology package sources (users need to fetch from vendor sites per licensing)
+tx-server-build/loinc-src/
+tx-server-build/snomed-src/
+tx-server-build/terminology/fhir-server/
+
+# Cloned fhirserver source (not part of this repo, cloned via setup script)
+tx-server-build/fhirserver/
+
+# Validation input/output data (potentially patient data)
+fhir_r4/
+fhir_r4_sample/
+fhir_r4_sample_*/
+logs/
+
+# JP Core / JP-CLINS package files (fetched via setup script)
+jp_core/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors
+.vscode/
+.idea/
+*.swp
