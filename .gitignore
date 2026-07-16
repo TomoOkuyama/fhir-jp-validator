@@ -34,6 +34,10 @@ fhir_r4_sample/
 fhir_r4_sample_*/
 logs/
 
+# 検証結果の raw NDJSON (数百 MB 〜 数 GB、meta.json と summary.md は commit)
+validation-results/**/raw/*.ndjson
+validation-results/**/raw/*.failed.ndjson
+
 # JP Core / JP-CLINS package files (fetched via setup script)
 jp_core/
 
