@@ -1,0 +1,64 @@
+spring:
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+  datasource:
+    # in-memory H2: 起動時に hl7.terminology.r4 を毎回 load (数十秒)
+    # Step 3 で SNOMED CT 導入時に Postgres に切替予定
+    url: 'jdbc:h2:mem:hapi_db;DB_CLOSE_DELAY=-1;NON_KEYWORDS=VALUE'
+    username: sa
+    password: ''
+    driverClassName: org.h2.Driver
+  jpa:
+    properties:
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirH2Dialect
+      # Terminology 検索 ($expand) には Hibernate Search が必須
+      hibernate.search.enabled: true
+      hibernate.search.backend.type: lucene
+      hibernate.search.backend.analysis.configurer: ca.uhn.fhir.jpa.search.HapiHSearchAnalysisConfigurers$HapiLuceneAnalysisConfigurer
+      hibernate.search.backend.directory.type: local-filesystem
+      hibernate.search.backend.directory.root: /tmp/lucenefiles
+
+hapi:
+  fhir:
+    fhir_version: R4
+    server_address: http://localhost:3010/fhir
+    default_encoding: JSON
+    tester:
+      home:
+        name: iris4h-ai hapi-tx
+        server_address: http://localhost:3010/fhir
+        refuse_to_fetch_third_party_urls: false
+        fhir_version: R4
+    # Terminology validation — full mode
+    validation:
+      requests_enabled: false
+      responses_enabled: false
+    # 起動時 auto-load: hl7.terminology.r4
+    implementationguides:
+      hl7-terminology-r4:
+        name: hl7.terminology.r4
+        version: 6.1.0
+        packageUrl: https://packages.simplifier.net/hl7.terminology.r4/6.1.0
+        reloadExisting: false
+        installMode: STORE_AND_INSTALL
+    # 参照解決に外部フェッチさせない (packages に無ければ Unknown で返す)
+    allow_external_references: false
+    # inline resources を大きくしない
+    max_binary_size: 104857600
+    # Terminology defered model (SNOMED CT ロード時に効いてくる、今は無害)
+    defer_indexing_for_codesystems_of_size: 100
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health'

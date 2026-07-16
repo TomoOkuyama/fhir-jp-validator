@@ -12,6 +12,16 @@ tx-server-build/terminology/fhir-server/
 # Cloned fhirserver source (not part of this repo, cloned via setup script)
 tx-server-build/fhirserver/
 
+# Build logs
+tx-server-build/*.log
+tx-server-build/build_*.log
+
+# LOINC/SNOMED/JP source zip and extracted files (users provide per licensing)
+tx-server-build/loinc-src/
+tx-server-build/snomed-src/
+tx-server-build/terminology/jp-core/
+tx-server-build/terminology/*.cache
+
 # Validation input/output data (potentially patient data)
 fhir_r4/
 fhir_r4_sample/

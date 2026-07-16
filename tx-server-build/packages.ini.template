@@ -1,0 +1,28 @@
+; fhirserver package cache index — テンプレート
+; setup-fhirserver.sh + docker compose 起動時に自動生成/更新される
+; 実運用時は tx-server-build/terminology/fhir-server/packages.ini (自動生成、.gitignored)
+
+[cache]
+version=3
+
+[package-sizes]
+hl7.fhir.r4.core#4.0.1=45311794
+hl7.fhir.uv.extensions.r4#5.2.0=18373069
+hl7.terminology.r4#7.1.0=64421234
+hl7.fhir.uv.extensions.r4#5.3.0=11237225
+hl7.terminology.r4#7.2.0=64398132
+fhir.tx.support.r4#0.37.0=90126004
+jpfhir.jp.core#1.2.0=17549408
+clinical-information-sharing#1.12.0=2539708
+jpfhir-terminology#2.2606.0=1721942
+
+[packages]
+hl7.fhir.r4.core#4.0.1=20260714044748
+hl7.fhir.uv.extensions.r4#5.2.0=20260714044815
+hl7.terminology.r4#7.1.0=20260714044839
+hl7.fhir.uv.extensions.r4#5.3.0=20260714044843
+hl7.terminology.r4#7.2.0=20260714044907
+fhir.tx.support.r4#0.37.0=20260714044945
+jpfhir.jp.core#1.2.0=20260714140841
+clinical-information-sharing#1.12.0=20260715002700
+jpfhir-terminology#2.2606.0=20260715102800

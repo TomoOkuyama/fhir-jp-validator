@@ -1,0 +1,50 @@
+services:
+  # HL7 純正 fhirserver — HAPI validator 公認 terminology server
+  # Grahame Grieve の Pascal 実装、tx.fhir.org と同じソフト
+  # test-version=1.8.0, CodeSystemAsParameter=true を feature 宣言、validator の tx-compat test を通る
+  # 起動時 auto-load: hl7.fhir.r4.core, hl7.terminology.r4 (7.1/7.2), extensions, fhir.tx.support.r4
+  # 追加 terminology (LOINC, SNOMED CT International, JP Core, JP-CLINS, jpfhir-terminology)
+  # は tx-server-build/terminology/fhir-server/ 内に配置され自動 load
+  # image: source から build (tx-server-build/fhirserver/) - GHCR image は private のため
+  #   scripts/setup-fhirserver.sh で自動 build
+  fhirserver:
+    image: iris4h-ai/fhirserver:local
+    container_name: fhir-jp-validator-fhirserver
+    platform: linux/amd64
+    ports:
+      - "8181:80"
+    volumes:
+      - ./tx-server-build/terminology:/var/cache/txcache
+      # image 内の default_config/config.json を override (packages 追加用)
+      - ./tx-server-build/fhirserver-config/config.json:/root/fhirserver/default_config/config.json:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost/r4/metadata >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 300s
+      retries: 3
+
+  # HAPI FHIR JPA — 直接 $expand/$validate-code 実験用 (validator の -tx としては使用不可)
+  # profiles: tx を指定した時のみ起動する
+  #   docker compose --profile tx up -d
+  # 用途: 直接 REST で terminology 参照 (通常 validation は fhirserver を使用)
+  # 制限: HAPI validator の tx-compat test を通らない (feature-query 未実装)
+  hapi-tx:
+    image: hapiproject/hapi:v7.4.0
+    container_name: fhir-jp-validator-hapi-tx
+    profiles: ["tx"]
+    ports:
+      - "3010:8080"
+    environment:
+      - TZ=JST-9
+      - JAVA_TOOL_OPTIONS=-Xmx4g
+    volumes:
+      - ./hapi-tx/application.yaml:/app/config/application.yaml:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/fhir/metadata >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 180s
+      retries: 3
