@@ -9,8 +9,12 @@
 # 前提: Java 11+ (host 側)、jp_core/package (JP Core IG) が存在すること
 # validator_cli.jar は .hapi-cache/ に自動ダウンロード (177MB, gitignore 対象)
 #
-# 実測 (M3 Max 14 core, 36GB): 8 JVM + Bundle 50 + 並列 64 で 441 res/sec
-#   → 3.66M リソースの全件検証を 2.3 時間で完了 (JVM 合計 RSS 約 7-8 GB)
+# 実測目安 (M3 Max 14 core): 構成・データにより 170-440 res/sec 幅がある。
+#   - JP Core + JP-CLINS + jpfhir-terminology + LOINC + SNOMED 全 load (cache warm, chunk=50 parallel=32):
+#     205 rps 前後、343k res を 28 分 (docs/benchmarks.md 参照)
+#   - tx 検証をスキップ or code が未登録 CodeSystem 中心 (validator が terminology check を即 skip):
+#     440 rps 前後まで到達可能
+# rps は data の terminology 充実度と `-tx` 設定に強く依存する
 
 set -euo pipefail
 

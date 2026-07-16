@@ -31,7 +31,7 @@ docker run --rm --platform linux/amd64 alpine uname -m
 
 1. `HealthIntersections/fhirserver` を `tx-server-build/fhirserver/` に clone
 2. `patches/*.patch` を適用 (LOINC/SNOMED import CLI 追加、SNOMED DateSeparator fix)
-3. `docker buildx build --platform linux/amd64` で `iris4h-ai/fhirserver:local` タグで image 作成
+3. `docker buildx build --platform linux/amd64` で `fhir-jp-validator/fhirserver:local` タグで image 作成
 
 所要時間目安 (Rosetta 有効時):
 
@@ -51,8 +51,8 @@ Rosetta 無効時 (QEMU fallback) は 25-30 分かかります。
 # docker-compose.yml (fhirserver 部分)
 services:
   fhirserver:
-    image: iris4h-ai/fhirserver:local
-    container_name: iris4h-ai-fhirserver
+    image: fhir-jp-validator/fhirserver:local
+    container_name: fhir-jp-validator-fhirserver
     platform: linux/amd64
     ports:
       - "8181:80"
@@ -72,7 +72,7 @@ services:
 
 ```bash
 docker compose up -d fhirserver
-docker logs -f iris4h-ai-fhirserver   # 起動ログを追う
+docker logs -f fhir-jp-validator-fhirserver   # 起動ログを追う
 curl http://localhost:8181/r4/metadata # CapabilityStatement が返ればOK
 ```
 

@@ -54,7 +54,7 @@ unzip Loinc_2.82.zip -d tx-server-build/loinc-src/
 docker run --rm --platform linux/amd64 \
   -v $(pwd)/tx-server-build/loinc-src:/loinc:ro \
   -v $(pwd)/tx-server-build/terminology:/out \
-  iris4h-ai/fhirserver:local \
+  fhir-jp-validator/fhirserver:local \
   /fhirserver/fhirserver -cmd loinc-import \
     -source /loinc/Loinc_2.82 \
     -version 2.82 \
@@ -94,7 +94,7 @@ unzip SnomedCT_InternationalRF2_PRODUCTION_20260601T120000Z.zip -d tx-server-bui
 docker run --rm --platform linux/amd64 \
   -v $(pwd)/tx-server-build/snomed-src:/snomed:ro \
   -v $(pwd)/tx-server-build/terminology:/out \
-  iris4h-ai/fhirserver:local \
+  fhir-jp-validator/fhirserver:local \
   /fhirserver/fhirserver -cmd snomed-import \
     -source /snomed/SnomedCT_InternationalRF2_PRODUCTION_20260601T120000Z/Snapshot \
     -uri http://snomed.info/sct/900000000000207008/version/20260601 \

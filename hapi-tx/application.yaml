@@ -29,7 +29,7 @@ hapi:
     default_encoding: JSON
     tester:
       home:
-        name: iris4h-ai hapi-tx
+        name: fhir-jp-validator hapi-tx
         server_address: http://localhost:3010/fhir
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4

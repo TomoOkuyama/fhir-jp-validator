@@ -2,7 +2,7 @@
 
 Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (LOINC/SNOMED import CLI patch 付き) + HAPI Validator cluster (8 JVM streaming client)。Apple Silicon Mac (Rosetta 2) で amd64 emulation 最適化済み。
 
-実測 (M3 Max 14 core、Docker Desktop 18GB): **343k FHIR resource を 28 分で 100% success 検証、平均 205 rps**。
+実測 (M3 Max 14 core、Docker Desktop 18GB): **343k FHIR resource を 28 分で 100% success 検証、平均 205 rps** (JP Core + JP-CLINS + jpfhir-terminology + LOINC + SNOMED 全 load、cache warm、`chunk=50 parallel=32`)。他構成の測定は [docs/benchmarks.md](docs/benchmarks.md)。
 
 ## 何を検証できるか
 
@@ -11,6 +11,14 @@ Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (
 - LOINC 2.82 / SNOMED CT International の code 妥当性 + display 名一致
 - JP Core / JP-CLINS の ValueSet メンバーシップ、日本 CodeSystem (JP_MedicationCode_VS 等)
 - UCUM 単位 code
+
+## 何を検証しないか
+
+- **FHIR R4 のみ**。R4B / R5 / DSTU2 は非対応 (HAPI Validator 側の `-version` 引数変更で拡張可能だが、IG は差し替え要)
+- **業務ロジック検証は対象外** — 診療報酬点数計算、レセプト整合、医療的妥当性 (投薬量チェック等) は行わない
+- **Bundle Type validation は行わない** — client (`parallel-validate.py`) が入力 NDJSON を `Bundle.type=collection` に強制ラッピングするため、`transaction`/`document` 等の Bundle 制約はチェックされない
+- **HL7 CDA / HL7 v2 / DICOM は対象外** — FHIR JSON リソースのみ
+- **IG バージョンは固定** — JP Core 1.2.0 / JP-CLINS 1.12.0 / jpfhir-terminology 2.2606.0。旧版で検証したい場合は `jp_core/package/` と `HAPI_IG_EXTRA_DIRS` を差し替え
 
 ## アーキテクチャ
 
@@ -33,6 +41,8 @@ Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (
 └─────────────────────────────────────────────────────────────┘
 ```
 
+補足: `docker compose --profile tx up -d hapi-tx` で HAPI FHIR JPA (port 3010) を追加起動可能。REST で `$expand` / `$validate-code` を対話的に試したい開発者向けのオプションで、validation 用途ではありません (HAPI Validator の tx-compat test を通らないので `-tx` には指定不可)。
+
 ## クイックスタート
 
 ### 1. 前提
@@ -52,13 +62,22 @@ softwareupdate --install-rosetta --agree-to-license
 
 **Rosetta 未有効だと build 25 分 → QEMU で 2 時間、SNOMED import 10 分 → 4-8 時間になります**。必ず有効化してください。
 
-### 3. fhirserver ビルド
+### 3. リポジトリ clone
+
+```bash
+git clone https://github.com/TomoOkuyama/fhir-jp-validator.git
+cd fhir-jp-validator
+```
+
+以降のコマンドは全て repo ルートで実行します。
+
+### 4. fhirserver ビルド
 
 ```bash
 ./scripts/setup-fhirserver.sh   # HealthIntersections/fhirserver clone + patches 適用 + Docker build (5-8 分)
 ```
 
-### 4. Terminology 入手 & 配置
+### 5. Terminology 入手 & 配置
 
 `docs/terminology-setup.md` を参照。要点:
 
@@ -66,7 +85,7 @@ softwareupdate --install-rosetta --agree-to-license
 - LOINC 2.82 は https://loinc.org/ でアカウント作成 → 無料 DL、ライセンス受諾要
 - SNOMED CT International は https://uts.nlm.nih.gov/uts/ で UMLS ライセンス取得 → RF2 DL、**個人ライセンスは商用配布・共有 NG**
 
-### 5. 検証実行
+### 6. 検証実行
 
 ```bash
 docker compose up -d fhirserver
@@ -79,6 +98,8 @@ docker compose up -d fhirserver
 - `result.ndjson` — OperationOutcome ストリーム (1 行 = 1 リソース分の検証結果)
 - `result.meta.json` — メタ (成功数、失敗数、rps、port 別統計)
 - `result.failed.ndjson` — timeout 等で失敗した Bundle 一覧
+
+出力の読み方・issue パターンの解釈・集計 recipe は [docs/output-guide.md](docs/output-guide.md) を参照。
 
 ## パフォーマンス
 

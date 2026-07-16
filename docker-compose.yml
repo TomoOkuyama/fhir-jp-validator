@@ -8,7 +8,7 @@ services:
   # image: source から build (tx-server-build/fhirserver/) - GHCR image は private のため
   #   scripts/setup-fhirserver.sh で自動 build
   fhirserver:
-    image: iris4h-ai/fhirserver:local
+    image: fhir-jp-validator/fhirserver:local
     container_name: fhir-jp-validator-fhirserver
     platform: linux/amd64
     ports:

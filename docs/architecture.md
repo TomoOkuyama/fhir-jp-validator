@@ -15,6 +15,14 @@ HAPI Validator は `-tx` に渡す terminology server に対して起動時 **tx
 | HAPI FHIR JPA (Java) | ❌ | `feature-query` 未実装、起動失敗 |
 | Firely Server | 未確認 | 商用ライセンス |
 
+なお本 repo の `docker-compose.yml` には `profiles: ["tx"]` で **HAPI FHIR JPA server** (port 3010) も同梱しています。これは **validator の `-tx` としては使えません** (上表の通り tx-compat test 失敗) が、以下の用途では有用です:
+
+- REST で `$expand` / `$validate-code` / `$lookup` を対話的に叩いて terminology を探索
+- JP Core / JP-CLINS の ValueSet や CodeSystem の内容を human-readable に確認
+- `application.yaml` を差し替えて `hapi.fhir.narrative_enabled` 等の実験
+
+起動: `docker compose --profile tx up -d hapi-tx`。停止: `docker compose --profile tx down`。通常の validation 実行時は起動不要です。
+
 ## fhirserver の challenge (と本 repo の対処)
 
 HL7 fhirserver は素晴らしい tx server ですが、以下の制約:

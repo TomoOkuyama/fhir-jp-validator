@@ -1,0 +1,65 @@
+diff --git a/server/kernel.pas b/server/kernel.pas
+index abed9fa..2f991da 100644
+--- a/server/kernel.pas
++++ b/server/kernel.pas
+@@ -53,7 +53,8 @@ Uses
+   tx_manager, telnet_server, web_source, web_server, web_cache, zero_config,
+   server_testing, kernel_thread, server_stats,
+   endpoint, endpoint_storage, endpoint_bridge, endpoint_txsvr,
+-  endpoint_loinc, endpoint_snomed, endpoint_full, endpoint_folder, endpoint_icao;
++  endpoint_loinc, endpoint_snomed, endpoint_full, endpoint_folder, endpoint_icao,
++  ftx_loinc_importer, ftx_sct_importer;
+ 
+ 
+ // how the kernel works:
+@@ -518,6 +519,7 @@ function TFHIRServiceKernel.command(cmd: String): boolean;
+ var
+   fn : String;
+   ep : TFHIRServerEndPoint;
++  srcFolder2, vers2, dt2, destFile2 : String;
+ begin
+   result := true;
+   if cmd = 'mount' then
+@@ -591,6 +593,42 @@ begin
+       ep.free;
+     end;
+   end
++  else if cmd = 'loinc-import' then
++  begin
++    // iris4h-ai: headless LOINC importer
++    //   -cmd loinc-import -source <folder> -version <ver> -date <YYYY-MM-DD> -dest <output.cache>
++    if not FParams.get('source', srcFolder2) then
++      raise EFHIRException.Create('loinc-import: -source <LOINC folder> required');
++    if not FParams.get('version', vers2) then
++      raise EFHIRException.Create('loinc-import: -version <ver> required');
++    if not FParams.get('date', dt2) then
++      raise EFHIRException.Create('loinc-import: -date <YYYY-MM-DD> required');
++    if not FParams.get('dest', destFile2) then
++      raise EFHIRException.Create('loinc-import: -dest <output.cache> required');
++    Logging.log('LOINC import: source=' + srcFolder2 + ', version=' + vers2 + ', date=' + dt2 + ', dest=' + destFile2);
++    importLoinc(srcFolder2, vers2, dt2, destFile2, nil);
++    Logging.log('LOINC import complete: ' + destFile2);
++  end
++  else if cmd = 'snomed-import' then
++  begin
++    // iris4h-ai: headless SNOMED CT RF2 importer
++    //   -cmd snomed-import -source <RF2 folder> -uri <sct URI> -lang <byte> -dest <output.cache>
++    //     [-base <base folder>]
++    //   Example (International): -uri http://snomed.info/sct/900000000000207008/version/20260601 -lang 1
++    if not FParams.get('source', srcFolder2) then
++      raise EFHIRException.Create('snomed-import: -source <RF2 folder> required');
++    if not FParams.get('uri', vers2) then
++      raise EFHIRException.Create('snomed-import: -uri <sct URI> required');
++    if not FParams.get('lang', dt2) then
++      raise EFHIRException.Create('snomed-import: -lang <byte> required (International=1)');
++    if not FParams.get('dest', destFile2) then
++      raise EFHIRException.Create('snomed-import: -dest <output.cache> required');
++    if not FParams.get('base', fn) then
++      fn := '';
++    Logging.log('SNOMED import: source=' + srcFolder2 + ', base=' + fn + ', uri=' + vers2 + ', lang=' + dt2 + ', dest=' + destFile2);
++    importSnomedRF2(srcFolder2, fn, destFile2, vers2, StrToInt(dt2), nil);
++    Logging.log('SNOMED import complete: ' + destFile2);
++  end
+   else
+     result := inherited ;
+ end;

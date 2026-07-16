@@ -21,6 +21,10 @@ tx-server-build/loinc-src/
 tx-server-build/snomed-src/
 tx-server-build/terminology/jp-core/
 tx-server-build/terminology/*.cache
+# LOINC/SNOMED の入手済み zip (ユーザーが自分で loinc.org / UMLS から DL するもの)
+tx-server-build/Loinc_*.zip
+tx-server-build/SnomedCT_*.zip
+tx-server-build/*.zip
 
 # Validation input/output data (potentially patient data)
 fhir_r4/

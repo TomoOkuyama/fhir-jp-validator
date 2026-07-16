@@ -4,7 +4,7 @@
 # 手順:
 #   1. HealthIntersections/fhirserver を clone (tx-server-build/fhirserver/)
 #   2. patches/*.patch を適用 (LOINC/SNOMED import CLI + SNOMED DateSeparator fix)
-#   3. docker buildx で amd64 image (iris4h-ai/fhirserver:local) を build
+#   3. docker buildx で amd64 image (fhir-jp-validator/fhirserver:local) を build
 #
 # 前提: Docker Desktop (Apple Silicon なら Rosetta 2 有効化推奨、build 5-8 分)
 # 未有効化時は QEMU fallback で 25-30 分かかる
@@ -18,7 +18,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 FHIRSERVER_DIR="$REPO_ROOT/tx-server-build/fhirserver"
 FHIRSERVER_UPSTREAM="https://github.com/HealthIntersections/fhirserver.git"
 FHIRSERVER_TAG="${FHIRSERVER_TAG:-v4.0.7}"
-IMAGE_TAG="${IMAGE_TAG:-iris4h-ai/fhirserver:local}"
+IMAGE_TAG="${IMAGE_TAG:-fhir-jp-validator/fhirserver:local}"
 
 echo "=== 1/3: fhirserver source clone ==="
 if [ -d "$FHIRSERVER_DIR/.git" ]; then
