@@ -1,8 +1,8 @@
 # fhir-jp-validator
 
-Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (LOINC/SNOMED import CLI patch 付き) + HAPI Validator cluster (8 JVM streaming client)。Apple Silicon Mac (Rosetta 2) で amd64 emulation 最適化済み。
+Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (LOINC/SNOMED import CLI patch 付き) + HAPI Validator cluster (6 JVM streaming client、default 設定)。Apple Silicon Mac (Rosetta 2) で amd64 emulation 最適化済み。
 
-実測 (M3 Max 14 core、Docker Desktop 18GB): **343k FHIR resource を 28 分で 100% success 検証、平均 205 rps** (JP Core + JP-CLINS + jpfhir-terminology + LOINC + SNOMED 全 load、cache warm、`chunk=50 parallel=32`)。他構成の測定は [docs/benchmarks.md](docs/benchmarks.md)。
+実測 (M3 Max 14 core、Docker Desktop 18GB、**当時 8 JVM 設定**): **343k FHIR resource を 28 分で 100% success 検証、平均 205 rps** (JP Core + JP-CLINS + jpfhir-terminology + LOINC + SNOMED 全 load、cache warm、`chunk=50 parallel=32`)。現在の default は余裕を持たせた 6 JVM。他構成の測定は [docs/benchmarks.md](docs/benchmarks.md)。
 
 ## 何を検証できるか
 
@@ -32,7 +32,7 @@ Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (
 └─────────────────────────────────────────────────────────────┘
                        ↑ localhost:8181/r4
 ┌─────────────────────────────────────────────────────────────┐
-│ HAPI Validator cluster (8 JVM, port 3001-3008)              │
+│ HAPI Validator cluster (6 JVM, port 3001-3006)              │
 │   -ig jp_core -ig JP-CLINS -ig jpfhir-terminology            │
 │   -tx=http://localhost:8181/r4 -txCache=.hapi-cache/tx-cache│
 │                                                              │
@@ -51,7 +51,7 @@ Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (
 - Java 11+ (HAPI Validator 用)
 - Python 3.10+ (parallel-validate.py 用、標準 library のみ使用)
 - 40 GB のディスク空き (fhirserver 486 MB、SNOMED cache 846 MB、LOINC cache 841 MB、その他)
-- 8 GB RAM (JVM 8 × 3 GB heap 前提の場合 24 GB 推奨)
+- 8 GB RAM (default の JVM 6 × 3 GB heap = 18 GB 推奨、8 JVM に増やすなら 24 GB)
 
 ### 2. Rosetta 2 有効化 (Apple Silicon のみ)
 

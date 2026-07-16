@@ -23,7 +23,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from threading import Lock
 
-DEFAULT_PORTS = list(range(3001, 3009))
+DEFAULT_PORTS = list(range(3001, 3007))
 DEFAULT_CHUNK = 50
 DEFAULT_PARALLEL = 64
 DEFAULT_TIMEOUT = 60                # Bundle 検証は数秒で終わるべき。長すぎる timeout は詰まりの原因

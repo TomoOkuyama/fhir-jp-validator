@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# HAPI FHIR Validator 8 JVM cluster manager
+# HAPI FHIR Validator 6 JVM cluster manager
 #
 # Usage:
-#   scripts/hapi-cluster.sh start   # 8 サーバ起動 (port 3001-3008)
+#   scripts/hapi-cluster.sh start   # 6 サーバ起動 (port 3001-3006)
 #   scripts/hapi-cluster.sh stop    # 全サーバ停止
 #   scripts/hapi-cluster.sh status  # 稼働状況表示
 #
@@ -31,9 +31,9 @@ IG_DIR="${HAPI_IG_DIR:-$REPO_ROOT/jp_core/package}"
 HAPI_IG_EXTRA_DIRS="${HAPI_IG_EXTRA_DIRS:-$REPO_ROOT/tx-server-build/terminology/fhir-server/clinical-information-sharing#1.12.0/package:$REPO_ROOT/tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package}"
 FHIR_VERSION="${HAPI_FHIR_VERSION:-4.0.1}"
 JVM_HEAP="${HAPI_JVM_HEAP:-3g}"
-PORTS=(3001 3002 3003 3004 3005 3006 3007 3008)
+PORTS=(3001 3002 3003 3004 3005 3006)
 # Terminology server 指定
-#   default (未指定): local fhirserver (http://localhost:8181/r4) を使用 (Plan C)
+#   default (未指定): local fhirserver (http://localhost:8181/r4) を使用
 #                    docker compose up -d fhirserver で起動しておくこと
 #   "default"       : HAPI 内蔵デフォルト (tx.fhir.org) にフォールバック
 #   "n/a"           : 外部 tx 検証を完全スキップ (structure/slice のみ、最速)
