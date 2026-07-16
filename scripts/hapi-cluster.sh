@@ -44,6 +44,11 @@ HAPI_TX="${HAPI_TX:-http://localhost:8181/r4}"
 # 初回 warm-up 後は cache hit で高速化、複数 JVM 共有可
 HAPI_TX_CACHE="${HAPI_TX_CACHE:-$REPO_ROOT/.hapi-cache/tx-cache}"
 
+# HAPI validator への追加引数 (default: なし)
+# 例: HAPI_EXTRA_ARGS="-best-practice ignore -check-display Ignore"
+#     で Best Practice 系 warning と display 検証をスキップ
+HAPI_EXTRA_ARGS="${HAPI_EXTRA_ARGS:-}"
+
 # ------------------------------------------------------------
 # 共通処理
 # ------------------------------------------------------------
@@ -128,11 +133,20 @@ cmd_start() {
 
   echo "HAPI validator cluster 起動中 (${#PORTS[@]} JVM, heap=$JVM_HEAP, FHIR $FHIR_VERSION, IG=$ig_display, tx=$tx_display, txCache=$cache_display)"
 
+  # HAPI_EXTRA_ARGS を配列に展開 (空白区切り、簡易 shell parse)
+  local extra_args=()
+  if [ -n "$HAPI_EXTRA_ARGS" ]; then
+    # shellcheck disable=SC2206
+    extra_args=($HAPI_EXTRA_ARGS)
+    echo "extra args: ${extra_args[*]}"
+  fi
+
   for port in "${PORTS[@]}"; do
     nohup java "-Xmx$JVM_HEAP" -jar "$VALIDATOR_JAR" server "$port" \
       -version "$FHIR_VERSION" \
       "${ig_args[@]}" \
       "${tx_args[@]}" \
+      "${extra_args[@]}" \
       > "$CACHE_DIR/logs/$port.log" 2>&1 &
     echo $! > "$CACHE_DIR/logs/$port.pid"
     echo "  port $port started (PID $!)"
