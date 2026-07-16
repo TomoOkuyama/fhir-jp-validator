@@ -184,9 +184,9 @@ cmd_stop() {
   # PID ファイル外の取りこぼしを念のため掃除
   pkill -f "validator_cli.jar server" 2>/dev/null || true
   sleep 1
-  local remaining
-  remaining=$(pgrep -f "validator_cli.jar server" | wc -l | tr -d ' ')
-  if [ "$remaining" -gt 0 ]; then
+  # pgrep は該当なしで exit 1 を返し、set -e + pipefail で abort するため、
+  # exit code だけを見る (pgrep -f は match ゼロで 1、1 以上で 0)。
+  if pgrep -f "validator_cli.jar server" >/dev/null 2>&1; then
     pkill -9 -f "validator_cli.jar server" 2>/dev/null || true
   fi
   echo "$stopped プロセス停止"
