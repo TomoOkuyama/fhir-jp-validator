@@ -202,6 +202,44 @@ EXPECTED_ISSUES = {
         "desc": "JP_DiagnosticReport: category:first slice 必須欠落",
         "pattern": r"DiagnosticReport\.category:first.*minimum required.*1",
     },
+
+    # --- 追加 v4: 追加パターン ---
+    "immunization-vaccinecode-missing": {
+        "desc": "Immunization.vaccineCode 必須欠落 (R4 base cardinality)",
+        "pattern": r"Immunization\.vaccineCode.*(最小必要値.*1|minimum required.*1)",
+    },
+    "encounter-status-missing": {
+        "desc": "Encounter.status 必須欠落",
+        "pattern": r"Encounter\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "encounter-class-missing": {
+        "desc": "Encounter.class 必須欠落",
+        "pattern": r"Encounter\.class.*(最小必要値.*1|minimum required.*1)",
+    },
+    "bundle-transaction-entry-request-missing": {
+        "desc": "Bundle.type=transaction で entry.request 欠落 (bdl-3)",
+        "pattern": r"bdl-3|entry\.request.*required|transaction.*request.*(必須|required)",
+    },
+    "extension-value-type-mismatch": {
+        "desc": "定義済 extension に対して定義と異なる value[x] 型を指定",
+        "pattern": r"extension\s*'[^']+'\s*の定義はタイプ\s*\[[^\]]+\]\s*を許可していますが|extension.*definition allows type|value type.*not.*allowed.*extension",
+    },
+    "slice-not-matching-known-slice": {
+        "desc": "既知の slice discriminator と合わない要素 (Observation.category など)",
+        "pattern": r"どの既知のスライスとも一致しません|does not match any (known )?slice|要素は既知のスライス.*と一致せず",
+    },
+    "reference-target-profile-mismatch": {
+        "desc": "Reference が profile が要求する target と一致しない",
+        "pattern": r"タイプ\s*'\w+'\s*は.*有効なターゲット|not a valid target|Reference.*target.*(型|profile).*(不一致|not allowed)|参照.*profile.*違反",
+    },
+    "medication-request-intent-missing": {
+        "desc": "MedicationRequest.intent 必須欠落 (R4 base)",
+        "pattern": r"MedicationRequest\.intent.*(最小必要値.*1|minimum required.*1)",
+    },
+    "condition-clinical-verification-consistency": {
+        "desc": "Condition の clinicalStatus と verificationStatus の consistency 制約 (con-3 / con-5)",
+        "pattern": r"con-[35]|clinicalStatus.*(必要|conflicts|not.*combined)|verificationStatus.*conflict",
+    },
 }
 
 
