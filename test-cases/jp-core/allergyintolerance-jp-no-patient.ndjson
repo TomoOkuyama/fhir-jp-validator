@@ -1,0 +1,1 @@
+{"resourceType":"AllergyIntolerance","id":"tc-ai-jp-no-patient","meta":{"profile":["http://jpfhir.jp/fhir/core/StructureDefinition/JP_AllergyIntolerance"],"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"allergyintolerance-patient-missing"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"}}

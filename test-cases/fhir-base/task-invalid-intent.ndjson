@@ -1,0 +1,1 @@
+{"resourceType":"Task","id":"tc-task-invalid-intent","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"invalid-code-enum"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"status":"draft","intent":"bogus-value"}

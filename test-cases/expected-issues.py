@@ -38,7 +38,7 @@ EXPECTED_ISSUES = {
     },
     "invalid-code-enum": {
         "desc": "enum 値以外の code (例: Observation.status に不正値)",
-        "pattern": r"(値は|is not|is illegal|not.*valid).*(でなければ|must be)|is not in the (value set|enumeration)|ValueSet.*に含まれていません|is not in the ValueSet|not.*in.*value.*set",
+        "pattern": r"(値は|is not|is illegal|not.*valid).*(でなければ|must be)|is not in the (value set|enumeration)|ValueSet.*に含まれていません|is not in the ValueSet|not.*in.*value.*set|codingのいずれもが.*ValueSet|none of the.*codings.*ValueSet",
     },
 
     # --- Terminology ---
@@ -280,6 +280,248 @@ EXPECTED_ISSUES = {
     "observation-value-and-dataabsentreason": {
         "desc": "Observation.value[x] と dataAbsentReason が同時に存在 (obs-6/obs-7)",
         "pattern": r"obs-[67]|dataAbsentReason.*not.*if.*value|value.*absent.*同時",
+    },
+
+    # --- v6 B1: FHIR base 追加 resource 種別 ---
+    "diagnosticreport-status-missing": {
+        "desc": "DiagnosticReport.status 必須欠落",
+        "pattern": r"DiagnosticReport\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "diagnosticreport-code-missing": {
+        "desc": "DiagnosticReport.code 必須欠落",
+        "pattern": r"DiagnosticReport\.code.*(最小必要値.*1|minimum required.*1)",
+    },
+    "servicerequest-status-missing": {
+        "desc": "ServiceRequest.status 必須欠落",
+        "pattern": r"ServiceRequest\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "servicerequest-intent-missing": {
+        "desc": "ServiceRequest.intent 必須欠落",
+        "pattern": r"ServiceRequest\.intent.*(最小必要値.*1|minimum required.*1)",
+    },
+    "servicerequest-subject-missing": {
+        "desc": "ServiceRequest.subject 必須欠落",
+        "pattern": r"ServiceRequest\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "procedure-status-missing": {
+        "desc": "Procedure.status 必須欠落",
+        "pattern": r"Procedure\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "procedure-subject-missing": {
+        "desc": "Procedure.subject 必須欠落",
+        "pattern": r"Procedure\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "composition-status-missing": {
+        "desc": "Composition.status 必須欠落",
+        "pattern": r"Composition\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "composition-type-missing": {
+        "desc": "Composition.type 必須欠落",
+        "pattern": r"Composition\.type.*(最小必要値.*1|minimum required.*1)",
+    },
+    "composition-date-missing": {
+        "desc": "Composition.date 必須欠落",
+        "pattern": r"Composition\.date.*(最小必要値.*1|minimum required.*1)",
+    },
+    "composition-author-missing": {
+        "desc": "Composition.author 必須欠落",
+        "pattern": r"Composition\.author.*(最小必要値.*1|minimum required.*1)",
+    },
+    "composition-title-missing": {
+        "desc": "Composition.title 必須欠落",
+        "pattern": r"Composition\.title.*(最小必要値.*1|minimum required.*1)",
+    },
+    "careplan-status-missing": {
+        "desc": "CarePlan.status 必須欠落",
+        "pattern": r"CarePlan\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "careplan-intent-missing": {
+        "desc": "CarePlan.intent 必須欠落",
+        "pattern": r"CarePlan\.intent.*(最小必要値.*1|minimum required.*1)",
+    },
+    "careplan-subject-missing": {
+        "desc": "CarePlan.subject 必須欠落",
+        "pattern": r"CarePlan\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "goal-lifecyclestatus-missing": {
+        "desc": "Goal.lifecycleStatus 必須欠落",
+        "pattern": r"Goal\.lifecycleStatus.*(最小必要値.*1|minimum required.*1)",
+    },
+    "goal-description-missing": {
+        "desc": "Goal.description 必須欠落",
+        "pattern": r"Goal\.description.*(最小必要値.*1|minimum required.*1)",
+    },
+    "goal-subject-missing": {
+        "desc": "Goal.subject 必須欠落",
+        "pattern": r"Goal\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "task-status-missing": {
+        "desc": "Task.status 必須欠落",
+        "pattern": r"Task\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "task-intent-missing": {
+        "desc": "Task.intent 必須欠落",
+        "pattern": r"Task\.intent.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medicationstatement-status-missing": {
+        "desc": "MedicationStatement.status 必須欠落",
+        "pattern": r"MedicationStatement\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medicationstatement-subject-missing": {
+        "desc": "MedicationStatement.subject 必須欠落",
+        "pattern": r"MedicationStatement\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+
+    # --- v6 B2: JP Core profile 適用時の必須欠落 ---
+    "jp-organization-identifier-system-missing": {
+        "desc": "JP_Organization: identifier.system 必須欠落",
+        "pattern": r"Organization\.identifier(\[\d+\]|\.[^:]+)?\.system.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-coverage-identifier-system-missing": {
+        "desc": "JP_Coverage: identifier.system 必須欠落",
+        "pattern": r"Coverage\.identifier(\[\d+\]|\.[^:]+)?\.system.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-coverage-identifier-value-missing": {
+        "desc": "JP_Coverage: identifier.value 必須欠落",
+        "pattern": r"Coverage\.identifier(\[\d+\]|\.[^:]+)?\.value.*(最小必要値.*1|minimum required.*1)",
+    },
+    "immunization-patient-missing": {
+        "desc": "Immunization.patient 必須欠落",
+        "pattern": r"Immunization\.patient.*(最小必要値.*1|minimum required.*1)",
+    },
+    "immunization-status-missing": {
+        "desc": "Immunization.status 必須欠落",
+        "pattern": r"Immunization\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "immunization-occurrence-missing": {
+        "desc": "Immunization.occurrence[x] 必須欠落",
+        "pattern": r"Immunization\.occurrence\[x\].*(最小必要値.*1|minimum required.*1)",
+    },
+    "documentreference-status-missing": {
+        "desc": "DocumentReference.status 必須欠落",
+        "pattern": r"DocumentReference\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "documentreference-content-missing": {
+        "desc": "DocumentReference.content 必須欠落",
+        "pattern": r"DocumentReference\.content.*(最小必要値.*1|minimum required.*1)",
+    },
+    "condition-subject-missing": {
+        "desc": "Condition.subject 必須欠落",
+        "pattern": r"Condition\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medreq-medication-missing": {
+        "desc": "MedicationRequest.medication[x] 必須欠落",
+        "pattern": r"MedicationRequest\.medication\[x\].*(最小必要値.*1|minimum required.*1)",
+    },
+    "medreq-subject-missing": {
+        "desc": "MedicationRequest.subject 必須欠落",
+        "pattern": r"MedicationRequest\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medreq-status-missing": {
+        "desc": "MedicationRequest.status 必須欠落",
+        "pattern": r"MedicationRequest\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "familymemberhistory-status-missing": {
+        "desc": "FamilyMemberHistory.status 必須欠落",
+        "pattern": r"FamilyMemberHistory\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "familymemberhistory-patient-missing": {
+        "desc": "FamilyMemberHistory.patient 必須欠落",
+        "pattern": r"FamilyMemberHistory\.patient.*(最小必要値.*1|minimum required.*1)",
+    },
+    "familymemberhistory-relationship-missing": {
+        "desc": "FamilyMemberHistory.relationship 必須欠落",
+        "pattern": r"FamilyMemberHistory\.relationship.*(最小必要値.*1|minimum required.*1)",
+    },
+
+    # --- v6 B3: JP-CLINS eCS profile 必須欠落 ---
+    "resource-meta-lastupdated-missing": {
+        "desc": "任意リソースの meta.lastUpdated 必須欠落 (eCS 系プロファイル全般で要求)",
+        "pattern": r"\w+\.meta\.lastUpdated.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-encounter-ecs-period-start-missing": {
+        "desc": "JP_Encounter_eCS: period.start 必須欠落",
+        "pattern": r"Encounter\.period\.start.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-careplan-ecs-title-missing": {
+        "desc": "JP_CarePlan_eCS: title 必須欠落",
+        "pattern": r"CarePlan\.title.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-careplan-ecs-description-missing": {
+        "desc": "JP_CarePlan_eCS: description 必須欠落",
+        "pattern": r"CarePlan\.description.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-patient-ecs-gender-missing": {
+        "desc": "JP_Patient_eCS: gender 必須欠落",
+        "pattern": r"Patient\.gender.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-patient-ecs-birthdate-missing": {
+        "desc": "JP_Patient_eCS: birthDate 必須欠落",
+        "pattern": r"Patient\.birthDate.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-organization-ecs-name-missing": {
+        "desc": "JP_Organization_eCS: name 必須欠落",
+        "pattern": r"Organization\.name.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-familymemberhistory-ecs-relationship-coding-missing": {
+        "desc": "JP_FamilyMemberHistory_eCS: relationship.coding 必須欠落",
+        "pattern": r"FamilyMemberHistory\.relationship\.coding.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-composition-extension-version-missing": {
+        "desc": "JP_Composition_*: extension:version slice 必須欠落",
+        "pattern": r"Composition\.extension:version.*(最小必要値.*1|minimum required.*1)",
+    },
+    "consent-status-missing": {
+        "desc": "Consent.status 必須欠落",
+        "pattern": r"Consent\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "consent-scope-missing": {
+        "desc": "Consent.scope 必須欠落",
+        "pattern": r"Consent\.scope.*(最小必要値.*1|minimum required.*1)",
+    },
+    "consent-category-missing": {
+        "desc": "Consent.category 必須欠落",
+        "pattern": r"Consent\.category.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medadmin-status-missing": {
+        "desc": "MedicationAdministration.status 必須欠落",
+        "pattern": r"MedicationAdministration\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medadmin-medication-missing": {
+        "desc": "MedicationAdministration.medication[x] 必須欠落",
+        "pattern": r"MedicationAdministration\.medication\[x\].*(最小必要値.*1|minimum required.*1)",
+    },
+    "medadmin-subject-missing": {
+        "desc": "MedicationAdministration.subject 必須欠落",
+        "pattern": r"MedicationAdministration\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+
+    # --- v6 B4: Terminology 追加 ---
+    "quantity-code-without-system": {
+        "desc": "Quantity.code が存在するが system が欠落 (qty-3 invariant)",
+        "pattern": r"qty-3|Quantity\.system\s+SHALL\s+be\s+present|A code SHALL only be present if it has|codeがあるならsystemも必要|systemがない場合、コード",
+    },
+    "dataabsentreason-not-in-valueset": {
+        "desc": "Observation.dataAbsentReason が拡張可能/必須 ValueSet 外",
+        "pattern": r"(dataAbsentReason.*not in|is not in the value set.*data-absent-reason|dataAbsentReason.*(ValueSet|でなければ)|DataAbsentReason)",
+    },
+    "coding-no-system": {
+        "desc": "Coding.code はあるが system が欠落",
+        "pattern": r"(system SHALL be present|Coding\.system.*(最小必要値.*1|minimum required.*1)|コーディング.*systemが必要|A system must be provided|システム.*(必須|欠落)|Codingには.*systemがない|Coding.*(no|without) system|Coding.*needs a system)",
+    },
+
+    # --- v6 B5: Extension 追加 ---
+    "ext-1-invariant-violation": {
+        "desc": "ext-1: extension は value[x] か nested extension のどちらか片方のみ",
+        "pattern": r"(ext-1|Must have either (extensions|extension) (or|and) value\[x\], not both|(値|value\[x\]).*(のいずれか|extension.*のどちらか)|either extensions or value)",
+    },
+    "modifierextension-cannot-be-ignored": {
+        "desc": "modifierExtension が未知で無視できない",
+        "pattern": r"(modifierExtension.*(未知|unknown|cannot be ignored|must be recognized)|Unknown modifierExtension|変更子拡張.*(未知|unknown))",
+    },
+    "extension-missing-url": {
+        "desc": "extension.url 欠落 (base cardinality)",
+        "pattern": r"(Extension\.url|extension\.url).*(最小必要値.*1|minimum required.*1)",
     },
 }
 

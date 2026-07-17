@@ -1,0 +1,1 @@
+{"resourceType":"Patient","id":"tc-patient-ext-no-url","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"extension-missing-url"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"extension":[{"valueString":"no url set here"}]}

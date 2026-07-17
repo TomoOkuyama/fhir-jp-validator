@@ -1,0 +1,1 @@
+{"resourceType":"Task","id":"tc-task-no-required","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"task-status-missing"},{"system":"http://fhir-jp-validator.test/expected-issue","code":"task-intent-missing"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"}}
