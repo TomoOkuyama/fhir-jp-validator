@@ -1,0 +1,43 @@
+{
+  "input": "validation-results/2026-07-17_full_v2/input_obs",
+  "resources_total": 245179,
+  "resources_ok": 245179,
+  "resources_failed": 0,
+  "bundles": 4904,
+  "chunk_size": 50,
+  "parallel": 24,
+  "timeout_sec": 120,
+  "retries": 2,
+  "circuit_threshold": 10,
+  "servers": [
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3004",
+    "http://localhost:3005",
+    "http://localhost:3006"
+  ],
+  "server_status_final": {
+    "active_ports": 6,
+    "total_ports": 6,
+    "quarantined_ports": [],
+    "port_ok_counts": {
+      "3004": 817,
+      "3005": 817,
+      "3001": 818,
+      "3003": 817,
+      "3002": 818,
+      "3006": 817
+    },
+    "port_fail_counts": {}
+  },
+  "elapsed_sec": 984.37,
+  "throughput_res_per_sec": 249.07,
+  "severity_summary": {
+    "warning": 176395,
+    "information": 666736,
+    "error": 30848
+  },
+  "outcome_ndjson": "validation-results/2026-07-17_full_v2/raw/obs.ndjson",
+  "failed_ndjson": null
+}

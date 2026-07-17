@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-17T14:04:06.959834+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.1.0",
+    "generation_timestamp": "2026-07-17T14:02:30.294515",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-06-30",
+    "total_patients_generated": 3788,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "253bced5f8b6c84bff650a7d75dd5a117f960fc5",
+    "commit_short": "253bced5",
+    "commit_datetime": "2026-07-17T14:00:37+09:00",
+    "commit_subject": "fix(fhir): move CodeSystem URIs off *.example.org (occupation, care-level) (#213)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 213,
+      "subject": "fix(fhir): move CodeSystem URIs off *.example.org (occupation, care-level) (#213)"
+    },
+    {
+      "pr": 211,
+      "subject": "fix(fhir): consolidate BP into LOINC 85354-9 panel Observation (#211)"
+    },
+    {
+      "pr": 209,
+      "subject": "fix(fhir): route MAR.reasonCode ICD-10 through _map_diagnosis_code (#209)"
+    },
+    {
+      "pr": 207,
+      "subject": "feat(fhir): emit _generator_metadata.json sidecar with git provenance (#207)"
+    },
+    {
+      "pr": 205,
+      "subject": "fix(fhir): map informal clinical unit spellings to UCUM canonical codes (#205)"
+    },
+    {
+      "pr": 203,
+      "subject": "fix(fhir): drop Observation.referenceRange extension entirely (#203)"
+    },
+    {
+      "pr": 201,
+      "subject": "fix(fhir): split Observation.category into per-CodeSystem elements (#201)"
+    },
+    {
+      "pr": 192,
+      "subject": "fix(fhir): populate eCS min=1 fields on Condition / AI / MR (#192)"
+    },
+    {
+      "pr": 199,
+      "subject": "fix(fhir): resource.id spec compliance + defensive validator (#198) (#199)"
+    },
+    {
+      "pr": 197,
+      "subject": "fix(fhir): populate JP-CLINS MedicationDosage_eCS fields on MR dosages (#196) (#197)"
+    },
+    {
+      "pr": 195,
+      "subject": "fix(fhir): emit companion Specimen for lab Observations (#194) (#195)"
+    },
+    {
+      "pr": 185,
+      "subject": "fix(fhir): drop fragment URL on Observation.referenceRange extension (#184) (#185)"
+    },
+    {
+      "pr": 187,
+      "subject": "fix(fhir): populate Observation.identifier + meta.lastUpdated (#186) (#187)"
+    },
+    {
+      "pr": 190,
+      "subject": "fix(fhir): dual HL7+JP category coding on eCS Observations (#188) (#190)"
+    },
+    {
+      "pr": 183,
+      "subject": "fix(fhir): populate UCUM Quantity.code on MA/MR/referenceRange (#182) (#183)"
+    },
+    {
+      "pr": 181,
+      "subject": "fix(fhir): drop empty-code coding[] entries on ServiceRequest (#180) (#181)"
+    },
+    {
+      "pr": 179,
+      "subject": "fix(fhir): CareTeam.category → SNOMED 735320007 Multidisciplinary care team (#178) (#179)"
+    },
+    {
+      "pr": 177,
+      "subject": "feat(simulator): sim_log progress inside the inpatient loop (#177)"
+    },
+    {
+      "pr": 176,
+      "subject": "feat(simulator): sim_log coverage for CIF write + FHIR export phases (#176)"
+    },
+    {
+      "pr": 173,
+      "subject": "feat(simulator): unified structured JSONL logging for progress + timing (#172) (#173)"
+    },
+    {
+      "pr": 171,
+      "subject": "fix(fhir): strip Japanese display on English-only CodeSystems (#170) (#171)"
+    },
+    {
+      "pr": 169,
+      "subject": "fix(fhir): JP Observation.category display + VSCat slice regressions (#169)"
+    },
+    {
+      "pr": 167,
+      "subject": "docs(rule): unify Japanese-doc naming to the `.ja.md` suffix convention (#167)"
+    },
+    {
+      "pr": 165,
+      "subject": "chore(repo): remove one-maintainer continuation notes from the shared repo (#165)"
+    },
+    {
+      "pr": 161,
+      "subject": "docs(readme): add architecture pipeline SVG(#148) (#161)"
+    },
+    {
+      "pr": 159,
+      "subject": "fix(narrative): US locale で hpi/physical_exam/daily_trajectory の JP text leak を解消 (#159)"
+    },
+    {
+      "pr": 160,
+      "subject": "feat(fhir): JP Core meta.profile を 4 追加 resource type に拡張(#145) (#160)"
+    },
+    {
+      "pr": 158,
+      "subject": "fix(test): ClinicalImpression 構造 test を snapshot-truncated in-progress に対応 (#158)"
+    },
+    {
+      "pr": 157,
+      "subject": "fix(fhir): JP-CLINS document-section CodeSystem URL から resource id を除去 (#157)"
+    },
+    {
+      "pr": 155,
+      "subject": "fix(fhir): JP Condition.severity に JP_ConditionSeverity_CS を primary coding として emit (#155)"
+    }
+  ]
+}
