@@ -100,6 +100,72 @@ EXPECTED_ISSUES = {
         "desc": "LOINC 85354-9 を持つ Observation で bp profile 必須 component が欠落",
         "pattern": r"Observation\.component.*(最小必要値.*2|minimum required.*2)|component:SystolicBP|component:DiastolicBP",
     },
+
+    # --- 追加: display 誤り / example URL ---
+    "loinc-display-mismatch": {
+        "desc": "LOINC code の display が正規名と異なる (Wrong Display Name)",
+        "pattern": r"Wrong Display Name|不正な表示名|表示名.*正しくない",
+    },
+    "example-codesystem-url-not-allowed": {
+        "desc": "http://example.org/ で始まる Example URL は許可されていない",
+        "pattern": r"Example URL\s?は許可されていません|Example URLs are not permitted|example\.org.*not (allowed|permitted)",
+    },
+
+    # --- 追加: Reference 型不一致 ---
+    "reference-type-mismatch": {
+        "desc": "Reference が期待される型と異なる (例: Reference(Patient) に Practitioner)",
+        "pattern": r"invalid.*Reference|Reference.*must be of type|参照.*(型|タイプ).*(不一致|invalid)|タイプ\s*'\w+'\s*は.*有効なターゲットではありません|is not a valid target|not (a valid|allowed as) target",
+    },
+
+    # --- 追加: JP_Condition_eCS 詳細 ---
+    "jp-condition-clinicalstatus-display-missing": {
+        "desc": "JP_Condition_eCS: clinicalStatus.coding.display 必須欠落",
+        "pattern": r"Condition\.clinicalStatus\.coding\.display.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-condition-verificationstatus-display-missing": {
+        "desc": "JP_Condition_eCS: verificationStatus.coding.display 必須欠落",
+        "pattern": r"Condition\.verificationStatus\.coding\.display.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-condition-category-missing": {
+        "desc": "JP_Condition_eCS: category 必須欠落",
+        "pattern": r"Condition\.category.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-condition-code-text-missing": {
+        "desc": "JP_Condition_eCS: code.text 必須欠落",
+        "pattern": r"Condition\.code\.text.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-condition-medisrecordno-slice-missing": {
+        "desc": "JP_Condition_eCS: code.coding:medisRecordNo slice 必須欠落",
+        "pattern": r"Condition\.code\.coding:medisRecordNo.*minimum required.*1",
+    },
+
+    # --- 追加: JP_Observation_LabResult 詳細 ---
+    "jp-obs-lab-effective-missing": {
+        "desc": "JP_Observation_LabResult_eCS: effective[x] 必須欠落",
+        "pattern": r"Observation\.effective\[x\].*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-obs-lab-code-text-missing": {
+        "desc": "JP_Observation_LabResult_eCS: code.text 必須欠落",
+        "pattern": r"Observation\.code\.text.*(最小必要値.*1|minimum required.*1)",
+    },
+    "jp-obs-lab-code-coding-display-missing": {
+        "desc": "JP_Observation_LabResult_eCS: code.coding.display 必須欠落",
+        "pattern": r"Observation\.code\.coding\.display.*(最小必要値.*1|minimum required.*1)",
+    },
+
+    # --- 追加: JP_MedicationRequest_eCS 詳細 ---
+    "jp-medreq-identifier-count-min3": {
+        "desc": "JP_MedicationRequest_eCS: identifier 必要数 3 未満",
+        "pattern": r"MedicationRequest\.identifier.*(最小必要値.*3|minimum required.*3)",
+    },
+    "jp-medreq-request-identifier-slice-missing": {
+        "desc": "JP_MedicationRequest_eCS: identifier:requestIdentifier slice 必須欠落",
+        "pattern": r"MedicationRequest\.identifier:requestIdentifier.*minimum required.*1",
+    },
+    "jp-medreq-lastupdated-missing": {
+        "desc": "JP_MedicationRequest_eCS: meta.lastUpdated 必須欠落",
+        "pattern": r"MedicationRequest\.meta\.lastUpdated.*(最小必要値.*1|minimum required.*1)",
+    },
 }
 
 
