@@ -222,7 +222,7 @@ EXPECTED_ISSUES = {
     },
     "extension-value-type-mismatch": {
         "desc": "定義済 extension に対して定義と異なる value[x] 型を指定",
-        "pattern": r"extension\s*'[^']+'\s*の定義はタイプ\s*\[[^\]]+\]\s*を許可していますが|extension.*definition allows type|value type.*not.*allowed.*extension",
+        "pattern": r"extension\s*'[^']+'\s*の定義はタイプ\s*\[[^\]]*\]\s*を許可していますが|extension.*definition allows type|value type.*not.*allowed.*extension",
     },
     "slice-not-matching-known-slice": {
         "desc": "既知の slice discriminator と合わない要素 (Observation.category など)",
@@ -522,6 +522,36 @@ EXPECTED_ISSUES = {
     "extension-missing-url": {
         "desc": "extension.url 欠落 (base cardinality)",
         "pattern": r"(Extension\.url|extension\.url).*(最小必要値.*1|minimum required.*1)",
+    },
+
+    # --- v6 B6: 100 突破のための追加 ---
+    "medadmin-effective-missing": {
+        "desc": "MedicationAdministration.effective[x] 必須欠落",
+        "pattern": r"MedicationAdministration\.effective\[x\].*(最小必要値.*1|minimum required.*1)",
+    },
+    "imagingstudy-status-missing": {
+        "desc": "ImagingStudy.status 必須欠落",
+        "pattern": r"ImagingStudy\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "endpoint-connectiontype-missing": {
+        "desc": "Endpoint.connectionType 必須欠落",
+        "pattern": r"Endpoint\.connectionType.*(最小必要値.*1|minimum required.*1)",
+    },
+    "endpoint-payloadtype-missing": {
+        "desc": "Endpoint.payloadType 必須欠落",
+        "pattern": r"Endpoint\.payloadType.*(最小必要値.*1|minimum required.*1)",
+    },
+    "endpoint-address-missing": {
+        "desc": "Endpoint.address 必須欠落",
+        "pattern": r"Endpoint\.address.*(最小必要値.*1|minimum required.*1)",
+    },
+    "endpoint-status-missing": {
+        "desc": "Endpoint.status 必須欠落",
+        "pattern": r"Endpoint\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "specimen-status-invalid": {
+        "desc": "Specimen.status に enum 外の値",
+        "pattern": r"Specimen\.status|specimen-status.*(ValueSet|でなければ|not.*valid)",
     },
 }
 

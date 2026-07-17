@@ -1,0 +1,1 @@
+{"resourceType":"Specimen","id":"tc-specimen-invalid-status","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"specimen-status-invalid"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"status":"invalid-value","subject":{"reference":"Patient/example"}}
