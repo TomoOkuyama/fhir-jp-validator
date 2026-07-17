@@ -1,0 +1,1 @@
+{"resourceType":"Location","id":"tc-location-invalid-status","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"location-status-invalid"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"status":"not-a-real-status","name":"テスト診察室"}

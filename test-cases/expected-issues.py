@@ -240,6 +240,47 @@ EXPECTED_ISSUES = {
         "desc": "Condition の clinicalStatus と verificationStatus の consistency 制約 (con-3 / con-5)",
         "pattern": r"con-[35]|clinicalStatus.*(必要|conflicts|not.*combined)|verificationStatus.*conflict",
     },
+
+    # --- 追加 v5: 各種 base 必須要素 ---
+    "coverage-status-missing": {
+        "desc": "Coverage.status 必須欠落",
+        "pattern": r"Coverage\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    "coverage-beneficiary-missing": {
+        "desc": "Coverage.beneficiary 必須欠落",
+        "pattern": r"Coverage\.beneficiary.*(最小必要値.*1|minimum required.*1)",
+    },
+    "coverage-payor-missing": {
+        "desc": "Coverage.payor 必須欠落",
+        "pattern": r"Coverage\.payor.*(最小必要値.*1|minimum required.*1)",
+    },
+    "allergyintolerance-patient-missing": {
+        "desc": "AllergyIntolerance.patient 必須欠落",
+        "pattern": r"AllergyIntolerance\.patient.*(最小必要値.*1|minimum required.*1)",
+    },
+    "location-status-invalid": {
+        "desc": "Location.status に enum 外の値",
+        "pattern": r"Location\.status|location-status.*(ValueSet|でなければ|not.*valid|not in the value set)",
+    },
+    "imagingstudy-subject-missing": {
+        "desc": "ImagingStudy.subject 必須欠落",
+        "pattern": r"ImagingStudy\.subject.*(最小必要値.*1|minimum required.*1)",
+    },
+    "medicationdispense-status-missing": {
+        "desc": "MedicationDispense.status 必須欠落",
+        "pattern": r"MedicationDispense\.status.*(最小必要値.*1|minimum required.*1)",
+    },
+    # --- 追加 v5: profile slice closed 違反 ---
+    "bp-profile-extra-component": {
+        "desc": "bp profile (LOINC 85354-9) で closed slice に定義外の component を追加 (info level detection)",
+        "pattern": r"どの既知のスライスとも一致しません.*bp\|4\.0\.1|does not match any (known )?slice.*bp\|4\.0\.1",
+    },
+
+    # --- 追加 v5: Observation invariant ---
+    "observation-value-and-dataabsentreason": {
+        "desc": "Observation.value[x] と dataAbsentReason が同時に存在 (obs-6/obs-7)",
+        "pattern": r"obs-[67]|dataAbsentReason.*not.*if.*value|value.*absent.*同時",
+    },
 }
 
 
