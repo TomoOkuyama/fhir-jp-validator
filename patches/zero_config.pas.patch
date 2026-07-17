@@ -1,0 +1,13 @@
+diff --git a/server/zero_config.pas b/server/zero_config.pas
+index d8047c4..a761d19 100644
+--- a/server/zero_config.pas
++++ b/server/zero_config.pas
+@@ -264,7 +264,7 @@ begin
+     cfg.service['max-memory'].value := def(local.ReadString('config', 'max-memory', ''), cfg.service['max-memory'].value, '0');
+     cfg.service['cache-time'].value := def(local.ReadString('config', 'cache-time', ''), cfg.service['cache-time'].value, inttostr(DEFAULT_DWELL_TIME_MIN));
+ 
+-    cfg.web['http-max-conn'].value := '50';
++    cfg.web['http-max-conn'].value := def(local.ReadString('web', 'http-max-conn', ''), cfg.web['http-max-conn'].value, '200');
+     cfg.web['http-cache-time'].value := '1000';
+     cfg.web['plain-mode'].value := 'false';
+     cfg.web['caching'].value := 'true';

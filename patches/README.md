@@ -1,6 +1,6 @@
 # fhirserver パッチ (BSD-3-Clause)
 
-このディレクトリには HealthIntersections/fhirserver (BSD-3-Clause) に対する差分パッチが 2 つ含まれます:
+このディレクトリには HealthIntersections/fhirserver (BSD-3-Clause) に対する差分パッチが 3 つ含まれます:
 
 ## kernel.pas.patch
 
@@ -31,6 +31,23 @@ fhirserver -cmd snomed-import \
 
 **変更箇所**: `library/ftx/ftx_sct_services.pas` line 5515 付近。
 
+## zero_config.pas.patch
+
+**目的**: HTTP 最大接続数 (`http-max-conn`) を config で override 可能にし、default を 50 → 200 に引き上げる。
+
+**元の状況**: `zero_config.pas:267` で `cfg.web['http-max-conn'].value := '50';` とハードコード。config file からの上書き経路が無く、fhirserver 起動時に必ず 50 になる。HAPI cluster (6 JVM × 8+ 並列 = 48 concurrent) と拮抗するため、大規模検証時のヘッドルームが不足しやすい。
+
+**変更**: 他の web 設定と同じ `def(local.ReadString(...), ..., '200')` パターンに揃え、config 上書き可能かつ default 200 に。
+
+```pascal
+cfg.web['http-max-conn'].value :=
+  def(local.ReadString('web', 'http-max-conn', ''), cfg.web['http-max-conn'].value, '200');
+```
+
+**注意**: 実測 (synthetic P=1〜64 の concurrent `$validate-code`) では 50→200 化による latency 改善は誤差レベルでした (真のボトルネックは接続数上限ではなく、fhirserver 内部のロック/シリアライゼーション)。とはいえ config 上書き経路が塞がっていた欠陥は解消しており、将来 fhirserver 内部を並列化した際にヘッドルームとして効きます。
+
+**変更箇所**: `server/zero_config.pas` line 267。1 行変更。
+
 ## 適用方法
 
 `scripts/setup-fhirserver.sh` が自動適用しますが、手動で当てる場合:
@@ -39,6 +56,7 @@ fhirserver -cmd snomed-import \
 cd tx-server-build/fhirserver   # HealthIntersections/fhirserver clone 済ディレクトリ
 patch -p1 < ../../patches/kernel.pas.patch
 patch -p1 < ../../patches/ftx_sct_services.pas.patch
+patch -p1 < ../../patches/zero_config.pas.patch
 ```
 
 ## 上流への PR について
