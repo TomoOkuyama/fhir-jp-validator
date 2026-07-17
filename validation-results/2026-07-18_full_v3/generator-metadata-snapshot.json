@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-18T04:43:09.788782+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-18T04:41:36.311411",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-07-18",
+    "total_patients_generated": 3786,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "57f2c09bf396a68540edf0fc6c90b9590fe2ef18",
+    "commit_short": "57f2c09b",
+    "commit_datetime": "2026-07-18T04:40:19+09:00",
+    "commit_subject": "fix(fhir): normalize JP MR status/intent/substitution to eCS patterns (#230)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 230,
+      "subject": "fix(fhir): normalize JP MR status/intent/substitution to eCS patterns (#230)"
+    },
+    {
+      "pr": 226,
+      "subject": "fix(fhir): honour is_chronic_primary before assigning Condition.abatement (#226)"
+    },
+    {
+      "pr": 222,
+      "subject": "fix(fhir): stop re-injecting JP display onto English-only CS on JP output (#222)"
+    },
+    {
+      "pr": 228,
+      "subject": "fix(fhir): pin JP-CLINS Composition.section.text.status to \"additional\" (#228)"
+    },
+    {
+      "pr": 224,
+      "subject": "fix(fhir): swap CareTeam SNOMED 735320007 -> 407484005 (v2 unknown-code fix) (#224)"
+    },
+    {
+      "pr": 220,
+      "subject": "fix(fhir): satisfy Obs.identifier:resourceIdentifier slice on JP output (#220)"
+    },
+    {
+      "pr": 217,
+      "subject": "fix(fhir): satisfy JP DR category:first slice on LabResult and Microbiology (#217)"
+    },
+    {
+      "pr": 215,
+      "subject": "fix(cif): read clinosim_version from clinosim.__version__ (#215)"
+    },
+    {
+      "pr": 213,
+      "subject": "fix(fhir): move CodeSystem URIs off *.example.org (occupation, care-level) (#213)"
+    },
+    {
+      "pr": 211,
+      "subject": "fix(fhir): consolidate BP into LOINC 85354-9 panel Observation (#211)"
+    },
+    {
+      "pr": 209,
+      "subject": "fix(fhir): route MAR.reasonCode ICD-10 through _map_diagnosis_code (#209)"
+    },
+    {
+      "pr": 207,
+      "subject": "feat(fhir): emit _generator_metadata.json sidecar with git provenance (#207)"
+    },
+    {
+      "pr": 205,
+      "subject": "fix(fhir): map informal clinical unit spellings to UCUM canonical codes (#205)"
+    },
+    {
+      "pr": 203,
+      "subject": "fix(fhir): drop Observation.referenceRange extension entirely (#203)"
+    },
+    {
+      "pr": 201,
+      "subject": "fix(fhir): split Observation.category into per-CodeSystem elements (#201)"
+    },
+    {
+      "pr": 192,
+      "subject": "fix(fhir): populate eCS min=1 fields on Condition / AI / MR (#192)"
+    },
+    {
+      "pr": 199,
+      "subject": "fix(fhir): resource.id spec compliance + defensive validator (#198) (#199)"
+    },
+    {
+      "pr": 197,
+      "subject": "fix(fhir): populate JP-CLINS MedicationDosage_eCS fields on MR dosages (#196) (#197)"
+    },
+    {
+      "pr": 195,
+      "subject": "fix(fhir): emit companion Specimen for lab Observations (#194) (#195)"
+    },
+    {
+      "pr": 185,
+      "subject": "fix(fhir): drop fragment URL on Observation.referenceRange extension (#184) (#185)"
+    },
+    {
+      "pr": 187,
+      "subject": "fix(fhir): populate Observation.identifier + meta.lastUpdated (#186) (#187)"
+    },
+    {
+      "pr": 190,
+      "subject": "fix(fhir): dual HL7+JP category coding on eCS Observations (#188) (#190)"
+    },
+    {
+      "pr": 183,
+      "subject": "fix(fhir): populate UCUM Quantity.code on MA/MR/referenceRange (#182) (#183)"
+    },
+    {
+      "pr": 181,
+      "subject": "fix(fhir): drop empty-code coding[] entries on ServiceRequest (#180) (#181)"
+    },
+    {
+      "pr": 179,
+      "subject": "fix(fhir): CareTeam.category → SNOMED 735320007 Multidisciplinary care team (#178) (#179)"
+    },
+    {
+      "pr": 177,
+      "subject": "feat(simulator): sim_log progress inside the inpatient loop (#177)"
+    },
+    {
+      "pr": 176,
+      "subject": "feat(simulator): sim_log coverage for CIF write + FHIR export phases (#176)"
+    },
+    {
+      "pr": 173,
+      "subject": "feat(simulator): unified structured JSONL logging for progress + timing (#172) (#173)"
+    },
+    {
+      "pr": 171,
+      "subject": "fix(fhir): strip Japanese display on English-only CodeSystems (#170) (#171)"
+    },
+    {
+      "pr": 169,
+      "subject": "fix(fhir): JP Observation.category display + VSCat slice regressions (#169)"
+    }
+  ]
+}
