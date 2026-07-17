@@ -1,0 +1,1 @@
+{"resourceType":"Patient","id":"tc-patient-gender-invalid","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"patient-gender-invalid-binding"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"gender":"not-a-gender"}

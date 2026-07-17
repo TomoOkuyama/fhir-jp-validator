@@ -166,6 +166,42 @@ EXPECTED_ISSUES = {
         "desc": "JP_MedicationRequest_eCS: meta.lastUpdated 必須欠落",
         "pattern": r"MedicationRequest\.meta\.lastUpdated.*(最小必要値.*1|minimum required.*1)",
     },
+
+    # --- 追加 v3: FHIRPath invariant ---
+    "condition-con-4-abatement": {
+        "desc": "con-4: Condition.abatement を設定するなら clinicalStatus は inactive/resolved/remission でなければならない",
+        "pattern": r"con-4|abatement.*(inactive|resolved|remission)|abatement.*only.*if",
+    },
+    # --- 追加 v3: Bundle-level ---
+    "bundle-document-first-composition": {
+        "desc": "Bundle.type=document なら最初の entry は Composition でなければならない",
+        "pattern": r"(bdl-1|first entry.*Composition|Bundle\.entry.*first|Composition.*first.*entry)",
+    },
+
+    # --- 追加 v3: JP Core 各種 profile ---
+    "jp-patient-identifier-missing": {
+        "desc": "JP_Patient: identifier 必須欠落",
+        "pattern": r"Patient\.identifier.*(最小必要値.*1|minimum required.*1)",
+    },
+    # --- 追加 v3: required binding 違反 ---
+    "patient-gender-invalid-binding": {
+        "desc": "Patient.gender が admin-gender ValueSet の範囲外",
+        "pattern": r"(Patient\.)?gender.*ValueSet|gender.*is not (in|a valid)|不明.*gender|(male|female|other|unknown).*でなければ",
+    },
+
+    # --- 追加 v3: JP-CLINS constraint from real data ---
+    "medreq-r5020-usage-constraint": {
+        "desc": "validUsage-MedicationUsage-codesystem: R5020 の用法コード制約",
+        "pattern": r"validUsage-MedicationUsage-codesystem|R5020",
+    },
+    "medreq-dosage-periodofuse-extension-required": {
+        "desc": "JP_MedicationDosage_eCS: Dosage.extension:periodOfUse 必須欠落",
+        "pattern": r"Dosage\.extension:periodOfUse|Dosage\.extension.*(最小必要値.*1|minimum required.*1)",
+    },
+    "diagnosticreport-category-first-slice": {
+        "desc": "JP_DiagnosticReport: category:first slice 必須欠落",
+        "pattern": r"DiagnosticReport\.category:first.*minimum required.*1",
+    },
 }
 
 
