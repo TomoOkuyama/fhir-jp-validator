@@ -145,8 +145,8 @@ cmd_start() {
     nohup java "-Xmx$JVM_HEAP" -jar "$VALIDATOR_JAR" server "$port" \
       -version "$FHIR_VERSION" \
       "${ig_args[@]}" \
-      "${tx_args[@]}" \
-      "${extra_args[@]}" \
+      ${tx_args[@]:+"${tx_args[@]}"} \
+      ${extra_args[@]:+"${extra_args[@]}"} \
       > "$CACHE_DIR/logs/$port.log" 2>&1 &
     echo $! > "$CACHE_DIR/logs/$port.pid"
     echo "  port $port started (PID $!)"
