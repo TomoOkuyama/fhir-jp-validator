@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-18T21:29:51.646441+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-18T21:28:17.911226",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-07-18",
+    "total_patients_generated": 3786,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "fd5c352b5d53b7eb1ed6f98763489e4c4710f30a",
+    "commit_short": "fd5c352b",
+    "commit_datetime": "2026-07-18T21:26:55+09:00",
+    "commit_subject": "fix(fhir): correct AllergyIntolerance SNOMED substance/manifestation codes (#244)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 244,
+      "subject": "fix(fhir): correct AllergyIntolerance SNOMED substance/manifestation codes (#244)"
+    },
+    {
+      "pr": 240,
+      "subject": "fix(fhir): shrink JP-CLINS Composition.type.coding to a single doc-typecodes entry (#240)"
+    },
+    {
+      "pr": 242,
+      "subject": "fix(fhir): drop MedicationAdministration.dosage when neither dose nor rate parses (#242)"
+    },
+    {
+      "pr": 238,
+      "subject": "fix(fhir): drop fabricated Patient BloodTypeCode extension URL (#238)"
+    },
+    {
+      "pr": 236,
+      "subject": "fix(fhir): add JP MR eCS identifier:requestIdentifier slice (#236)"
+    },
+    {
+      "pr": 234,
+      "subject": "fix(fhir): satisfy Condition/AI eCS identifier:resourceIdentifier slice (#234)"
+    },
+    {
+      "pr": 232,
+      "subject": "fix(fhir): emit CareTeam.category as text-only CodeableConcept (#232)"
+    },
+    {
+      "pr": 230,
+      "subject": "fix(fhir): normalize JP MR status/intent/substitution to eCS patterns (#230)"
+    },
+    {
+      "pr": 226,
+      "subject": "fix(fhir): honour is_chronic_primary before assigning Condition.abatement (#226)"
+    },
+    {
+      "pr": 222,
+      "subject": "fix(fhir): stop re-injecting JP display onto English-only CS on JP output (#222)"
+    },
+    {
+      "pr": 228,
+      "subject": "fix(fhir): pin JP-CLINS Composition.section.text.status to \"additional\" (#228)"
+    },
+    {
+      "pr": 224,
+      "subject": "fix(fhir): swap CareTeam SNOMED 735320007 -> 407484005 (v2 unknown-code fix) (#224)"
+    },
+    {
+      "pr": 220,
+      "subject": "fix(fhir): satisfy Obs.identifier:resourceIdentifier slice on JP output (#220)"
+    },
+    {
+      "pr": 217,
+      "subject": "fix(fhir): satisfy JP DR category:first slice on LabResult and Microbiology (#217)"
+    },
+    {
+      "pr": 215,
+      "subject": "fix(cif): read clinosim_version from clinosim.__version__ (#215)"
+    },
+    {
+      "pr": 213,
+      "subject": "fix(fhir): move CodeSystem URIs off *.example.org (occupation, care-level) (#213)"
+    },
+    {
+      "pr": 211,
+      "subject": "fix(fhir): consolidate BP into LOINC 85354-9 panel Observation (#211)"
+    },
+    {
+      "pr": 209,
+      "subject": "fix(fhir): route MAR.reasonCode ICD-10 through _map_diagnosis_code (#209)"
+    },
+    {
+      "pr": 207,
+      "subject": "feat(fhir): emit _generator_metadata.json sidecar with git provenance (#207)"
+    },
+    {
+      "pr": 205,
+      "subject": "fix(fhir): map informal clinical unit spellings to UCUM canonical codes (#205)"
+    },
+    {
+      "pr": 203,
+      "subject": "fix(fhir): drop Observation.referenceRange extension entirely (#203)"
+    },
+    {
+      "pr": 201,
+      "subject": "fix(fhir): split Observation.category into per-CodeSystem elements (#201)"
+    },
+    {
+      "pr": 192,
+      "subject": "fix(fhir): populate eCS min=1 fields on Condition / AI / MR (#192)"
+    },
+    {
+      "pr": 199,
+      "subject": "fix(fhir): resource.id spec compliance + defensive validator (#198) (#199)"
+    },
+    {
+      "pr": 197,
+      "subject": "fix(fhir): populate JP-CLINS MedicationDosage_eCS fields on MR dosages (#196) (#197)"
+    },
+    {
+      "pr": 195,
+      "subject": "fix(fhir): emit companion Specimen for lab Observations (#194) (#195)"
+    },
+    {
+      "pr": 185,
+      "subject": "fix(fhir): drop fragment URL on Observation.referenceRange extension (#184) (#185)"
+    },
+    {
+      "pr": 187,
+      "subject": "fix(fhir): populate Observation.identifier + meta.lastUpdated (#186) (#187)"
+    },
+    {
+      "pr": 190,
+      "subject": "fix(fhir): dual HL7+JP category coding on eCS Observations (#188) (#190)"
+    },
+    {
+      "pr": 183,
+      "subject": "fix(fhir): populate UCUM Quantity.code on MA/MR/referenceRange (#182) (#183)"
+    }
+  ]
+}

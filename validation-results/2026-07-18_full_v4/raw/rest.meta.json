@@ -1,0 +1,43 @@
+{
+  "input": "scratch/v4_input_rest",
+  "resources_total": 175413,
+  "resources_ok": 175413,
+  "resources_failed": 0,
+  "bundles": 3509,
+  "chunk_size": 50,
+  "parallel": 24,
+  "timeout_sec": 120,
+  "retries": 2,
+  "circuit_threshold": 10,
+  "servers": [
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3004",
+    "http://localhost:3005",
+    "http://localhost:3006"
+  ],
+  "server_status_final": {
+    "active_ports": 6,
+    "total_ports": 6,
+    "quarantined_ports": [],
+    "port_ok_counts": {
+      "3006": 584,
+      "3004": 585,
+      "3005": 585,
+      "3003": 585,
+      "3002": 585,
+      "3001": 585
+    },
+    "port_fail_counts": {}
+  },
+  "elapsed_sec": 358.84,
+  "throughput_res_per_sec": 488.84,
+  "severity_summary": {
+    "warning": 297475,
+    "error": 20757,
+    "information": 189370
+  },
+  "outcome_ndjson": "validation-results/2026-07-18_full_v4/raw/rest.ndjson",
+  "failed_ndjson": null
+}
