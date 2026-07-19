@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-20T04:59:41.172626+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-20T04:57:49.336349",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-12-31",
+    "total_patients_generated": 3774,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "e2835d02ad58fac1a27995a2c6a782d31b29ac75",
+    "commit_short": "e2835d02",
+    "commit_datetime": "2026-07-20T04:56:33+09:00",
+    "commit_subject": "fix(fhir): JP ImagingStudy.procedureCode を text-only で emit (#314) (#315)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 315,
+      "subject": "fix(fhir): JP ImagingStudy.procedureCode を text-only で emit (#314) (#315)"
+    },
+    {
+      "pr": 312,
+      "subject": "fix(fhir): route SL entry uses authoritative Sublingual code 37839007 (#311) (#312)"
+    },
+    {
+      "pr": 310,
+      "subject": "fix(fhir): eReferral Composition.event.code を Array wrap + text 権威 pin (#309) (#310)"
+    },
+    {
+      "pr": 308,
+      "subject": "fix(fhir): JP timing.repeat から periodUnit/period 削除、boundsDuration only 化 (#307) (#308)"
+    },
+    {
+      "pr": 306,
+      "subject": "fix(fhir): NOCODED slice display \"標準コードなし\" 固定、薬剤名は text へ (#305) (#306)"
+    },
+    {
+      "pr": 304,
+      "subject": "chore(todo): session 59 completion record (#304)"
+    },
+    {
+      "pr": 303,
+      "subject": "fix(codes): resolve 17 LOINC semantic-mismatch entries (#276) (#303)"
+    },
+    {
+      "pr": 302,
+      "subject": "fix(fhir): JP radiology DR uses _Radiology profile + spec slices (#218) (#302)"
+    },
+    {
+      "pr": 301,
+      "subject": "fix(fhir): YJ code nocoded fallback when tx-server fragment unverified (#283) (#301)"
+    },
+    {
+      "pr": 295,
+      "subject": "fix(fhir): populate JP-CLINS eDS hospitalCourseSection.entry from free-text DocRef (#278) (#295)"
+    },
+    {
+      "pr": 297,
+      "subject": "fix(fhir): eReferral 920/910 section entry Organization refs (#296) (#297)"
+    },
+    {
+      "pr": 288,
+      "subject": "fix(fhir): JP-CLINS eDS 5 discharge sections have non-empty text.div (#286) (#288)"
+    },
+    {
+      "pr": 290,
+      "subject": "fix(fhir): JP-CLINS eReferral Composition sibling sweep of Chain #9 (#289) (#290)"
+    },
+    {
+      "pr": 300,
+      "subject": "fix(fhir): residual sweep — READM/exp/PT-OT-ST-MSW/empty-array/area (#299) (#300)"
+    },
+    {
+      "pr": 294,
+      "subject": "fix(fhir): drop SNOMED secondary on JP AllergyIntolerance.code (#293) (#294)"
+    },
+    {
+      "pr": 292,
+      "subject": "fix(fhir): JP MR medication.coding min=1 via eCS nocoded slice (#291) (#292)"
+    },
+    {
+      "pr": 285,
+      "subject": "fix(codes): 3 JP ICD-10 codes unknown to HAPI CS — I84 R33.9 S62.9 (#284) (#285)"
+    },
+    {
+      "pr": 282,
+      "subject": "fix(fhir): keep MedicationRequest timing.repeat.periodUnit (tim-2) (#281) (#282)"
+    },
+    {
+      "pr": 280,
+      "subject": "fix(fhir): JP-CLINS eDS Composition.category display = 退院時文書 (#279) (#280)"
+    },
+    {
+      "pr": 298,
+      "subject": "chore(regression): sync 3 US goldens post-#159 JP-text-leak fix (#287) (#298)"
+    },
+    {
+      "pr": 277,
+      "subject": "fix(codes): register LOINC display allowlist + switch to verify_mode=display (#270) (#277)"
+    },
+    {
+      "pr": 273,
+      "subject": "fix(fhir): populate JP-CLINS eDS required entry refs on 4 discharge sections (#272) (#273)"
+    },
+    {
+      "pr": 271,
+      "subject": "fix(codes): substitute retired LOINC codes + register LOINC in authoritative framework (#264) (#271)"
+    },
+    {
+      "pr": 268,
+      "subject": "fix(fhir): JP-CLINS eDS Composition slice compliance (session 58 Chain #9) (#267) (#268)"
+    },
+    {
+      "pr": 260,
+      "subject": "fix(codes): sync ICD-10 en displays with WHO authoritative source (#259) (#260)"
+    },
+    {
+      "pr": 258,
+      "subject": "feat(codes): authoritative-verified curated data framework (Phase 1 YJ) (#257) (#258)"
+    },
+    {
+      "pr": 248,
+      "subject": "fix(fhir): add JP MR Dosage doseAndRate.type + rewrite periodUnit as boundsDuration (#247) (#248)"
+    },
+    {
+      "pr": 275,
+      "subject": "fix(fhir): prepend JFAGY primary coding on JP AllergyIntolerance.code (#263) (#275)"
+    },
+    {
+      "pr": 274,
+      "subject": "fix(fhir): move NEWS2 emission to clinosim custom nursing-scores CodeSystem (#269) (#274)"
+    },
+    {
+      "pr": 266,
+      "subject": "fix(fhir): drop unknown LOINC section codes + pin Composition.identifier URI on JP (#265) (#266)"
+    }
+  ]
+}
