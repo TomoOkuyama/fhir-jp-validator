@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-19T16:10:20.594537+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-19T16:08:46.427606",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-06-30",
+    "total_patients_generated": 3788,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "c2b33dfea21ea57817b0da96c5cc5ce2ddc22a4a",
+    "commit_short": "c2b33dfe",
+    "commit_datetime": "2026-07-19T16:07:47+09:00",
+    "commit_subject": "fix(codes): register LOINC display allowlist + switch to verify_mode=display (#270) (#277)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 277,
+      "subject": "fix(codes): register LOINC display allowlist + switch to verify_mode=display (#270) (#277)"
+    },
+    {
+      "pr": 273,
+      "subject": "fix(fhir): populate JP-CLINS eDS required entry refs on 4 discharge sections (#272) (#273)"
+    },
+    {
+      "pr": 271,
+      "subject": "fix(codes): substitute retired LOINC codes + register LOINC in authoritative framework (#264) (#271)"
+    },
+    {
+      "pr": 268,
+      "subject": "fix(fhir): JP-CLINS eDS Composition slice compliance (session 58 Chain #9) (#267) (#268)"
+    },
+    {
+      "pr": 260,
+      "subject": "fix(codes): sync ICD-10 en displays with WHO authoritative source (#259) (#260)"
+    },
+    {
+      "pr": 258,
+      "subject": "feat(codes): authoritative-verified curated data framework (Phase 1 YJ) (#257) (#258)"
+    },
+    {
+      "pr": 248,
+      "subject": "fix(fhir): add JP MR Dosage doseAndRate.type + rewrite periodUnit as boundsDuration (#247) (#248)"
+    },
+    {
+      "pr": 275,
+      "subject": "fix(fhir): prepend JFAGY primary coding on JP AllergyIntolerance.code (#263) (#275)"
+    },
+    {
+      "pr": 274,
+      "subject": "fix(fhir): move NEWS2 emission to clinosim custom nursing-scores CodeSystem (#269) (#274)"
+    },
+    {
+      "pr": 266,
+      "subject": "fix(fhir): drop unknown LOINC section codes + pin Composition.identifier URI on JP (#265) (#266)"
+    },
+    {
+      "pr": 262,
+      "subject": "fix(fhir): split JP-CLINS Composition section.title vs code.coding.display (#261) (#262)"
+    },
+    {
+      "pr": 254,
+      "subject": "fix(fhir): emit Patient.communication.language display in English (no-space form) (#253) (#254)"
+    },
+    {
+      "pr": 252,
+      "subject": "fix(fhir): align MAR route SNOMED 447694001 display with SNOMED default (#251) (#252)"
+    },
+    {
+      "pr": 250,
+      "subject": "fix(fhir): correct MR courseOfTherapyType 'continuous' display (no hyphen) (#249) (#250)"
+    },
+    {
+      "pr": 246,
+      "subject": "fix(fhir): add JP Condition medisRecordNo slice (uncoded placeholder) (#245) (#246)"
+    },
+    {
+      "pr": 244,
+      "subject": "fix(fhir): correct AllergyIntolerance SNOMED substance/manifestation codes (#244)"
+    },
+    {
+      "pr": 240,
+      "subject": "fix(fhir): shrink JP-CLINS Composition.type.coding to a single doc-typecodes entry (#240)"
+    },
+    {
+      "pr": 242,
+      "subject": "fix(fhir): drop MedicationAdministration.dosage when neither dose nor rate parses (#242)"
+    },
+    {
+      "pr": 238,
+      "subject": "fix(fhir): drop fabricated Patient BloodTypeCode extension URL (#238)"
+    },
+    {
+      "pr": 236,
+      "subject": "fix(fhir): add JP MR eCS identifier:requestIdentifier slice (#236)"
+    },
+    {
+      "pr": 234,
+      "subject": "fix(fhir): satisfy Condition/AI eCS identifier:resourceIdentifier slice (#234)"
+    },
+    {
+      "pr": 232,
+      "subject": "fix(fhir): emit CareTeam.category as text-only CodeableConcept (#232)"
+    },
+    {
+      "pr": 230,
+      "subject": "fix(fhir): normalize JP MR status/intent/substitution to eCS patterns (#230)"
+    },
+    {
+      "pr": 226,
+      "subject": "fix(fhir): honour is_chronic_primary before assigning Condition.abatement (#226)"
+    },
+    {
+      "pr": 222,
+      "subject": "fix(fhir): stop re-injecting JP display onto English-only CS on JP output (#222)"
+    },
+    {
+      "pr": 228,
+      "subject": "fix(fhir): pin JP-CLINS Composition.section.text.status to \"additional\" (#228)"
+    },
+    {
+      "pr": 224,
+      "subject": "fix(fhir): swap CareTeam SNOMED 735320007 -> 407484005 (v2 unknown-code fix) (#224)"
+    },
+    {
+      "pr": 220,
+      "subject": "fix(fhir): satisfy Obs.identifier:resourceIdentifier slice on JP output (#220)"
+    },
+    {
+      "pr": 217,
+      "subject": "fix(fhir): satisfy JP DR category:first slice on LabResult and Microbiology (#217)"
+    },
+    {
+      "pr": 215,
+      "subject": "fix(cif): read clinosim_version from clinosim.__version__ (#215)"
+    }
+  ]
+}
