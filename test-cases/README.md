@@ -80,15 +80,15 @@ HAPI_EXTRA_ARGS="-best-practice ignore" ./scripts/hapi-cluster.sh start
 
 exit 0 = 全 case PASS。exit 1 = FAIL / 未定義 slug あり。
 
-## 現在のカバレッジ (v6, 2026-07-18)
+## 現在のカバレッジ (v7, 2026-07-19)
 
-- **101 case / 161 期待 slug、reconcile 全 PASS**
+- **200 case / 269 期待 slug、reconcile 全 PASS**
 - 内訳:
-  - `fhir-base/` 34 case: R4 基本 cardinality (status/subject/intent/effective 等)、invariant (con-4, obs-6/7, bp)、Bundle 系 (bdl-1/3)、Reference 型不一致
-  - `jp-core/` 15 case: JP_Patient/Practitioner/Organization/PractitionerRole/Encounter/Location/Immunization/AllergyIntolerance/Coverage/DocumentReference/Procedure/ServiceRequest/Condition_Diagnosis/MedicationRequest/FamilyMemberHistory
-  - `jp-clins/` 30 case: eCS 系 (LabResult/Condition/MedicationRequest/DR/Encounter/CarePlan/AllergyIntolerance/Patient/Organization/Practitioner/FamilyMemberHistory/Consent/Procedure/MedAdmin/DocumentReference/Coverage) + Composition eReferral / eDischargeSummary
-  - `terminology/` 12 case: unknown code (LOINC/SNOMED/ICD-10/UCUM)、CodeSystem 未登録、Example URL、display mismatch、Quantity/Coding.system 欠落、dataAbsentReason、enum 違反
-  - `extensions/` 10 case: unknown extension URL、extension 型不一致 (us-core-race 等)、位置制約違反、value[x] と nested 両立、modifier extension、URL 欠落
+  - `fhir-base/` 90 case: R4 基本 cardinality (status/subject/intent/effective/patient 等)、DataType invariant (per-1, contactpoint cpt-2 等)、enum 違反 (status/use/gender)、Reference 型不一致 (15 種の target constraint)、追加リソース (ResearchStudy/Questionnaire/Consent/Communication/SupplyRequest/Appointment/Flag/List/Media/ChargeItem/BodyStructure/Endpoint/ExplanationOfBenefit/Invoice/MedicationDispense/Patient.link 等)、Bundle 系 (bdl-1/3)、bp profile
+  - `jp-core/` 30 case: JP_Patient/Practitioner/Organization/PractitionerRole/Encounter/Location/Immunization/AllergyIntolerance/Coverage/DocumentReference/Procedure/ServiceRequest/Condition_Diagnosis/MedicationRequest/MedicationAdministration/FamilyMemberHistory/Consent/CarePlan/Media/Medication/ImagingStudy_Radiology/ImagingStudy_Endoscopy/DiagnosticReport_LabResult/DiagnosticReport_Radiology 他
+  - `jp-clins/` 45 case: eCS 系 (LabResult/Condition/MedicationRequest/DR/Encounter/CarePlan/AllergyIntolerance/Patient/Organization/Practitioner/FamilyMemberHistory/Consent/Procedure/MedAdmin/DocumentReference/Coverage) + Composition eReferral / eDischargeSummary、identifier system/value slice、class/type coding fields、name.text/given/address.text 等
+  - `terminology/` 15 case: unknown code (LOINC/SNOMED/ICD-10/UCUM/YJ-code)、CodeSystem 未登録、Example URL、display mismatch、Quantity/Coding.system 欠落、dataAbsentReason、enum 違反、fragment CS、code-with-space、多 coding
+  - `extensions/` 20 case: unknown extension URL、extension 型不一致 (us-core-race/us-core-birthsex 等)、位置制約違反 (max=1 超過 / context)、value[x] と nested 両立、modifier extension (多重/known-forbidden/nested)、URL 欠落、primitive value extension
 - 網羅性: 全 profile 全 slice ではなく **代表的な失敗パターン** を高信頼で監視する目的。
 
 ## Roadmap
@@ -96,7 +96,8 @@ exit 0 = 全 case PASS。exit 1 = FAIL / 未定義 slug あり。
 - [x] framework 導入 (このファイル + 照合 script + 15 seed cases)
 - [x] JP Core 主要 profile 主要 slice 網羅 (v6 で 101 case)
 - [x] JP-CLINS eCS 主要制約網羅 (v6 で 30 case)
+- [x] Reference target 制約系 網羅 (v7 で 15 種、type 明示付き)
+- [x] DataType invariant / 追加リソース base cardinality 網羅 (v7 で 200 case へ拡張)
 - [ ] Composition profile の section slice 系 (現状 meta 系のみ)
-- [ ] Reference target 制約系 (Reference(Patient) に Practitioner を渡す等の網羅)
 - [ ] CI 統合 (main への push 時に自動実行)
 - [ ] 期待通り検出されなかったケースの原因 (validator バグ / IG バグ / データ設計) 分類

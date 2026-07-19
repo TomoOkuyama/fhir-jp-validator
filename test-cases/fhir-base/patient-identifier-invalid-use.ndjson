@@ -1,0 +1,1 @@
+{"resourceType":"Patient","id":"tc-patient-id-invalid-use","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"identifier-invalid-use-enum"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"identifier":[{"use":"bogus-id-use","system":"urn:oid:1.2.392.100495.20.3.61.1","value":"1234567890"}]}

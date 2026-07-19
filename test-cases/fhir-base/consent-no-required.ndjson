@@ -1,0 +1,1 @@
+{"resourceType":"Consent","id":"tc-consent-no-req","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"consent-status-scope-missing-multi"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"}}

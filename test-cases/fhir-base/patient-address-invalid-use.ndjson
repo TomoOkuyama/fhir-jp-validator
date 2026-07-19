@@ -1,0 +1,1 @@
+{"resourceType":"Patient","id":"tc-patient-addr-invalid-use","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"address-invalid-use-enum"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"},"address":[{"use":"bogus-use","line":["1-1-1"],"city":"東京"}]}

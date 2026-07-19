@@ -1,0 +1,1 @@
+{"resourceType":"List","id":"tc-list-no-req","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"list-status-mode-missing"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"}}

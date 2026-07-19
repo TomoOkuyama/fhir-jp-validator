@@ -1,0 +1,1 @@
+{"resourceType":"DocumentReference","id":"tc-jp-docref-no-req","meta":{"profile":["http://jpfhir.jp/fhir/core/StructureDefinition/JP_DocumentReference"],"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"jp-documentreference-jp-no-required"}]},"text":{"status":"generated","div":"<div xmlns=\"http://www.w3.org/1999/xhtml\">tc</div>"}}
