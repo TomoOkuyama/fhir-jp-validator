@@ -18,7 +18,7 @@ Usage:
 """
 
 from __future__ import annotations
-import argparse, concurrent.futures as cf, json, os, sys, time, urllib.error, urllib.request
+import argparse, concurrent.futures as cf, json, os, re, sys, time, urllib.error, urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
 from threading import Lock
@@ -26,18 +26,63 @@ from threading import Lock
 DEFAULT_PORTS = list(range(3001, 3007))
 DEFAULT_CHUNK = 50
 DEFAULT_PARALLEL = 64
-DEFAULT_TIMEOUT = 60                # Bundle 検証は数秒で終わるべき。長すぎる timeout は詰まりの原因
-DEFAULT_RETRIES = 2
+DEFAULT_TIMEOUT = 120               # 60 → 120: p99 heavy resource の retry 猶予を確保
+DEFAULT_RETRIES = 4                 # 2 → 4: transient timeout を確実に吸収 (backoff 0.5/1/2/4s = 7.5s 追加)
 DEFAULT_INFLIGHT_MULT = 2
 DEFAULT_CIRCUIT_THRESHOLD = 10      # 連続失敗 N 回で port を quarantine
 DEFAULT_HEALTHCHECK_INTERVAL = 60   # quarantine 済み port の復活チェック間隔 (秒)
 
+# Bundle.entry[N].resource/*Type/id*/... から (Type, id) を取り出す
+_EXPR_RTYPE_RE = re.compile(r"resource/\*([A-Za-z]+)/([^*]+)\*/")
 
-def make_bundle(rs: list[dict]) -> bytes:
+
+def make_bundle(rs: list[dict], sticky: list[dict] | None = None) -> bytes:
+    """rs を Bundle 化。sticky が与えられれば先頭に前置し cross-bundle resolve() を成立させる."""
+    all_rs = (sticky or []) + rs
     entries = [{"fullUrl": f"http://x/{r.get('resourceType','?')}/{r.get('id','')}",
-                "resource": r} for r in rs]
+                "resource": r} for r in all_rs]
     return json.dumps({"resourceType": "Bundle", "type": "collection",
                        "entry": entries}, ensure_ascii=False).encode("utf-8")
+
+
+def load_sticky(paths: list[Path]) -> list[dict]:
+    """--include-file 群を読み込み、sticky resource list を返す (unique by Type/id)."""
+    seen: set = set()
+    out: list[dict] = []
+    for p in paths:
+        files = sorted(p.glob("*.ndjson")) if p.is_dir() else [p]
+        for fp in files:
+            with fp.open() as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        r = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    key = f"{r.get('resourceType','?')}/{r.get('id','')}"
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    out.append(r)
+    return out
+
+
+def filter_sticky_from_outcome(oc: dict, sticky_keys: set[str]) -> dict | None:
+    """OperationOutcome から sticky resource に関する issue を除外。全部除外なら None を返す."""
+    if not sticky_keys:
+        return oc
+    kept: list[dict] = []
+    for iss in oc.get("issue", []):
+        expr = (iss.get("expression") or [""])[0] if iss.get("expression") else ""
+        m = _EXPR_RTYPE_RE.search(expr)
+        if m and f"{m.group(1)}/{m.group(2)}" in sticky_keys:
+            continue
+        kept.append(iss)
+    if not kept:
+        return None
+    return {**oc, "issue": kept}
 
 
 def post_one_with_retry(url: str, payload: bytes, retries: int, timeout: int):
@@ -89,20 +134,28 @@ def iter_resources(path: Path, limit: int | None):
                     continue
 
 
-def bundle_generator(path: Path, chunk_size: int, limit: int | None):
+def bundle_generator(path: Path, chunk_size: int, limit: int | None,
+                     sticky: list[dict] | None = None, sticky_keys: set[str] | None = None):
+    """Bundle を lazy に生成。sticky は全 Bundle の先頭に前置される。
+    ids は sticky を除いた「入力側の resource id リスト」— 進捗カウント用。
+    """
     buf: list[dict] = []
     ids: list[str] = []
     idx = 0
     for r in iter_resources(path, limit):
+        key = f"{r.get('resourceType','?')}/{r.get('id','')}"
+        if sticky_keys and key in sticky_keys:
+            # sticky として既に前置される resource は入力側で重複投入しない
+            continue
         buf.append(r)
-        ids.append(f"{r.get('resourceType','?')}/{r.get('id','')}")
+        ids.append(key)
         if len(buf) >= chunk_size:
-            yield idx, make_bundle(buf), ids
+            yield idx, make_bundle(buf, sticky), ids
             idx += 1
             buf = []
             ids = []
     if buf:
-        yield idx, make_bundle(buf), ids
+        yield idx, make_bundle(buf, sticky), ids
 
 
 class ServerPool:
@@ -183,7 +236,13 @@ def main():
                     help=f"連続失敗数がこれを超えたら port を quarantine (default: {DEFAULT_CIRCUIT_THRESHOLD})")
     ap.add_argument("--recovery-interval", type=int, default=DEFAULT_HEALTHCHECK_INTERVAL,
                     help=f"quarantine 後の復活チェック間隔 秒 (default: {DEFAULT_HEALTHCHECK_INTERVAL})")
+    ap.add_argument("--include-file", type=Path, action="append", default=[],
+                    help="全 Bundle の先頭に前置する fixture (NDJSON file or dir)。"
+                         "cross-bundle Reference の resolve() を成立させる。複数指定可。")
     args = ap.parse_args()
+
+    sticky_resources = load_sticky(args.include_file) if args.include_file else []
+    sticky_keys = {f"{r.get('resourceType','?')}/{r.get('id','')}" for r in sticky_resources}
 
     output_base = args.output.parent / args.output.stem
     output_base.parent.mkdir(parents=True, exist_ok=True)
@@ -199,6 +258,9 @@ def main():
     print(f"parallel:   {args.parallel} in-flight workers", file=sys.stderr)
     print(f"timeout:    {args.timeout}s, retries: {args.retries}", file=sys.stderr)
     print(f"circuit:    quarantine after {args.circuit_threshold} consecutive fails, recover after {args.recovery_interval}s", file=sys.stderr)
+    if sticky_resources:
+        print(f"sticky:     {len(sticky_resources)} resources prepended to every Bundle "
+              f"(from {', '.join(str(p) for p in args.include_file)})", file=sys.stderr)
     print(f"outputs:    {outcome_path}, {meta_path}, {failed_path}", file=sys.stderr)
 
     t0 = time.time()
@@ -220,7 +282,8 @@ def main():
             pool.report_failure(port)
             return ("fail", idx, port, ids, str(e))
 
-    gen = bundle_generator(args.input, args.chunk, args.limit)
+    gen = bundle_generator(args.input, args.chunk, args.limit,
+                           sticky=sticky_resources, sticky_keys=sticky_keys)
     last_log_t = t0
     last_log_res = 0
     last_recovery_t = t0
@@ -254,8 +317,11 @@ def main():
                 status, idx, port, ids, payload = fut.result()
                 if status == "ok":
                     for oc in payload:
-                        f_out.write(json.dumps(oc, ensure_ascii=False) + "\n")
-                        for iss in oc.get("issue", []):
+                        filtered = filter_sticky_from_outcome(oc, sticky_keys)
+                        if filtered is None:
+                            continue
+                        f_out.write(json.dumps(filtered, ensure_ascii=False) + "\n")
+                        for iss in filtered.get("issue", []):
                             sev_c[iss.get("severity", "?")] += 1
                     outcome_count += len(ids)
                 else:
