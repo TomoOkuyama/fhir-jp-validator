@@ -1,6 +1,6 @@
 # fhirserver パッチ (BSD-3-Clause)
 
-このディレクトリには HealthIntersections/fhirserver (BSD-3-Clause) に対する差分パッチが 3 つ含まれます:
+このディレクトリには HealthIntersections/fhirserver (BSD-3-Clause) に対する差分パッチが 4 つ含まれます:
 
 ## kernel.pas.patch
 
@@ -48,15 +48,48 @@ cfg.web['http-max-conn'].value :=
 
 **変更箇所**: `server/zero_config.pas` line 267。1 行変更。
 
+## ftx_loinc_services.pas.patch
+
+**目的**: `TLOINCServices.Display()` の per-context lazy cache 化。非英語 langList 呼び出しごとに Descriptions/Languages テーブルへ発行していた SQL クエリを、1 code = 1 回に削減する。
+
+**元の状況** (`library/ftx/ftx_loinc_services.pas:830-877`):
+
+- `Display(ctxt, langList)` が呼ばれるたびに `Select ... from Descriptions, Languages where CodeKey = X and DescriptionTypeKey in (1,2,5) ...` を実行
+- LOINC の日本語 display 検証で毎リクエスト SQL 発火 → 実測 per-code ~700ms
+- 更に `FLock` mutex で内部シリアライゼーションが働き、並列度を上げても実効スループット改善なし
+- `Designations()` 側には既に per-context `FDisplays` cache があるのに、`Display()` 側は未 cache という設計非対称
+
+**修正**:
+
+- `TLoincProviderContext` に `FDisplayCache : TFslList<TLoincDisplay>` を追加 (nil 初期化)
+- `Display()` 最初の非英語呼び出しで SQL + supplement を実行し `FDisplayCache` へ格納
+- 2 回目以降は `FDisplayCache` を lock-check → in-memory langList match のみ
+- Cache は per-context で LOINC/supplements が load-time 固定である前提 (fhirserver の他 provider と同じ扱い)
+- 二重初期化は最初の winner を採用してもう一方は破棄 (`FDisplayCache.link` パターン)
+
+**変更箇所**: `library/ftx/ftx_loinc_services.pas` line 111 + line 830 周辺、~40 行変更 (net +25 行)。
+
+**期待効果**:
+- 実運用の LOINC 日本語 display 検証で **per-code SQL 発生数 N → 1**
+- HAPI ↔ fhirserver 間の tx call 応答時間短縮 (実測は `validation-results/` 次回 run で公表予定)
+- v10 で残っていた 20 HTTP timeout (Composition の重い code 群で発火) の解消が主目標
+
+**リスク**:
+- Cache 有効性は「LOINC descriptions が起動後 immutable」前提。fhirserver は起動時に LOINC を読み込み、Descriptions テーブルは runtime 更新が想定されない。他の provider (SCT / UCUM) は既に load-time で全 in-memory index を持つ設計で、この前提は fhirserver 全体で一貫している。
+- Cache miss 時の SQL は変更なし (query 文言と semantics は同一)、cache hit 時のみ SQL を省く。
+
+**上流 PR 候補**: HealthIntersections/fhirserver に PR で提案予定 (BSD-3-Clause)。
+
 ## 適用方法
 
-`scripts/setup-fhirserver.sh` が自動適用しますが、手動で当てる場合:
+`scripts/setup-fhirserver.sh` が `patches/*.patch` を自動 iterate 適用しますが、手動で当てる場合:
 
 ```bash
 cd tx-server-build/fhirserver   # HealthIntersections/fhirserver clone 済ディレクトリ
 patch -p1 < ../../patches/kernel.pas.patch
 patch -p1 < ../../patches/ftx_sct_services.pas.patch
 patch -p1 < ../../patches/zero_config.pas.patch
+patch -p1 < ../../patches/ftx_loinc_services.pas.patch
 ```
 
 ## 上流への PR について
