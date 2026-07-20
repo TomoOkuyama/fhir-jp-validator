@@ -1,0 +1,107 @@
+diff --git a/library/ftx/ftx_loinc_services.pas b/library/ftx/ftx_loinc_services.pas
+index 579a685..6162a13 100644
+--- a/library/ftx/ftx_loinc_services.pas
++++ b/library/ftx/ftx_loinc_services.pas
+@@ -111,6 +111,7 @@ type
+     FDesc : String;
+     FStatus : String;
+     FDisplays : TFslList<TDescriptionCacheEntry>;
++    FDisplayCache : TFslList<TLoincDisplay>; // populated lazily by Display()
+     FChildren : TKeySet;
+     procedure addChild(key : Integer);
+   public
+@@ -829,22 +830,37 @@ end;
+ 
+ function TLOINCServices.Display(opContext : TTxOperationContext; context: TCodeSystemProviderContext; langList : THTTPLanguageList): string;
+ var
+-  displays : TFslList<TLoincDisplay>;
++  ctxt : TLoincProviderContext;
++  displays, cache : TFslList<TLoincDisplay>;
+   c : TFDBConnection;
+   ll : THTTPLanguageEntry;
+   disp : TLoincDisplay;
+ begin
+-  result := (context as TLoincProviderContext).Desc;
+-  if (langList <> nil) and not (langList.matches('en', true)) then
++  ctxt := context as TLoincProviderContext;
++  result := ctxt.Desc;
++  if (langList = nil) or (langList.matches('en', true)) then
++    exit;
++
++  // Lazy per-context cache: first non-English Display() populates the display list
++  // via a single SQL query; subsequent calls reuse the cache and skip SQL/FLock
++  // contention. Cache is immutable after population (LOINC / supplements are
++  // load-time). See patches/README.md.
++  FLock.lock('Display.cache-check');
++  try
++    cache := ctxt.FDisplayCache;
++  finally
++    FLock.unlock;
++  end;
++
++  if cache = nil then
+   begin
+     displays := TFslList<TLoincDisplay>.create;
+     try
+-      displays.add(TLoincDisplay.create('en-US', (context as TLoincProviderContext).Desc));
++      displays.add(TLoincDisplay.create('en-US', ctxt.Desc));
+ 
+       c := FDB.getConnection('Designations');
+       try
+-        displays.add(TLoincDisplay.create('en-US', (context as TLoincProviderContext).Desc));
+-        c.sql := 'Select Languages.Code as Lang, Value from Descriptions, Languages where CodeKey = '+inttostr((context as TLoincProviderContext).key)+' and Descriptions.DescriptionTypeKey in (1,2,5) and Descriptions.LanguageKey = Languages.LanguageKey order by DescriptionTypeKey';
++        c.sql := 'Select Languages.Code as Lang, Value from Descriptions, Languages where CodeKey = '+inttostr(ctxt.key)+' and Descriptions.DescriptionTypeKey in (1,2,5) and Descriptions.LanguageKey = Languages.LanguageKey order by DescriptionTypeKey';
+         c.prepare;
+         c.execute;
+         while c.fetchNext do
+@@ -859,21 +875,31 @@ begin
+         end;
+       end;
+       if FSupplements <> nil then
+-        addSupplementDisplays(displays, (context as TLoincProviderContext).Code);
+-
+-      // now we have them all - iterate looking for a match
+-      for ll in langList.langs do
+-        for disp in displays do
+-          if ll.matches(disp.language, true) then
+-            exit(disp.value);
+-      for ll in langList.langs do
+-        for disp in displays do
+-          if ll.matches(disp.language, false) then
+-            exit(disp.value);
++        addSupplementDisplays(displays, ctxt.Code);
++
++      FLock.lock('Display.cache-set');
++      try
++        // Another thread may have populated concurrently; keep the first winner.
++        if ctxt.FDisplayCache = nil then
++          ctxt.FDisplayCache := displays.link;
++        cache := ctxt.FDisplayCache;
++      finally
++        FLock.unlock;
++      end;
+     finally
+       displays.free;
+     end;
+   end;
++
++  // Match langList against cached displays (exact first, then loose).
++  for ll in langList.langs do
++    for disp in cache do
++      if ll.matches(disp.language, true) then
++        exit(disp.value);
++  for ll in langList.langs do
++    for disp in cache do
++      if ll.matches(disp.language, false) then
++        exit(disp.value);
+ end;
+ 
+ procedure TLOINCServices.Designations(opContext : TTxOperationContext; context: TCodeSystemProviderContext; list: TConceptDesignations);
+@@ -1468,6 +1494,7 @@ end;
+ destructor TLoincProviderContext.Destroy;
+ begin
+   FDisplays.free;
++  FDisplayCache.free;
+   FChildren.free;
+   inherited Destroy;
+ end;
