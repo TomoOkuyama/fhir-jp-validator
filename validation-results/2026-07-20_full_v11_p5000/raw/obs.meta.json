@@ -1,0 +1,16 @@
+{
+  "resources_total": 927121,
+  "resources_ok": 927121,
+  "resources_failed": 0,
+  "bundles": 18543,
+  "elapsed_sec": 3449.74,
+  "severity_summary": {
+    "error": 0,
+    "warning": 813834,
+    "information": 2498687
+  },
+  "chunk_size": 50,
+  "parallel": 24,
+  "throughput_res_per_sec": 268.75,
+  "note": "aggregated from obs_a/b1/b2/c1/c2 chunks (harness ~30 min kill limit)"
+}

@@ -1,8 +1,27 @@
 diff --git a/library/ftx/ftx_loinc_services.pas b/library/ftx/ftx_loinc_services.pas
-index 579a685..6162a13 100644
+index 579a685..6bcd7f4 100644
 --- a/library/ftx/ftx_loinc_services.pas
 +++ b/library/ftx/ftx_loinc_services.pas
-@@ -111,6 +111,7 @@ type
+@@ -101,6 +101,18 @@ type
+     property value : String read FValue;
+   end;
+ 
++  { TLoincDisplay }
++
++  TLoincDisplay = class (TFslObject)
++  private
++    FLanguage : String;
++    FValue : String;
++  public
++    constructor create(lang, v : String);
++    property Language : String read FLanguage;
++    property Value : String read FValue;
++  end;
++
+   { TLoincProviderContext }
+ 
+   TLoincProviderContext = class (TCodeSystemProviderContext)
+@@ -111,6 +123,7 @@ type
      FDesc : String;
      FStatus : String;
      FDisplays : TFslList<TDescriptionCacheEntry>;
@@ -10,6 +29,25 @@ index 579a685..6162a13 100644
      FChildren : TKeySet;
      procedure addChild(key : Integer);
    public
+@@ -125,18 +138,6 @@ type
+     property Status : String read FStatus;
+   end;
+ 
+-  { TLoincDisplay }
+-
+-  TLoincDisplay = class (TFslObject)
+-  private
+-    FLanguage : String;
+-    FValue : String;
+-  public
+-    constructor create(lang, v : String);
+-    property Language : String read FLanguage;
+-    property Value : String read FValue;
+-  end;
+-
+   { TLoincIteratorContext }
+ 
+   TLoincIteratorContext = class (TCodeSystemIteratorContext)
 @@ -829,22 +830,37 @@ end;
  
  function TLOINCServices.Display(opContext : TTxOperationContext; context: TCodeSystemProviderContext; langList : THTTPLanguageList): string;
