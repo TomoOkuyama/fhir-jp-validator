@@ -1,6 +1,13 @@
 # 検証まとめ — 2026-07-21 v12 (p=1000 seed=300、Display cache patch 適用 fhirserver、timeout 修正 4 手法比較)
 
-## 総評: timeout は client/JVM/HAPI socket-timeout の全対処に不応、HAPI validator 内部の特定 Composition 処理由来と確定
+> **⚠ 2026-07-21 追記 — 本 run の "内部処理由来" 結論は誤り、真因は HAPI validator の on-disk txCache 汚染だった**
+> v14 ([../2026-07-21_full_v14_p1000/summary.md](../2026-07-21_full_v14_p1000/summary.md)) で
+> **同じデータ + 同じ fhirserver + 同じ jar** で `.hapi-cache/tx-cache/` を wipe しただけで
+> timeout 6 → 0 に減った。詳細と upstream 対応は
+> [../../docs/hapi-txcache-poisoning.md](../../docs/hapi-txcache-poisoning.md) 参照。
+> 本 summary 以下は「4 種 workaround 全滅」の実測記録として残す (誤結論を含む)。
+
+## 当時の総評 (誤): timeout は client/JVM/HAPI socket-timeout の全対処に不応、HAPI validator 内部の特定 Composition 処理由来と確定
 
 - **fail 率**: obs 0%、rest 0.0151% (27 unique / 178,818)、合計 0.00625%
 - **20 timeout 修正手法 4 種**を並行比較、**全て 6 → 6** (baseline と完全同一)

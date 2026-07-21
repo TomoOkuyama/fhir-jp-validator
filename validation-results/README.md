@@ -64,3 +64,5 @@ git commit -m "Add validation run: $(basename $RUN)"
 - 出力形式の解釈: [docs/output-guide.md](../docs/output-guide.md)
 - 実データ検証の推奨手順 (分割戦略等): [docs/real-world-validation.md](../docs/real-world-validation.md)
 - ベンチマーク結果: [docs/benchmarks.md](../docs/benchmarks.md)
+- HAPI validator on-disk txCache 汚染の詳細: [docs/hapi-txcache-poisoning.md](../docs/hapi-txcache-poisoning.md)
+  (v12 / v14 の before/after 実測を英語で canonical 化)
