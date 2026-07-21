@@ -141,8 +141,19 @@ cmd_start() {
     echo "extra args: ${extra_args[*]}"
   fi
 
+  # HAPI tx client の HTTP socket timeout を延ばす (default 60s だと重い code で timeout する)
+  # HAPI_HTTP_READ_TIMEOUT_MS: unset なら 180000 (180s)、'default' で無指定
+  local http_timeout_args=()
+  local http_timeout_ms="${HAPI_HTTP_READ_TIMEOUT_MS:-180000}"
+  if [ "$http_timeout_ms" != "default" ]; then
+    http_timeout_args=(
+      "-Dsun.net.client.defaultReadTimeout=$http_timeout_ms"
+      "-Dsun.net.client.defaultConnectTimeout=30000"
+    )
+  fi
+
   for port in "${PORTS[@]}"; do
-    nohup java "-Xmx$JVM_HEAP" -jar "$VALIDATOR_JAR" server "$port" \
+    nohup java "-Xmx$JVM_HEAP" ${http_timeout_args[@]:+"${http_timeout_args[@]}"} -jar "$VALIDATOR_JAR" server "$port" \
       -version "$FHIR_VERSION" \
       "${ig_args[@]}" \
       ${tx_args[@]:+"${tx_args[@]}"} \
