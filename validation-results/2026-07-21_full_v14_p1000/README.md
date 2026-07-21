@@ -20,7 +20,8 @@ Everything else was identical to
 
 - Same `validator_cli.jar` **6.9.12**
 - Same fhirserver image (same `-tx` URL)
-- Same 178,818-resource dataset (byte-for-byte identical NDJSON files)
+- Same 178,818-resource **synthetic** JP Core / JP-CLINS dataset (byte-for-byte
+  identical NDJSON files; produced by `clinosim`, not real patient data)
 - Same `scripts/parallel-validate.py --chunk 30 --parallel 24` invocation
 - Same JVM and same package versions
 

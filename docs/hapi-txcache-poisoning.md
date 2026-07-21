@@ -15,8 +15,9 @@ the cache and its lookup work. It links out to concrete before/after evidence.
 
 ## Where the failure showed up
 
-Running large validation batches (~178k FHIR R4 resources per pass) against a healthy
-HL7 fhirserver instance with JP Core + JP-CLINS packages loaded, six specific
+Running large validation batches (~178k FHIR R4 resources per pass — a **synthetic**
+JP Core / JP-CLINS dataset produced by `clinosim`, **not real patient data**) against a
+healthy HL7 fhirserver instance with JP Core + JP-CLINS packages loaded, six specific
 `Composition` resources always returned:
 
 ```

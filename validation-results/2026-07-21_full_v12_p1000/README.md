@@ -15,7 +15,10 @@ on-disk txCache poisoning documented in
 
 ## Data
 
-- Same 178,818-resource dataset used for every rest pass in this folder
+- Same 178,818-resource **synthetic** JP Core / JP-CLINS dataset used for every rest
+  pass in this folder — produced by `clinosim` (a FHIR simulation data generator);
+  the underlying patterns are Japanese-hospital-shaped, but the resources themselves
+  are entirely synthetic, **not real patient data**
   (26 NDJSON files, ~620 MB; not committed — regenerated from source when needed).
 
 ## Passes
