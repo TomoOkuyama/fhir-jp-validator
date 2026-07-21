@@ -131,7 +131,139 @@ produced 0 timeouts:
 | `comp-ENC-POP-000546-245245476108-135` | 0.04 s |
 | `comp-ENC-POP-000631-093553807940-85`  | 0.04 s |
 
-## Recovery today
+## Reproducing this locally
+
+Everything below assumes you have Docker, Python 3, and a JDK 17+ on `PATH`. It is
+independent of the rest of this project — no JP data or `docker-compose` needed.
+
+### 1. Grab a stock `validator_cli.jar`
+
+```bash
+curl -L -o /tmp/validator_cli.jar \
+  https://github.com/hapifhir/org.hl7.fhir.core/releases/download/6.9.12/validator_cli.jar
+java -jar /tmp/validator_cli.jar 2>&1 | head -1
+# → FHIR Validation tool Version 6.9.12 (…)
+```
+
+Any tx server the validator will accept is fine; the reproduction just needs a live
+one for HAPI to boot against. The two easiest options are:
+
+- **HL7 fhirserver** as this project ships in
+  [`scripts/setup-fhirserver.sh`](../scripts/setup-fhirserver.sh) (Pascal, Rosetta-friendly)
+- **Any other approved tx endpoint** you already have
+
+### 2. Cause one tx call to fail
+
+Point the validator at a proxy that either delays or errors on the first
+`$validate-code` request. A minimal Python one is enough:
+
+```python
+# save as delay-proxy.py
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import urllib.request, sys, time, threading
+
+UPSTREAM = sys.argv[1]                 # e.g. http://localhost:8181
+PORT     = int(sys.argv[2])            # e.g. 9999
+HITS = {"n": 0}
+LOCK = threading.Lock()
+
+class H(BaseHTTPRequestHandler):
+    def _fwd(self, method):
+        length = int(self.headers.get("Content-Length", "0"))
+        body = self.rfile.read(length) if length else None
+        if method == "POST" and "$validate-code" in self.path:
+            with LOCK:
+                HITS["n"] += 1
+                n = HITS["n"]
+            if n == 1:
+                time.sleep(40)          # first call: exceed HAPI's tx read timeout
+        req = urllib.request.Request(
+            UPSTREAM + self.path,
+            data=body,
+            method=method,
+            headers={k: v for k, v in self.headers.items() if k.lower() not in ("host", "content-length")})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = r.read()
+            self.send_response(r.status)
+            for k, v in r.headers.items():
+                if k.lower() not in ("transfer-encoding", "connection"):
+                    self.send_header(k, v)
+            self.end_headers()
+            self.wfile.write(data)
+    def do_GET(self):  self._fwd("GET")
+    def do_POST(self): self._fwd("POST")
+    def log_message(self, *a, **kw): pass
+
+HTTPServer(("127.0.0.1", PORT), H).serve_forever()
+```
+
+```bash
+python3 delay-proxy.py http://localhost:8181 9999 &
+```
+
+### 3. Start the validator with a fresh cache
+
+```bash
+rm -rf /tmp/tx-cache-repro && mkdir -p /tmp/tx-cache-repro
+java -Xmx2g -jar /tmp/validator_cli.jar server 9001 \
+  -version 4.0.1 \
+  -tx http://localhost:9999/r4 \
+  -txCache /tmp/tx-cache-repro &
+```
+
+### 4. Send one validation, then inspect the cache
+
+```bash
+# Minimum Composition wrapped in a Bundle. Adjust "code"/"display" to whatever
+# your tx server can look up (LOINC 34823-5 is used below as an example).
+cat > /tmp/bundle.json <<'JSON'
+{ "resourceType": "Bundle", "type": "collection", "entry": [
+  { "fullUrl": "http://example.org/Composition/repro",
+    "resource": { "resourceType": "Composition", "status": "final",
+      "type": { "coding": [{ "system": "http://loinc.org", "code": "34823-5" }] },
+      "date": "2026-01-01",
+      "author": [{ "reference": "Practitioner/example" }],
+      "title": "repro",
+      "section": [{ "code": { "coding": [{ "system": "http://loinc.org", "code": "29308-4" }] } }]
+    }
+  }
+]}
+JSON
+
+curl -s -X POST http://localhost:9001/validateResource \
+  -H "Content-Type: application/fhir+json" \
+  --data-binary @/tmp/bundle.json | python3 -m json.tool | head -40
+
+grep -l 'SocketTimeout\|SERVER_ERROR' /tmp/tx-cache-repro/*.cache
+```
+
+You will find the `SocketTimeoutException` (or whichever tx failure the proxy
+produced) written to `/tmp/tx-cache-repro/<system>.cache` as a persistent
+`SERVER_ERROR` entry.
+
+### 5. Confirm every subsequent call replays the cached failure
+
+Restart the proxy so it responds instantly to *every* call:
+
+```bash
+pkill -f delay-proxy.py
+python3 delay-proxy.py http://localhost:8181 9999 &      # HITS resets, no more delay
+```
+
+Then re-run the same validation — the response still contains
+`java.net.SocketTimeoutException: Read timed out` and no request reaches the
+proxy. The failure is being served from the cache indefinitely.
+
+### 6. Confirm the recovery
+
+```bash
+rm -rf /tmp/tx-cache-repro/* && curl -s -X POST http://localhost:9001/validateResource ...
+```
+
+The same validation now completes without the timeout — the underlying tx server
+was always healthy.
+
+## Recovery today (production workaround)
 
 Clearing the `-txCache` directory before running the cluster is the only recovery for a
 cache that has already been poisoned. This project's `scripts/hapi-cluster.sh` accepts a
