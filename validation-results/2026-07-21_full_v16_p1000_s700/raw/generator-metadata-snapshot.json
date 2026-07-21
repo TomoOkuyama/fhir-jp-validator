@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-21T15:43:27.435869+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-21T15:42:05.866407",
+    "random_seed": 700,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-12-31",
+    "total_patients_generated": 3913,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "ef9d770666461b2da6e685f07e3dc9b48143f4a5",
+    "commit_short": "ef9d7706",
+    "commit_datetime": "2026-07-21T14:39:30+09:00",
+    "commit_subject": "fix(fhir): Attachment.contentType の charset parameter を drop、bare mime type へ (#343) (#344)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 344,
+      "subject": "fix(fhir): Attachment.contentType の charset parameter を drop、bare mime type へ (#343) (#344)"
+    },
+    {
+      "pr": 342,
+      "subject": "fix(fhir): JP 汎用 Composition に HL7 R4 core clinicaldocument profile 宣言 (#340) (#342)"
+    },
+    {
+      "pr": 339,
+      "subject": "fix(document): LOS=1 でも progress_note を 1 件 emit(eDS hospitalCourseSection.entry min=1 対応) (#337) (#339)"
+    },
+    {
+      "pr": 338,
+      "subject": "fix(fhir): Observation walker で builder-populated identifier を保持しつつ JP eCS resourceIdentifier slice を必ず emit (#336) (#338)"
+    },
+    {
+      "pr": 335,
+      "subject": "fix(fhir): R53.1 は WHO ICD-10 未収録 → JP mapping で R53 へ fold (#334) (#335)"
+    },
+    {
+      "pr": 333,
+      "subject": "fix(fhir): admit-source 'hosp' → 'other' (authoritative CS 未収録) (#332) (#333)"
+    },
+    {
+      "pr": 331,
+      "subject": "fix(fhir): Composition.author + custodian の eCS Organization 参照切替 (#330) (#331)"
+    },
+    {
+      "pr": 329,
+      "subject": "fix(fhir): eReferral referralFrom/toSection.entry の eCS Organization emit (#313) (#329)"
+    },
+    {
+      "pr": 328,
+      "subject": "fix(fhir): Location OR code は v3-RoleCode 未収録 → text-only (#327) (#328)"
+    },
+    {
+      "pr": 326,
+      "subject": "fix(observation): PT/APTT に LAB_UNITS 追加 (#325) (#326)"
+    },
+    {
+      "pr": 324,
+      "subject": "fix(fhir): Observation.valueQuantity unit/code 空文字列を emit しない (#323) (#324)"
+    },
+    {
+      "pr": 322,
+      "subject": "fix(fhir): JP Observation code.text / valueCodeableConcept display 補完 (#321) (#322)"
+    },
+    {
+      "pr": 320,
+      "subject": "fix(fhir): #315 approach 変更 — JP ImagingStudy.procedureCode は要素省略 (#319) (#320)"
+    },
+    {
+      "pr": 315,
+      "subject": "fix(fhir): JP ImagingStudy.procedureCode を text-only で emit (#314) (#315)"
+    },
+    {
+      "pr": 312,
+      "subject": "fix(fhir): route SL entry uses authoritative Sublingual code 37839007 (#311) (#312)"
+    },
+    {
+      "pr": 310,
+      "subject": "fix(fhir): eReferral Composition.event.code を Array wrap + text 権威 pin (#309) (#310)"
+    },
+    {
+      "pr": 308,
+      "subject": "fix(fhir): JP timing.repeat から periodUnit/period 削除、boundsDuration only 化 (#307) (#308)"
+    },
+    {
+      "pr": 306,
+      "subject": "fix(fhir): NOCODED slice display \"標準コードなし\" 固定、薬剤名は text へ (#305) (#306)"
+    },
+    {
+      "pr": 304,
+      "subject": "chore(todo): session 59 completion record (#304)"
+    },
+    {
+      "pr": 303,
+      "subject": "fix(codes): resolve 17 LOINC semantic-mismatch entries (#276) (#303)"
+    },
+    {
+      "pr": 302,
+      "subject": "fix(fhir): JP radiology DR uses _Radiology profile + spec slices (#218) (#302)"
+    },
+    {
+      "pr": 301,
+      "subject": "fix(fhir): YJ code nocoded fallback when tx-server fragment unverified (#283) (#301)"
+    },
+    {
+      "pr": 295,
+      "subject": "fix(fhir): populate JP-CLINS eDS hospitalCourseSection.entry from free-text DocRef (#278) (#295)"
+    },
+    {
+      "pr": 297,
+      "subject": "fix(fhir): eReferral 920/910 section entry Organization refs (#296) (#297)"
+    },
+    {
+      "pr": 288,
+      "subject": "fix(fhir): JP-CLINS eDS 5 discharge sections have non-empty text.div (#286) (#288)"
+    },
+    {
+      "pr": 290,
+      "subject": "fix(fhir): JP-CLINS eReferral Composition sibling sweep of Chain #9 (#289) (#290)"
+    },
+    {
+      "pr": 300,
+      "subject": "fix(fhir): residual sweep — READM/exp/PT-OT-ST-MSW/empty-array/area (#299) (#300)"
+    },
+    {
+      "pr": 294,
+      "subject": "fix(fhir): drop SNOMED secondary on JP AllergyIntolerance.code (#293) (#294)"
+    },
+    {
+      "pr": 292,
+      "subject": "fix(fhir): JP MR medication.coding min=1 via eCS nocoded slice (#291) (#292)"
+    },
+    {
+      "pr": 285,
+      "subject": "fix(codes): 3 JP ICD-10 codes unknown to HAPI CS — I84 R33.9 S62.9 (#284) (#285)"
+    }
+  ]
+}
