@@ -1,0 +1,16 @@
+input:      /private/tmp/claude-818441110/-Users-tokuyama-workspace-fhir-jp-validator/7c4359f9-8cb3-4809-98d4-a90954fa84db/scratchpad/v15_org
+servers:    6 (localhost:3001,3002,3003,3004,3005,3006)
+chunk:      30 resources/Bundle
+parallel:   6 in-flight workers
+timeout:    120s, retries: 4
+circuit:    quarantine after 10 consecutive fails, recover after 60s
+outputs:    validation-results/2026-07-21_full_v15_p1000/raw/organization_solo.ndjson, validation-results/2026-07-21_full_v15_p1000/raw/organization_solo.meta.json, validation-results/2026-07-21_full_v15_p1000/raw/organization_solo.failed.ndjson
+
+=== 完了 ===
+elapsed:      1.2s (0.0 min)
+throughput:   14.5 res/sec
+resources:    17 total, 17 ok, 0 failed
+severity:     {'warning': 17, 'information': 5}
+ports:        active 6/6, quarantined []
+outcomes ->   validation-results/2026-07-21_full_v15_p1000/raw/organization_solo.ndjson
+meta     ->   validation-results/2026-07-21_full_v15_p1000/raw/organization_solo.meta.json

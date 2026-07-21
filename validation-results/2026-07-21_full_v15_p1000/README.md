@@ -58,16 +58,18 @@ fhir-jp-validator 側は変更なし。validator_cli 6.9.12、fhirserver、clust
 `--include-file` (sticky Reference 前置) で Organization をすべての Bundle に混ぜれば消える。
 [`docs/real-world-validation.md`](../../docs/real-world-validation.md#43-cross-bundle-reference-の解決---include-file) 4.3 節に手順・トレードオフを追記。
 
-**demo (同 v15 data、Composition.ndjson のみを対象に再検証)**:
+**実測 (v15 と同一 data、rest pass 全 25 種類 178,818 res)**:
 
-```bash
-./scripts/parallel-validate.py Composition.ndjson --output demo.json \
-  --chunk 30 --parallel 24 \
-  --include-file fhir_r4/Organization.ndjson
-# → 4523 res, 0 errors (通常実行の 42 errors 完全消滅)
-```
+| pass | 所要 | rps | error |
+|---|---:|---:|---:|
+| 通常 (v15 baseline) | 7.6 min | 394 | 42 |
+| `--include-file fhir_r4/Organization.ndjson` | **7.3 min** | 407 | **0** |
 
-raw log: [`raw/rest_composition_with_sticky.stdout.log`](raw/rest_composition_with_sticky.stdout.log) / [`raw/rest_composition_with_sticky.meta.json`](raw/rest_composition_with_sticky.meta.json)
+- 42 → 0、fail 率 0.0049% → **0.000%** (合計 431,784 res 中 error 0)
+- raw log: [`raw/rest_with_sticky.stdout.log`](raw/rest_with_sticky.stdout.log) / [`raw/rest_with_sticky.meta.json`](raw/rest_with_sticky.meta.json)
+- Composition のみを対象にした最小 demo run も別途保存: [`raw/rest_composition_with_sticky.stdout.log`](raw/rest_composition_with_sticky.stdout.log) (4523 res, 23.6s, 0 errors)
+- **sticky として前置される 17 Organization 自身も別途単独検証済**: [`raw/organization_solo.stdout.log`](raw/organization_solo.stdout.log) (17 res, 1.2s, **0 errors** / warning 17 / information 5)。
+  sticky run では `filter_sticky_from_outcome` により Organization の issue は 5,961 Bundle 分の重複を避けるため出力から除去されるが、単独検証で真の pass/fail を担保
 
 ## v13 → v14 → v14gen → v15 完全比較
 
