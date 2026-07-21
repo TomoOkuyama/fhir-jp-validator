@@ -106,7 +106,8 @@ mv input/* input_rest/
 docker compose up -d fhirserver
 HAPI_EXTRA_ARGS="-best-practice ignore" \
   ./scripts/hapi-cluster.sh start
-./scripts/parallel-validate.py input_rest --output rest.json --chunk 50 --parallel 24 --timeout 120
+./scripts/parallel-validate.py input_rest --output rest.json --chunk 50 --parallel 24 --timeout 120 \
+  --include-file input_rest/Organization.ndjson    # cross-bundle Reference resolve、詳細は 4.3
 ./scripts/hapi-cluster.sh stop
 
 # Observation: tx=n/a (構造/slice/invariant のみ)
@@ -118,7 +119,78 @@ HAPI_TX=n/a HAPI_EXTRA_ARGS="-best-practice ignore" \
 
 **Observation の terminology 検証は別途、無作為抽出で行うのが実務的** (例: 5k 件だけを sample し fhirserver で `$validate-code` 直接呼び)。
 
-### 4.3 全構成での期待値 (M3 Max Rosetta)
+### 4.3 cross-bundle Reference の解決 (`--include-file`)
+
+**症状**: `Composition` や `MedicationRequest` 等の profile が `.section:xxx.entry:organization`
+のような slice を `min=1` で要求している場合、下記のような error が持続する:
+
+```
+Slice 'Composition.section:referralFromSection.entry:referralFromOrganization':
+  minimum required = 1, but only found 0
+```
+
+data 側では `Organization/hospital-main-ecs` を正しく参照しているのに、この error が出る。
+
+**原因**: `parallel-validate.py` は resource を `--chunk N` (default 30) 個ずつ 1 Bundle に
+まとめて `/validateResource` に投げる。参照先の Organization が別 Bundle に落ちると、
+HAPI validator は Bundle 内で `resolve()` に失敗し slice discriminator が発火しない。
+これは data の問題ではなく **client 側の分割戦略に由来する artifact**。
+
+**対処**: `--include-file` で **参照候補になる resource を全 Bundle に前置** する。
+
+```bash
+./scripts/parallel-validate.py input_rest --output rest.json \
+  --chunk 30 --parallel 24 \
+  --include-file input_rest/Organization.ndjson \
+  --include-file input_rest/Location.ndjson \
+  --include-file input_rest/PractitionerRole.ndjson
+```
+
+- 前置された resource 自体は入力側から自動的に除外され二重投入されない (`load_sticky` +
+  `bundle_generator`)
+- 前置 resource に付いた OperationOutcome issue は `filter_sticky_from_outcome` により結果
+  から除去され、fixture 由来の noise が入らない
+- `--include-file` は複数指定可 (`Organization.ndjson`, `Location.ndjson`, ...)。file でも
+  dir でも受け付ける
+
+**実測** (2026-07-21, v15 データ 178,818 res、Composition 4,523 件を対象):
+
+| pass | error | 42 error 由来 (referralFrom/ToSection Organization slice) |
+|---|---:|---:|
+| 通常 (`--include-file` 無し) | 42 | **21 件 × 2 slice = 42** (Composition 21/4523 fail) |
+| `--include-file Organization.ndjson` | **0** | **0** |
+
+**トレードオフ**:
+
+- **Bundle サイズが膨張**: 前置 fixture 分 × Bundle 数 だけ処理量が増える
+  (17 Organizations × 5,961 Bundle ≒ 101k 追加 resource 相当、実測で rest 8.1 min → 影響
+  軽微。fixture が数千件を超える場合は要注意)
+- **前置候補の選定**: `Reference.type` を明示していない参照は候補が広く、`Patient`/`Practitioner`
+  等 大量 resource を include すると Bundle が爆発する。まずは errors から失敗している slice
+  を特定し、最小の fixture set (Organization / Location / PractitionerRole 等の小規模 master
+  データ) から入れる
+
+**再集計 recipe**:
+
+```bash
+# resourceType 別 fail 数を再集計 (OperationOutcome から)
+python3 -c "
+import json, re, collections
+c = collections.defaultdict(set)
+pat = re.compile(r'resource/\*([A-Za-z]+)/([^*]+)\*/')
+for line in open('result.ndjson'):
+    oo = json.loads(line)
+    for i in oo.get('issue', []):
+        if i.get('severity') != 'error': continue
+        for e in i.get('expression', []) or []:
+            m = pat.search(e)
+            if m: c[m.group(1)].add(m.group(2))
+for rt, ids in sorted(c.items(), key=lambda x: -len(x[1])):
+    print(f'{rt}: {len(ids)} fail')
+"
+```
+
+### 4.4 全構成での期待値 (M3 Max Rosetta)
 
 | データ規模 | 分割 | 予想時間 |
 |---|---|---|

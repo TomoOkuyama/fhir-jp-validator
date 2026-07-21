@@ -1,0 +1,21 @@
+input:      /private/tmp/claude-818441110/-Users-tokuyama-workspace-fhir-jp-validator/7c4359f9-8cb3-4809-98d4-a90954fa84db/scratchpad/v15_stickydemo
+servers:    6 (localhost:3001,3002,3003,3004,3005,3006)
+chunk:      30 resources/Bundle
+parallel:   24 in-flight workers
+timeout:    120s, retries: 4
+circuit:    quarantine after 10 consecutive fails, recover after 60s
+sticky:     17 resources prepended to every Bundle (from fhir_r4/Organization.ndjson)
+outputs:    validation-results/2026-07-21_full_v15_p1000/raw/rest_composition_with_sticky.ndjson, validation-results/2026-07-21_full_v15_p1000/raw/rest_composition_with_sticky.meta.json, validation-results/2026-07-21_full_v15_p1000/raw/rest_composition_with_sticky.failed.ndjson
+  [15:14:48] processed=450 res, bundles_sent=63, avg_rps=88.8, recent_rps=88.8, in-flight=48, failed=0, active_ports=6/6
+  [15:14:53] processed=1410 res, bundles_sent=95, avg_rps=137.3, recent_rps=184.5, in-flight=48, failed=0, active_ports=6/6
+  [15:14:58] processed=2520 res, bundles_sent=132, avg_rps=164.0, recent_rps=217.8, in-flight=48, failed=0, active_ports=6/6
+  [15:15:03] processed=3780 res, bundles_sent=151, avg_rps=183.1, recent_rps=238.9, in-flight=25, failed=0, active_ports=6/6
+
+=== 完了 ===
+elapsed:      23.6s (0.4 min)
+throughput:   191.9 res/sec
+resources:    4523 total, 4523 ok, 0 failed
+severity:     {'warning': 4523}
+ports:        active 6/6, quarantined []
+outcomes ->   validation-results/2026-07-21_full_v15_p1000/raw/rest_composition_with_sticky.ndjson
+meta     ->   validation-results/2026-07-21_full_v15_p1000/raw/rest_composition_with_sticky.meta.json

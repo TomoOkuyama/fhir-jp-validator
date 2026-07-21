@@ -53,9 +53,21 @@ fhir-jp-validator 側は変更なし。validator_cli 6.9.12、fhirserver、clust
 
 これは生成データ側は正しく `Organization` を出力しているが、`parallel-validate.py` が Bundle 分割時に別 NDJSON にある target を含められない client-side infra 制約 (v8 以降同じ 42 件で持続)。生成器側の課題ではない。
 
-### client-side 解消手段 (実装済み、未適用)
+### client-side 解消手段 (実測確認済み)
 
-`--include-file` (sticky Reference 前置) で Organization をすべての Bundle に混ぜれば消える。実適用の docs 追加は未着手 (前 session からの継続候補)。
+`--include-file` (sticky Reference 前置) で Organization をすべての Bundle に混ぜれば消える。
+[`docs/real-world-validation.md`](../../docs/real-world-validation.md#43-cross-bundle-reference-の解決---include-file) 4.3 節に手順・トレードオフを追記。
+
+**demo (同 v15 data、Composition.ndjson のみを対象に再検証)**:
+
+```bash
+./scripts/parallel-validate.py Composition.ndjson --output demo.json \
+  --chunk 30 --parallel 24 \
+  --include-file fhir_r4/Organization.ndjson
+# → 4523 res, 0 errors (通常実行の 42 errors 完全消滅)
+```
+
+raw log: [`raw/rest_composition_with_sticky.stdout.log`](raw/rest_composition_with_sticky.stdout.log) / [`raw/rest_composition_with_sticky.meta.json`](raw/rest_composition_with_sticky.meta.json)
 
 ## v13 → v14 → v14gen → v15 完全比較
 
