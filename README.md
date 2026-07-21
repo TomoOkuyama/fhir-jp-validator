@@ -45,6 +45,10 @@ Local HL7 FHIR JP Core / JP-CLINS validation stack — HL7 純正 `fhirserver` (
 
 ## クイックスタート
 
+Docker / Linux コマンドや FHIR terminology 全般に不慣れな方は、
+**先に [`docs/fhirserver-setup-for-beginners.md`](docs/fhirserver-setup-for-beginners.md)** を
+参照してください。以下は概要のみです。
+
 ### 1. 前提
 
 - macOS Apple Silicon (M1/M2/M3)、Docker Desktop 4.30+ (Use Rosetta for x86/amd64 emulation を ON)、または amd64 Linux host
