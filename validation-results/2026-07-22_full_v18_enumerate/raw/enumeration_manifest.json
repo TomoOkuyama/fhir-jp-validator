@@ -1,0 +1,7231 @@
+{
+  "schema_version": "1",
+  "clinosim_git_commit": "a98132478946",
+  "level": "full",
+  "countries": [
+    "JP"
+  ],
+  "base_seed": 42,
+  "generated_at": "2026-07-22T02:25:35",
+  "total_patients": 802,
+  "cases": [
+    {
+      "patient_id": "ENUM-JP-0001",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0002",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0003",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0004",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0005",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0006",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0007",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0008",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0009",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0010",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0011",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0012",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0013",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "wound_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0014",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "intra_abdominal_abscess"
+    },
+    {
+      "patient_id": "ENUM-JP-0015",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_ileus"
+    },
+    {
+      "patient_id": "ENUM-JP-0016",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "stump_appendicitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0017",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0018",
+      "kind": "disease",
+      "scenario_id": "acute_appendicitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "adhesive_bowel_obstruction"
+    },
+    {
+      "patient_id": "ENUM-JP-0019",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0020",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0021",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0022",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0023",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0024",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0025",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0026",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0027",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0028",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0029",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0030",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0031",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bile_duct_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0032",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bile_leak"
+    },
+    {
+      "patient_id": "ENUM-JP-0033",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cholangitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0034",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "wound_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0035",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_pancreatitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0036",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0037",
+      "kind": "disease",
+      "scenario_id": "acute_cholecystitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "retained_cbd_stone"
+    },
+    {
+      "patient_id": "ENUM-JP-0038",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0039",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0040",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0041",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0042",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0043",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0044",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0045",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0046",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0047",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0048",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0049",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0050",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0051",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0052",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0053",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0054",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0055",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0056",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hyperkalemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0057",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "metabolic_acidosis"
+    },
+    {
+      "patient_id": "ENUM-JP-0058",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_edema"
+    },
+    {
+      "patient_id": "ENUM-JP-0059",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "uremic_encephalopathy"
+    },
+    {
+      "patient_id": "ENUM-JP-0060",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bleeding_uremic_platelet_dysfunction"
+    },
+    {
+      "patient_id": "ENUM-JP-0061",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0062",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0063",
+      "kind": "disease",
+      "scenario_id": "acute_kidney_injury",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0064",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0065",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0066",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0067",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0068",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0069",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0070",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0071",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0072",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0073",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0074",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0075",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0076",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardiogenic_shock"
+    },
+    {
+      "patient_id": "ENUM-JP-0077",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "ventricular_arrhythmia"
+    },
+    {
+      "patient_id": "ENUM-JP-0078",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_heart_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0079",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pericarditis"
+    },
+    {
+      "patient_id": "ENUM-JP-0080",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dressler_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0081",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "mechanical_complication"
+    },
+    {
+      "patient_id": "ENUM-JP-0082",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0083",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "stroke"
+    },
+    {
+      "patient_id": "ENUM-JP-0084",
+      "kind": "disease",
+      "scenario_id": "acute_mi",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "gi_bleeding"
+    },
+    {
+      "patient_id": "ENUM-JP-0085",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0086",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0087",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0088",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0089",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0090",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0091",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0092",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0093",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0094",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0095",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0096",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0097",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0098",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0099",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0100",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0101",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0102",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0103",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pancreatic_pseudocyst"
+    },
+    {
+      "patient_id": "ENUM-JP-0104",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "infected_necrosis"
+    },
+    {
+      "patient_id": "ENUM-JP-0105",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0106",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "ARDS"
+    },
+    {
+      "patient_id": "ENUM-JP-0107",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "splenic_vein_thrombosis"
+    },
+    {
+      "patient_id": "ENUM-JP-0108",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pancreatic_duct_disruption"
+    },
+    {
+      "patient_id": "ENUM-JP-0109",
+      "kind": "disease",
+      "scenario_id": "acute_pancreatitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0110",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0111",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0112",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0113",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0114",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0115",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0116",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0117",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0118",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0119",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0120",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0121",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0122",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0123",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0124",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0125",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0126",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0127",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0128",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "lung_abscess"
+    },
+    {
+      "patient_id": "ENUM-JP-0129",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "empyema"
+    },
+    {
+      "patient_id": "ENUM-JP-0130",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_respiratory_distress_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0131",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "recurrent_aspiration"
+    },
+    {
+      "patient_id": "ENUM-JP-0132",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0133",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0134",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "malnutrition_worsening"
+    },
+    {
+      "patient_id": "ENUM-JP-0135",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "c_diff_colitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0136",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0137",
+      "kind": "disease",
+      "scenario_id": "aspiration_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0138",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0139",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0140",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0141",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0142",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0143",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0144",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0145",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0146",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0147",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0148",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0149",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0150",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0151",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0152",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0153",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0154",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0155",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0156",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pneumothorax"
+    },
+    {
+      "patient_id": "ENUM-JP-0157",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "steroid_hyperglycemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0158",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hypokalemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0159",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "respiratory_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0160",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "atelectasis"
+    },
+    {
+      "patient_id": "ENUM-JP-0161",
+      "kind": "disease",
+      "scenario_id": "asthma_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0162",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0163",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0164",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0165",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0166",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0167",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0168",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0169",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0170",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0171",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0172",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0173",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0174",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0175",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0176",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0177",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0178",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0179",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0180",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_heart_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0181",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardioembolic_stroke"
+    },
+    {
+      "patient_id": "ENUM-JP-0182",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bradycardia_from_treatment"
+    },
+    {
+      "patient_id": "ENUM-JP-0183",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hypotension_from_treatment"
+    },
+    {
+      "patient_id": "ENUM-JP-0184",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bleeding_on_anticoagulation"
+    },
+    {
+      "patient_id": "ENUM-JP-0185",
+      "kind": "disease",
+      "scenario_id": "atrial_fibrillation_rvr",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0186",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0187",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0188",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0189",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0190",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0191",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0192",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0193",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0194",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0195",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0196",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0197",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0198",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0199",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0200",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0201",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0202",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0203",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0204",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "parapneumonic_effusion"
+    },
+    {
+      "patient_id": "ENUM-JP-0205",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "empyema"
+    },
+    {
+      "patient_id": "ENUM-JP-0206",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0207",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0208",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "c_diff_colitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0209",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0210",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0211",
+      "kind": "disease",
+      "scenario_id": "bacterial_pneumonia",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hospital_acquired_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0212",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0213",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0214",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0215",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0216",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0217",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0218",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0219",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0220",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0221",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0222",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0223",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0224",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0225",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0226",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0227",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0228",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0229",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0230",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "abscess_formation"
+    },
+    {
+      "patient_id": "ENUM-JP-0231",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "necrotizing_fasciitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0232",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "sepsis"
+    },
+    {
+      "patient_id": "ENUM-JP-0233",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "lymphedema"
+    },
+    {
+      "patient_id": "ENUM-JP-0234",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0235",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "c_diff_colitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0236",
+      "kind": "disease",
+      "scenario_id": "cellulitis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0237",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0238",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0239",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0240",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0241",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0242",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0243",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0244",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0245",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0246",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0247",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0248",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0249",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hemorrhagic_transformation"
+    },
+    {
+      "patient_id": "ENUM-JP-0250",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "aspiration_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0251",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0252",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0253",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "seizure"
+    },
+    {
+      "patient_id": "ENUM-JP-0254",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cerebral_edema"
+    },
+    {
+      "patient_id": "ENUM-JP-0255",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "post_stroke_depression"
+    },
+    {
+      "patient_id": "ENUM-JP-0256",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "urinary_tract_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0257",
+      "kind": "disease",
+      "scenario_id": "cerebral_infarction",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0258",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0259",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0260",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0261",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0262",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0263",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0264",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0265",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0266",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0267",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0268",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0269",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0270",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0271",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0272",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0273",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0274",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0275",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0276",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pneumothorax"
+    },
+    {
+      "patient_id": "ENUM-JP-0277",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "respiratory_failure_requiring_niv"
+    },
+    {
+      "patient_id": "ENUM-JP-0278",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "intubation_required"
+    },
+    {
+      "patient_id": "ENUM-JP-0279",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardiac_arrhythmia"
+    },
+    {
+      "patient_id": "ENUM-JP-0280",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0281",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0282",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0283",
+      "kind": "disease",
+      "scenario_id": "copd_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "steroid_hyperglycemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0284",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0285",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0286",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0287",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0288",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0289",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0290",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0291",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0292",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0293",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0294",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0295",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0296",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "surgical_site_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0297",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "wound_dehiscence"
+    },
+    {
+      "patient_id": "ENUM-JP-0298",
+      "kind": "disease",
+      "scenario_id": "crush_injury_hand",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "compartment_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0299",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0300",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0301",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0302",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0303",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0304",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0305",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0306",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0307",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0308",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0309",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0310",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0311",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0312",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0313",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0314",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0315",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0316",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0317",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0318",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "heparin_induced_thrombocytopenia"
+    },
+    {
+      "patient_id": "ENUM-JP-0319",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "major_bleeding"
+    },
+    {
+      "patient_id": "ENUM-JP-0320",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "post_thrombotic_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0321",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "phlegmasia_cerulea_dolens"
+    },
+    {
+      "patient_id": "ENUM-JP-0322",
+      "kind": "disease",
+      "scenario_id": "deep_vein_thrombosis",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "thrombus_extension"
+    },
+    {
+      "patient_id": "ENUM-JP-0323",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0324",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0325",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0326",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0327",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0328",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0329",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0330",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0331",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0332",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0333",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0334",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0335",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hypokalemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0336",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hypoglycemia"
+    },
+    {
+      "patient_id": "ENUM-JP-0337",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cerebral_edema"
+    },
+    {
+      "patient_id": "ENUM-JP-0338",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0339",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "aspiration_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0340",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardiac_arrhythmia"
+    },
+    {
+      "patient_id": "ENUM-JP-0341",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "rhabdomyolysis"
+    },
+    {
+      "patient_id": "ENUM-JP-0342",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0343",
+      "kind": "disease",
+      "scenario_id": "diabetic_ketoacidosis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0344",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0345",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0346",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0347",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0348",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0349",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0350",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0351",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0352",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0353",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0354",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0355",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0356",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardiac_arrhythmia"
+    },
+    {
+      "patient_id": "ENUM-JP-0357",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "rhabdomyolysis_aki"
+    },
+    {
+      "patient_id": "ENUM-JP-0358",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "compartment_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0359",
+      "kind": "disease",
+      "scenario_id": "electrical_injury",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "wound_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0360",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0361",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0362",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0363",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0364",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0365",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0366",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0367",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0368",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0369",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0370",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0371",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0372",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hemorrhagic_shock"
+    },
+    {
+      "patient_id": "ENUM-JP-0373",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_respiratory_distress"
+    },
+    {
+      "patient_id": "ENUM-JP-0374",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0375",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "venous_thromboembolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0376",
+      "kind": "disease",
+      "scenario_id": "fall_from_height",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "surgical_site_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0377",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0378",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0379",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0380",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0381",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0382",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0383",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0384",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0385",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0386",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0387",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0388",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0389",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0390",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0391",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0392",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0393",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0394",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0395",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "rebleeding"
+    },
+    {
+      "patient_id": "ENUM-JP-0396",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hemorrhagic_shock"
+    },
+    {
+      "patient_id": "ENUM-JP-0397",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "aspiration_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0398",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "transfusion_reaction"
+    },
+    {
+      "patient_id": "ENUM-JP-0399",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0400",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hepatic_encephalopathy"
+    },
+    {
+      "patient_id": "ENUM-JP-0401",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0402",
+      "kind": "disease",
+      "scenario_id": "gi_bleeding",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0403",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0404",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0405",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0406",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0407",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0408",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0409",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0410",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0411",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0412",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0413",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0414",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0415",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0416",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0417",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0418",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0419",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0420",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0421",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0422",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "atrial_fibrillation_rvr"
+    },
+    {
+      "patient_id": "ENUM-JP-0423",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cardiogenic_shock"
+    },
+    {
+      "patient_id": "ENUM-JP-0424",
+      "kind": "disease",
+      "scenario_id": "heart_failure_exacerbation",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "respiratory_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0425",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0426",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0427",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0428",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0429",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0430",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0431",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0432",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0433",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0434",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0435",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0436",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0437",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hematoma_expansion"
+    },
+    {
+      "patient_id": "ENUM-JP-0438",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cerebral_edema"
+    },
+    {
+      "patient_id": "ENUM-JP-0439",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "brain_herniation"
+    },
+    {
+      "patient_id": "ENUM-JP-0440",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hydrocephalus"
+    },
+    {
+      "patient_id": "ENUM-JP-0441",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "seizure"
+    },
+    {
+      "patient_id": "ENUM-JP-0442",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "aspiration_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0443",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0444",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0445",
+      "kind": "disease",
+      "scenario_id": "hemorrhagic_stroke",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0446",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0447",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0448",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0449",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0450",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0451",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0452",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0453",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0454",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0455",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0456",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0457",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0458",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0459",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "venous_thromboembolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0460",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "surgical_site_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0461",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_hemorrhage"
+    },
+    {
+      "patient_id": "ENUM-JP-0462",
+      "kind": "disease",
+      "scenario_id": "hip_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "perioperative_cardiac_event"
+    },
+    {
+      "patient_id": "ENUM-JP-0463",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0464",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0465",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0466",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0467",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0468",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0469",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0470",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0471",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0472",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0473",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0474",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0475",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0476",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0477",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0478",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0479",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0480",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0481",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bowel_perforation"
+    },
+    {
+      "patient_id": "ENUM-JP-0482",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "peritonitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0483",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "aspiration_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0484",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0485",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "electrolyte_imbalance"
+    },
+    {
+      "patient_id": "ENUM-JP-0486",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0487",
+      "kind": "disease",
+      "scenario_id": "ileus",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0488",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0489",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0490",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0491",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0492",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0493",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0494",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0495",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0496",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0497",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0498",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0499",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0500",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "burn_wound_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0501",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "sepsis"
+    },
+    {
+      "patient_id": "ENUM-JP-0502",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0503",
+      "kind": "disease",
+      "scenario_id": "industrial_burn_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "inhalation_injury_respiratory_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0504",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0505",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0506",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0507",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0508",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0509",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0510",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0511",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0512",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0513",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0514",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0515",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0516",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0517",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0518",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0519",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0520",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0521",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0522",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "viral_pneumonia"
+    },
+    {
+      "patient_id": "ENUM-JP-0523",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bacterial_superinfection"
+    },
+    {
+      "patient_id": "ENUM-JP-0524",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "ards"
+    },
+    {
+      "patient_id": "ENUM-JP-0525",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "myocarditis"
+    },
+    {
+      "patient_id": "ENUM-JP-0526",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0527",
+      "kind": "disease",
+      "scenario_id": "influenza",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0528",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0529",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0530",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0531",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0532",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0533",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0534",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0535",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0536",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0537",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0538",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0539",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0540",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0541",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0542",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0543",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0544",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0545",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0546",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "spontaneous_bacterial_peritonitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0547",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "variceal_hemorrhage"
+    },
+    {
+      "patient_id": "ENUM-JP-0548",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hepatorenal_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0549",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hepatic_encephalopathy_worsening"
+    },
+    {
+      "patient_id": "ENUM-JP-0550",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0551",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "coagulopathy_bleeding"
+    },
+    {
+      "patient_id": "ENUM-JP-0552",
+      "kind": "disease",
+      "scenario_id": "liver_cirrhosis_decompensated",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0553",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0554",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0555",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0556",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0557",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0558",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0559",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0560",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0561",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0562",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0563",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0564",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0565",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0566",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0567",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0568",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0569",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0570",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0571",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "recurrent_pe"
+    },
+    {
+      "patient_id": "ENUM-JP-0572",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "right_heart_failure"
+    },
+    {
+      "patient_id": "ENUM-JP-0573",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bleeding_complication"
+    },
+    {
+      "patient_id": "ENUM-JP-0574",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "heparin_induced_thrombocytopenia"
+    },
+    {
+      "patient_id": "ENUM-JP-0575",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "chronic_thromboembolic_pulmonary_hypertension"
+    },
+    {
+      "patient_id": "ENUM-JP-0576",
+      "kind": "disease",
+      "scenario_id": "pulmonary_embolism",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0577",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0578",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0579",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0580",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0581",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0582",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0583",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0584",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0585",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "plateau",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0586",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0587",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0588",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0589",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "disseminated_intravascular_coagulation"
+    },
+    {
+      "patient_id": "ENUM-JP-0590",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_respiratory_distress_syndrome"
+    },
+    {
+      "patient_id": "ENUM-JP-0591",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0592",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hepatic_dysfunction"
+    },
+    {
+      "patient_id": "ENUM-JP-0593",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "icu_delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0594",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "central_line_associated_bloodstream_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0595",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "c_diff_colitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0596",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "stress_cardiomyopathy"
+    },
+    {
+      "patient_id": "ENUM-JP-0597",
+      "kind": "disease",
+      "scenario_id": "sepsis",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "critical_illness_polyneuropathy"
+    },
+    {
+      "patient_id": "ENUM-JP-0598",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0599",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0600",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0601",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0602",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0603",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0604",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0605",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0606",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0607",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0608",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0609",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0610",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "recurrent_hematoma"
+    },
+    {
+      "patient_id": "ENUM-JP-0611",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0612",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "seizure"
+    },
+    {
+      "patient_id": "ENUM-JP-0613",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "cerebral_herniation"
+    },
+    {
+      "patient_id": "ENUM-JP-0614",
+      "kind": "disease",
+      "scenario_id": "subdural_hematoma",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "venous_thromboembolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0615",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0616",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0617",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0618",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0619",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0620",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0621",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0622",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0623",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0624",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0625",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0626",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0627",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "hemorrhagic_shock"
+    },
+    {
+      "patient_id": "ENUM-JP-0628",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_respiratory_distress"
+    },
+    {
+      "patient_id": "ENUM-JP-0629",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "surgical_site_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0630",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0631",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "venous_thromboembolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0632",
+      "kind": "disease",
+      "scenario_id": "traffic_accident_severe",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "postoperative_delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0633",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0634",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0635",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0636",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0637",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0638",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0639",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0640",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0641",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0642",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0643",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0644",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0645",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0646",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0647",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0648",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0649",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0650",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0651",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "urosepsis"
+    },
+    {
+      "patient_id": "ENUM-JP-0652",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "renal_abscess"
+    },
+    {
+      "patient_id": "ENUM-JP-0653",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "bacteremia"
+    },
+    {
+      "patient_id": "ENUM-JP-0654",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "acute_kidney_injury"
+    },
+    {
+      "patient_id": "ENUM-JP-0655",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0656",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "c_diff_colitis"
+    },
+    {
+      "patient_id": "ENUM-JP-0657",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0658",
+      "kind": "disease",
+      "scenario_id": "urinary_tract_infection",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0659",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0660",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0661",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0662",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0663",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0664",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0665",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0666",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0667",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0668",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0669",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0670",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0671",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0672",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0673",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0674",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0675",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0676",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0677",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "dvt"
+    },
+    {
+      "patient_id": "ENUM-JP-0678",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pulmonary_embolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0679",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "urinary_tract_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0680",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "constipation_ileus"
+    },
+    {
+      "patient_id": "ENUM-JP-0681",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "delirium"
+    },
+    {
+      "patient_id": "ENUM-JP-0682",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "pressure_ulcer"
+    },
+    {
+      "patient_id": "ENUM-JP-0683",
+      "kind": "disease",
+      "scenario_id": "vertebral_compression_fracture",
+      "severity": "mild",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "adjacent_vertebral_fracture"
+    },
+    {
+      "patient_id": "ENUM-JP-0684",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0685",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0686",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0687",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0688",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0689",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0690",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0691",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "gradual_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0692",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "plateau_then_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0693",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "smooth_recovery",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0694",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "sudden_deterioration",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0695",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "severe",
+      "archetype": "treatment_resistant",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0696",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "surgical_site_infection"
+    },
+    {
+      "patient_id": "ENUM-JP-0697",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "venous_thromboembolism"
+    },
+    {
+      "patient_id": "ENUM-JP-0698",
+      "kind": "disease",
+      "scenario_id": "wrist_fracture_surgical",
+      "severity": "moderate",
+      "archetype": "dip_then_recovery",
+      "country": "JP",
+      "complication": "median_nerve_dysfunction"
+    },
+    {
+      "patient_id": "ENUM-JP-0699",
+      "kind": "encounter",
+      "scenario_id": "abdominal_pain_nonspecific",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0700",
+      "kind": "encounter",
+      "scenario_id": "abdominal_pain_nonspecific",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0701",
+      "kind": "encounter",
+      "scenario_id": "abdominal_pain_nonspecific",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0702",
+      "kind": "encounter",
+      "scenario_id": "allergic_reaction_mild",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0703",
+      "kind": "encounter",
+      "scenario_id": "allergic_reaction_mild",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0704",
+      "kind": "encounter",
+      "scenario_id": "allergic_reaction_mild",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0705",
+      "kind": "encounter",
+      "scenario_id": "animal_bite",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0706",
+      "kind": "encounter",
+      "scenario_id": "animal_bite",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0707",
+      "kind": "encounter",
+      "scenario_id": "animal_bite",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0708",
+      "kind": "encounter",
+      "scenario_id": "ankle_sprain",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0709",
+      "kind": "encounter",
+      "scenario_id": "ankle_sprain",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0710",
+      "kind": "encounter",
+      "scenario_id": "ankle_sprain",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0711",
+      "kind": "encounter",
+      "scenario_id": "annual_health_screening",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0712",
+      "kind": "encounter",
+      "scenario_id": "anxiety_panic_attack",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0713",
+      "kind": "encounter",
+      "scenario_id": "anxiety_panic_attack",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0714",
+      "kind": "encounter",
+      "scenario_id": "anxiety_panic_attack",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0715",
+      "kind": "encounter",
+      "scenario_id": "asthma_attack_mild",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0716",
+      "kind": "encounter",
+      "scenario_id": "asthma_attack_mild",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0717",
+      "kind": "encounter",
+      "scenario_id": "asthma_attack_mild",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0718",
+      "kind": "encounter",
+      "scenario_id": "cardiac_rehabilitation",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0719",
+      "kind": "encounter",
+      "scenario_id": "chemical_exposure",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0720",
+      "kind": "encounter",
+      "scenario_id": "chemical_exposure",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0721",
+      "kind": "encounter",
+      "scenario_id": "chemical_exposure",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0722",
+      "kind": "encounter",
+      "scenario_id": "chest_pain_noncardiac",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0723",
+      "kind": "encounter",
+      "scenario_id": "chest_pain_noncardiac",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0724",
+      "kind": "encounter",
+      "scenario_id": "chest_pain_noncardiac",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0725",
+      "kind": "encounter",
+      "scenario_id": "colonoscopy_screening",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0726",
+      "kind": "encounter",
+      "scenario_id": "concussion",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0727",
+      "kind": "encounter",
+      "scenario_id": "concussion",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0728",
+      "kind": "encounter",
+      "scenario_id": "concussion",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0729",
+      "kind": "encounter",
+      "scenario_id": "diabetic_retinopathy_screening",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0730",
+      "kind": "encounter",
+      "scenario_id": "dialysis_session",
+      "severity": "routine",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0731",
+      "kind": "encounter",
+      "scenario_id": "elderly_fall",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0732",
+      "kind": "encounter",
+      "scenario_id": "elderly_fall",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0733",
+      "kind": "encounter",
+      "scenario_id": "elderly_fall",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0734",
+      "kind": "encounter",
+      "scenario_id": "epistaxis",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0735",
+      "kind": "encounter",
+      "scenario_id": "epistaxis",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0736",
+      "kind": "encounter",
+      "scenario_id": "epistaxis",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0737",
+      "kind": "encounter",
+      "scenario_id": "eye_foreign_body",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0738",
+      "kind": "encounter",
+      "scenario_id": "eye_foreign_body",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0739",
+      "kind": "encounter",
+      "scenario_id": "eye_foreign_body",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0740",
+      "kind": "encounter",
+      "scenario_id": "flu_vaccination",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0741",
+      "kind": "encounter",
+      "scenario_id": "food_poisoning",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0742",
+      "kind": "encounter",
+      "scenario_id": "food_poisoning",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0743",
+      "kind": "encounter",
+      "scenario_id": "food_poisoning",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0744",
+      "kind": "encounter",
+      "scenario_id": "foreign_body_ingestion",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0745",
+      "kind": "encounter",
+      "scenario_id": "foreign_body_ingestion",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0746",
+      "kind": "encounter",
+      "scenario_id": "foreign_body_ingestion",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0747",
+      "kind": "encounter",
+      "scenario_id": "lab_result_consultation",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0748",
+      "kind": "encounter",
+      "scenario_id": "low_back_pain",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0749",
+      "kind": "encounter",
+      "scenario_id": "low_back_pain",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0750",
+      "kind": "encounter",
+      "scenario_id": "low_back_pain",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0751",
+      "kind": "encounter",
+      "scenario_id": "mammography_screening",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0752",
+      "kind": "encounter",
+      "scenario_id": "mental_health_followup",
+      "severity": "routine",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0753",
+      "kind": "encounter",
+      "scenario_id": "migraine",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0754",
+      "kind": "encounter",
+      "scenario_id": "migraine",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0755",
+      "kind": "encounter",
+      "scenario_id": "migraine",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0756",
+      "kind": "encounter",
+      "scenario_id": "minor_burn",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0757",
+      "kind": "encounter",
+      "scenario_id": "minor_burn",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0758",
+      "kind": "encounter",
+      "scenario_id": "minor_burn",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0759",
+      "kind": "encounter",
+      "scenario_id": "minor_laceration",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0760",
+      "kind": "encounter",
+      "scenario_id": "minor_laceration",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0761",
+      "kind": "encounter",
+      "scenario_id": "minor_laceration",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0762",
+      "kind": "encounter",
+      "scenario_id": "new_patient_referral",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0763",
+      "kind": "encounter",
+      "scenario_id": "orthopedic_injection",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0764",
+      "kind": "encounter",
+      "scenario_id": "preoperative_assessment",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0765",
+      "kind": "encounter",
+      "scenario_id": "prescription_renewal",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0766",
+      "kind": "encounter",
+      "scenario_id": "rehabilitation_outpatient",
+      "severity": "routine",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0767",
+      "kind": "encounter",
+      "scenario_id": "renal_colic",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0768",
+      "kind": "encounter",
+      "scenario_id": "renal_colic",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0769",
+      "kind": "encounter",
+      "scenario_id": "renal_colic",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0770",
+      "kind": "encounter",
+      "scenario_id": "rib_fracture",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0771",
+      "kind": "encounter",
+      "scenario_id": "rib_fracture",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0772",
+      "kind": "encounter",
+      "scenario_id": "rib_fracture",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0773",
+      "kind": "encounter",
+      "scenario_id": "shoulder_dislocation",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0774",
+      "kind": "encounter",
+      "scenario_id": "shoulder_dislocation",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0775",
+      "kind": "encounter",
+      "scenario_id": "shoulder_dislocation",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0776",
+      "kind": "encounter",
+      "scenario_id": "smoking_cessation",
+      "severity": "routine",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0777",
+      "kind": "encounter",
+      "scenario_id": "syncope",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0778",
+      "kind": "encounter",
+      "scenario_id": "syncope",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0779",
+      "kind": "encounter",
+      "scenario_id": "syncope",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0780",
+      "kind": "encounter",
+      "scenario_id": "traffic_accident_minor",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0781",
+      "kind": "encounter",
+      "scenario_id": "traffic_accident_minor",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0782",
+      "kind": "encounter",
+      "scenario_id": "traffic_accident_minor",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0783",
+      "kind": "encounter",
+      "scenario_id": "upper_endoscopy_diagnostic",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0784",
+      "kind": "encounter",
+      "scenario_id": "urinary_retention",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0785",
+      "kind": "encounter",
+      "scenario_id": "urinary_retention",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0786",
+      "kind": "encounter",
+      "scenario_id": "urinary_retention",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0787",
+      "kind": "encounter",
+      "scenario_id": "uti_uncomplicated",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0788",
+      "kind": "encounter",
+      "scenario_id": "uti_uncomplicated",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0789",
+      "kind": "encounter",
+      "scenario_id": "uti_uncomplicated",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0790",
+      "kind": "encounter",
+      "scenario_id": "vertigo",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0791",
+      "kind": "encounter",
+      "scenario_id": "vertigo",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0792",
+      "kind": "encounter",
+      "scenario_id": "vertigo",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0793",
+      "kind": "encounter",
+      "scenario_id": "viral_gastroenteritis",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0794",
+      "kind": "encounter",
+      "scenario_id": "viral_gastroenteritis",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0795",
+      "kind": "encounter",
+      "scenario_id": "viral_gastroenteritis",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0796",
+      "kind": "encounter",
+      "scenario_id": "viral_uri",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0797",
+      "kind": "encounter",
+      "scenario_id": "viral_uri",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0798",
+      "kind": "encounter",
+      "scenario_id": "viral_uri",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0799",
+      "kind": "encounter",
+      "scenario_id": "wound_care_followup",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0800",
+      "kind": "encounter",
+      "scenario_id": "wrist_fracture",
+      "severity": "mild",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0801",
+      "kind": "encounter",
+      "scenario_id": "wrist_fracture",
+      "severity": "moderate",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    },
+    {
+      "patient_id": "ENUM-JP-0802",
+      "kind": "encounter",
+      "scenario_id": "wrist_fracture",
+      "severity": "severe",
+      "archetype": "",
+      "country": "JP",
+      "complication": ""
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "input": "/private/tmp/claude-818441110/-Users-tokuyama-workspace-fhir-jp-validator/7c4359f9-8cb3-4809-98d4-a90954fa84db/scratchpad/v18_obs",
+  "resources_total": 511003,
+  "resources_ok": 511003,
+  "resources_failed": 0,
+  "bundles": 17034,
+  "chunk_size": 30,
+  "parallel": 24,
+  "timeout_sec": 120,
+  "retries": 4,
+  "circuit_threshold": 10,
+  "servers": [
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3004",
+    "http://localhost:3005",
+    "http://localhost:3006"
+  ],
+  "server_status_final": {
+    "active_ports": 6,
+    "total_ports": 6,
+    "quarantined_ports": [],
+    "port_ok_counts": {
+      "3005": 2839,
+      "3006": 2839,
+      "3003": 2839,
+      "3004": 2839,
+      "3002": 2839,
+      "3001": 2839
+    },
+    "port_fail_counts": {}
+  },
+  "elapsed_sec": 2450.88,
+  "throughput_res_per_sec": 208.5,
+  "severity_summary": {
+    "warning": 275329,
+    "information": 2005491
+  },
+  "outcome_ndjson": "validation-results/2026-07-22_full_v18_enumerate/raw/obs.ndjson",
+  "failed_ndjson": null
+}
