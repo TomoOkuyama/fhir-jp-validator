@@ -1,0 +1,103 @@
+input:      /private/tmp/claude-818441110/-Users-tokuyama-workspace-fhir-jp-validator/7c4359f9-8cb3-4809-98d4-a90954fa84db/scratchpad/v15_rest
+servers:    6 (localhost:3001,3002,3003,3004,3005,3006)
+chunk:      30 resources/Bundle
+parallel:   24 in-flight workers
+timeout:    120s, retries: 4
+circuit:    quarantine after 10 consecutive fails, recover after 60s
+outputs:    validation-results/2026-07-21_full_v15_p1000/raw/rest.ndjson, validation-results/2026-07-21_full_v15_p1000/raw/rest.meta.json, validation-results/2026-07-21_full_v15_p1000/raw/rest.failed.ndjson
+  [14:43:43] processed=2550 res, bundles_sent=133, avg_rps=509.2, recent_rps=509.2, in-flight=48, failed=0, active_ports=6/6
+  [14:43:49] processed=6720 res, bundles_sent=272, avg_rps=652.9, recent_rps=789.2, in-flight=48, failed=0, active_ports=6/6
+  [14:43:54] processed=7890 res, bundles_sent=311, avg_rps=511.0, recent_rps=227.3, in-flight=48, failed=0, active_ports=6/6
+  [14:43:59] processed=9240 res, bundles_sent=356, avg_rps=450.7, recent_rps=266.7, in-flight=48, failed=0, active_ports=6/6
+  [14:44:04] processed=10530 res, bundles_sent=399, avg_rps=412.7, recent_rps=257.2, in-flight=48, failed=0, active_ports=6/6
+  [14:44:09] processed=11580 res, bundles_sent=434, avg_rps=375.5, recent_rps=197.3, in-flight=48, failed=0, active_ports=6/6
+  [14:44:14] processed=12540 res, bundles_sent=466, avg_rps=348.7, recent_rps=187.1, in-flight=48, failed=0, active_ports=6/6
+  [14:44:20] processed=13560 res, bundles_sent=500, avg_rps=328.5, recent_rps=191.8, in-flight=48, failed=0, active_ports=6/6
+  [14:44:25] processed=14490 res, bundles_sent=531, avg_rps=312.7, recent_rps=184.0, in-flight=48, failed=0, active_ports=6/6
+  [14:44:30] processed=15570 res, bundles_sent=567, avg_rps=301.6, recent_rps=204.0, in-flight=48, failed=0, active_ports=6/6
+  [14:44:35] processed=16650 res, bundles_sent=603, avg_rps=293.8, recent_rps=214.1, in-flight=48, failed=0, active_ports=6/6
+  [14:44:40] processed=17880 res, bundles_sent=644, avg_rps=289.7, recent_rps=243.5, in-flight=48, failed=0, active_ports=6/6
+  [14:44:45] processed=19560 res, bundles_sent=700, avg_rps=293.0, recent_rps=334.3, in-flight=48, failed=0, active_ports=6/6
+  [14:44:59] processed=20430 res, bundles_sent=729, avg_rps=254.4, recent_rps=64.2, in-flight=48, failed=0, active_ports=6/6
+  [14:45:04] processed=21630 res, bundles_sent=769, avg_rps=253.4, recent_rps=236.9, in-flight=48, failed=0, active_ports=6/6
+  [14:45:09] processed=23220 res, bundles_sent=822, avg_rps=256.8, recent_rps=315.8, in-flight=48, failed=0, active_ports=6/6
+  [14:45:14] processed=25080 res, bundles_sent=884, avg_rps=262.7, recent_rps=367.0, in-flight=48, failed=0, active_ports=6/6
+  [14:45:19] processed=26850 res, bundles_sent=943, avg_rps=267.2, recent_rps=353.4, in-flight=48, failed=0, active_ports=6/6
+  [14:45:24] processed=28590 res, bundles_sent=1001, avg_rps=271.0, recent_rps=347.9, in-flight=48, failed=0, active_ports=6/6
+  [14:45:29] processed=30420 res, bundles_sent=1062, avg_rps=274.9, recent_rps=353.2, in-flight=48, failed=0, active_ports=6/6
+  [14:45:34] processed=31590 res, bundles_sent=1101, avg_rps=272.3, recent_rps=218.2, in-flight=48, failed=0, active_ports=6/6
+  [14:45:40] processed=32640 res, bundles_sent=1136, avg_rps=269.5, recent_rps=207.0, in-flight=48, failed=0, active_ports=6/6
+  [14:45:45] processed=33690 res, bundles_sent=1171, avg_rps=267.0, recent_rps=207.4, in-flight=48, failed=0, active_ports=6/6
+  [14:45:50] processed=35040 res, bundles_sent=1216, avg_rps=267.0, recent_rps=265.5, in-flight=48, failed=0, active_ports=6/6
+  [14:45:55] processed=37350 res, bundles_sent=1293, avg_rps=273.9, recent_rps=453.6, in-flight=48, failed=0, active_ports=6/6
+  [14:46:00] processed=39720 res, bundles_sent=1372, avg_rps=280.9, recent_rps=469.7, in-flight=48, failed=0, active_ports=6/6
+  [14:46:05] processed=41820 res, bundles_sent=1442, avg_rps=285.6, recent_rps=417.0, in-flight=48, failed=0, active_ports=6/6
+  [14:46:10] processed=43230 res, bundles_sent=1489, avg_rps=285.4, recent_rps=280.3, in-flight=48, failed=0, active_ports=6/6
+  [14:46:15] processed=44880 res, bundles_sent=1544, avg_rps=286.6, recent_rps=322.5, in-flight=48, failed=0, active_ports=6/6
+  [14:46:20] processed=46650 res, bundles_sent=1603, avg_rps=288.5, recent_rps=344.9, in-flight=48, failed=0, active_ports=6/6
+  [14:46:25] processed=48390 res, bundles_sent=1661, avg_rps=289.7, recent_rps=325.0, in-flight=48, failed=0, active_ports=6/6
+  [14:46:31] processed=49980 res, bundles_sent=1714, avg_rps=290.4, recent_rps=315.6, in-flight=48, failed=0, active_ports=6/6
+  [14:46:36] processed=51630 res, bundles_sent=1769, avg_rps=291.5, recent_rps=327.7, in-flight=48, failed=0, active_ports=6/6
+  [14:46:41] processed=53310 res, bundles_sent=1825, avg_rps=292.7, recent_rps=335.2, in-flight=48, failed=0, active_ports=6/6
+  [14:46:46] processed=55020 res, bundles_sent=1882, avg_rps=293.9, recent_rps=336.0, in-flight=48, failed=0, active_ports=6/6
+  [14:46:51] processed=56850 res, bundles_sent=1943, avg_rps=295.4, recent_rps=350.3, in-flight=48, failed=0, active_ports=6/6
+  [14:46:56] processed=58530 res, bundles_sent=1999, avg_rps=296.1, recent_rps=321.9, in-flight=48, failed=0, active_ports=6/6
+  [14:47:01] processed=60270 res, bundles_sent=2057, avg_rps=297.3, recent_rps=346.9, in-flight=48, failed=0, active_ports=6/6
+  [14:47:06] processed=62100 res, bundles_sent=2118, avg_rps=299.0, recent_rps=364.8, in-flight=48, failed=0, active_ports=6/6
+  [14:47:11] processed=63780 res, bundles_sent=2174, avg_rps=299.8, recent_rps=332.5, in-flight=48, failed=0, active_ports=6/6
+  [14:47:16] processed=65490 res, bundles_sent=2231, avg_rps=300.6, recent_rps=335.0, in-flight=48, failed=0, active_ports=6/6
+  [14:47:21] processed=67380 res, bundles_sent=2294, avg_rps=302.1, recent_rps=365.7, in-flight=48, failed=0, active_ports=6/6
+  [14:47:26] processed=69090 res, bundles_sent=2351, avg_rps=303.0, recent_rps=341.8, in-flight=48, failed=0, active_ports=6/6
+  [14:47:31] processed=70830 res, bundles_sent=2409, avg_rps=303.9, recent_rps=347.7, in-flight=48, failed=0, active_ports=6/6
+  [14:47:37] processed=72630 res, bundles_sent=2469, avg_rps=304.8, recent_rps=345.1, in-flight=48, failed=0, active_ports=6/6
+  [14:47:42] processed=74430 res, bundles_sent=2529, avg_rps=305.8, recent_rps=351.7, in-flight=48, failed=0, active_ports=6/6
+  [14:47:47] processed=76260 res, bundles_sent=2590, avg_rps=307.0, recent_rps=365.0, in-flight=48, failed=0, active_ports=6/6
+  [14:47:52] processed=78090 res, bundles_sent=2651, avg_rps=308.0, recent_rps=356.8, in-flight=48, failed=0, active_ports=6/6
+  [14:47:57] processed=79890 res, bundles_sent=2711, avg_rps=308.8, recent_rps=348.3, in-flight=48, failed=0, active_ports=6/6
+  [14:48:02] processed=81510 res, bundles_sent=2765, avg_rps=309.1, recent_rps=323.5, in-flight=48, failed=0, active_ports=6/6
+  [14:48:07] processed=83190 res, bundles_sent=2821, avg_rps=309.4, recent_rps=325.9, in-flight=48, failed=0, active_ports=6/6
+  [14:48:12] processed=84870 res, bundles_sent=2877, avg_rps=309.9, recent_rps=333.6, in-flight=48, failed=0, active_ports=6/6
+  [14:48:17] processed=86490 res, bundles_sent=2931, avg_rps=310.1, recent_rps=322.5, in-flight=48, failed=0, active_ports=6/6
+  [14:48:22] processed=88170 res, bundles_sent=2987, avg_rps=310.5, recent_rps=335.0, in-flight=48, failed=0, active_ports=6/6
+  [14:48:27] processed=89970 res, bundles_sent=3047, avg_rps=311.4, recent_rps=357.0, in-flight=48, failed=0, active_ports=6/6
+  [14:48:32] processed=91710 res, bundles_sent=3105, avg_rps=312.0, recent_rps=346.7, in-flight=48, failed=0, active_ports=6/6
+  [14:48:37] processed=93360 res, bundles_sent=3160, avg_rps=312.3, recent_rps=330.0, in-flight=48, failed=0, active_ports=6/6
+  [14:48:43] processed=95250 res, bundles_sent=3223, avg_rps=313.2, recent_rps=367.6, in-flight=48, failed=0, active_ports=6/6
+  [14:48:48] processed=97230 res, bundles_sent=3289, avg_rps=314.5, recent_rps=392.3, in-flight=48, failed=0, active_ports=6/6
+  [14:48:53] processed=99000 res, bundles_sent=3348, avg_rps=315.0, recent_rps=348.7, in-flight=48, failed=0, active_ports=6/6
+  [14:48:58] processed=101010 res, bundles_sent=3415, avg_rps=316.3, recent_rps=397.5, in-flight=48, failed=0, active_ports=6/6
+  [14:49:03] processed=102870 res, bundles_sent=3477, avg_rps=317.2, recent_rps=371.1, in-flight=48, failed=0, active_ports=6/6
+  [14:49:08] processed=104640 res, bundles_sent=3536, avg_rps=317.7, recent_rps=352.0, in-flight=48, failed=0, active_ports=6/6
+  [14:49:13] processed=105510 res, bundles_sent=3565, avg_rps=315.2, recent_rps=160.0, in-flight=48, failed=0, active_ports=6/6
+  [14:49:19] processed=105990 res, bundles_sent=3581, avg_rps=311.4, recent_rps=85.4, in-flight=48, failed=0, active_ports=6/6
+  [14:49:25] processed=106470 res, bundles_sent=3597, avg_rps=307.5, recent_rps=82.2, in-flight=48, failed=0, active_ports=6/6
+  [14:49:30] processed=106950 res, bundles_sent=3613, avg_rps=304.1, recent_rps=87.5, in-flight=48, failed=0, active_ports=6/6
+  [14:49:35] processed=107700 res, bundles_sent=3638, avg_rps=301.7, recent_rps=143.6, in-flight=48, failed=0, active_ports=6/6
+  [14:49:41] processed=108960 res, bundles_sent=3680, avg_rps=300.9, recent_rps=243.8, in-flight=48, failed=0, active_ports=6/6
+  [14:49:46] processed=111270 res, bundles_sent=3757, avg_rps=303.0, recent_rps=450.9, in-flight=48, failed=0, active_ports=6/6
+  [14:49:51] processed=113520 res, bundles_sent=3832, avg_rps=304.9, recent_rps=447.6, in-flight=48, failed=0, active_ports=6/6
+  [14:49:56] processed=115860 res, bundles_sent=3910, avg_rps=307.1, recent_rps=464.4, in-flight=48, failed=0, active_ports=6/6
+  [14:50:01] processed=117990 res, bundles_sent=3981, avg_rps=308.5, recent_rps=413.2, in-flight=48, failed=0, active_ports=6/6
+  [14:50:06] processed=120270 res, bundles_sent=4057, avg_rps=310.4, recent_rps=455.5, in-flight=48, failed=0, active_ports=6/6
+  [14:50:11] processed=122610 res, bundles_sent=4135, avg_rps=312.3, recent_rps=457.7, in-flight=48, failed=0, active_ports=6/6
+  [14:50:16] processed=125070 res, bundles_sent=4217, avg_rps=314.5, recent_rps=477.9, in-flight=48, failed=0, active_ports=6/6
+  [14:50:21] processed=127380 res, bundles_sent=4294, avg_rps=316.3, recent_rps=456.6, in-flight=48, failed=0, active_ports=6/6
+  [14:50:26] processed=129660 res, bundles_sent=4370, avg_rps=317.9, recent_rps=452.0, in-flight=48, failed=0, active_ports=6/6
+  [14:50:31] processed=132060 res, bundles_sent=4450, avg_rps=319.8, recent_rps=465.5, in-flight=48, failed=0, active_ports=6/6
+  [14:50:36] processed=134340 res, bundles_sent=4526, avg_rps=321.4, recent_rps=454.7, in-flight=48, failed=0, active_ports=6/6
+  [14:50:41] processed=136560 res, bundles_sent=4600, avg_rps=322.8, recent_rps=439.3, in-flight=48, failed=0, active_ports=6/6
+  [14:50:46] processed=139050 res, bundles_sent=4683, avg_rps=324.8, recent_rps=494.8, in-flight=48, failed=0, active_ports=6/6
+  [14:50:52] processed=141600 res, bundles_sent=4768, avg_rps=326.9, recent_rps=507.2, in-flight=48, failed=0, active_ports=6/6
+  [14:50:57] processed=144420 res, bundles_sent=4862, avg_rps=329.6, recent_rps=558.5, in-flight=48, failed=0, active_ports=6/6
+  [14:51:02] processed=150900 res, bundles_sent=5078, avg_rps=340.5, recent_rps=1295.1, in-flight=48, failed=0, active_ports=6/6
+  [14:51:07] processed=164250 res, bundles_sent=5523, avg_rps=366.5, recent_rps=2667.5, in-flight=48, failed=0, active_ports=6/6
+  [14:51:12] processed=178668 res, bundles_sent=5961, avg_rps=394.2, recent_rps=2873.7, in-flight=5, failed=0, active_ports=6/6
+
+=== 完了 ===
+elapsed:      453.4s (7.6 min)
+throughput:   394.4 res/sec
+resources:    178818 total, 178818 ok, 0 failed
+severity:     {'warning': 289349, 'information': 203578, 'error': 42}
+ports:        active 6/6, quarantined []
+outcomes ->   validation-results/2026-07-21_full_v15_p1000/raw/rest.ndjson
+meta     ->   validation-results/2026-07-21_full_v15_p1000/raw/rest.meta.json
