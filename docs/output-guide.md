@@ -12,7 +12,7 @@
 
 ## 1. meta.json — まずはここを見る
 
-サンプル (`chunk=50 parallel=32` で 343k res を 28 分):
+サンプル (`chunk=50 parallel=32` で 343k res を 28 分検証した meta の例):
 
 ```json
 {
