@@ -1,0 +1,43 @@
+{
+  "input": "/private/tmp/claude-818441110/-Users-tokuyama-workspace-fhir-jp-validator/7c4359f9-8cb3-4809-98d4-a90954fa84db/scratchpad/v22_rest",
+  "resources_total": 177096,
+  "resources_ok": 177096,
+  "resources_failed": 0,
+  "bundles": 5904,
+  "chunk_size": 30,
+  "parallel": 24,
+  "timeout_sec": 120,
+  "retries": 4,
+  "circuit_threshold": 10,
+  "servers": [
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3004",
+    "http://localhost:3005",
+    "http://localhost:3006"
+  ],
+  "server_status_final": {
+    "active_ports": 6,
+    "total_ports": 6,
+    "quarantined_ports": [],
+    "port_ok_counts": {
+      "3006": 984,
+      "3003": 984,
+      "3004": 984,
+      "3005": 984,
+      "3001": 984,
+      "3002": 984
+    },
+    "port_fail_counts": {}
+  },
+  "elapsed_sec": 563.94,
+  "throughput_res_per_sec": 314.03,
+  "severity_summary": {
+    "warning": 364930,
+    "information": 195017,
+    "error": 2969
+  },
+  "outcome_ndjson": "validation-results/2026-07-22_full_v22_iris4h_ai_feedback_p1000/raw/rest.ndjson",
+  "failed_ndjson": null
+}
