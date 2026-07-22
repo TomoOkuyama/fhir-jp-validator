@@ -1,0 +1,146 @@
+{
+  "clinosim_version": "0.2.0",
+  "generated_at": "2026-07-22T17:39:00.565756+09:00",
+  "country": "JP",
+  "cif_metadata": {
+    "clinosim_version": "0.2.0",
+    "generation_timestamp": "2026-07-22T17:37:17.479284",
+    "random_seed": 300,
+    "country": "JP",
+    "hospital_scale": "medium",
+    "simulation_period_start": null,
+    "simulation_period_end": null,
+    "snapshot_date": "2026-07-22",
+    "total_patients_generated": 3795,
+    "llm_mode": "none"
+  },
+  "git": {
+    "commit": "fea229299de41582a4e564b3f1d10849bd4c051c",
+    "commit_short": "fea22929",
+    "commit_datetime": "2026-07-22T17:27:40+09:00",
+    "commit_subject": "fix(fhir): v3-RoleCode MTH/FTH canonical displays \"natural mother\"/\"natural father\" (Issue #369 follow-up) (#372)",
+    "dirty": false
+  },
+  "recent_merges": [
+    {
+      "pr": 372,
+      "subject": "fix(fhir): v3-RoleCode MTH/FTH canonical displays \"natural mother\"/\"natural father\" (Issue #369 follow-up) (#372)"
+    },
+    {
+      "pr": 368,
+      "subject": "refactor(antibiotic): move medication intent from id suffix to meta.tag[] (Issue #349 Phase 2) (#368)"
+    },
+    {
+      "pr": 371,
+      "subject": "fix(fhir): LOINC 11506-3 canonical display to LONG_COMMON_NAME (Issue #369) (#371)"
+    },
+    {
+      "pr": 370,
+      "subject": "fix(fhir): v3-RoleCode NSIB canonical display to \"natural sibling\" (Issue #369) (#370)"
+    },
+    {
+      "pr": 364,
+      "subject": "fix(fhir): DocumentReference.type carries EN LOINC display + JP text (Issue #360 G5) (#364)"
+    },
+    {
+      "pr": 367,
+      "subject": "fix(population): developmental-stage occupation labels for minors (Issue #360 G7) (#367)"
+    },
+    {
+      "pr": 365,
+      "subject": "fix(fhir): Composition.section.title JP localization (Issue #360 G3) (#365)"
+    },
+    {
+      "pr": 361,
+      "subject": "fix(fhir): FamilyMemberHistory.relationship carries JP text + EN display (Issue #360 G2) (#361)"
+    },
+    {
+      "pr": 366,
+      "subject": "fix(fhir): Encounter.reasonCode.text picks JP chief_complaint_ja on fallback (Issue #360 G1) (#366)"
+    },
+    {
+      "pr": 363,
+      "subject": "fix(fhir): Procedure.code.text JP localization for supportive-care items (Issue #360 G6) (#363)"
+    },
+    {
+      "pr": 362,
+      "subject": "fix(fhir): ClinicalImpression.description JP localization (Issue #360 G4) (#362)"
+    },
+    {
+      "pr": 359,
+      "subject": "fix(fhir): MHLW ICD-10 display alignment for FamilyMemberHistory (Issue #358) (#359)"
+    },
+    {
+      "pr": 357,
+      "subject": "feat(fhir): antibiotic MedicationRequest opaque id + identifier round-trip (Issue #349 Phase 1b) (#357)"
+    },
+    {
+      "pr": 356,
+      "subject": "test(fhir): repository-wide Resource.id spec-validity invariant (Issue #349 Phase 3-Z) (#356)"
+    },
+    {
+      "pr": 354,
+      "subject": "feat(fhir): add opaque_ids foundation module (Issue #349 Phase 1a) (#354)"
+    },
+    {
+      "pr": 353,
+      "subject": "fix(codes): switch JP ICD-10 coding.system from WHO to MHLW canonical URI (#350) (#353)"
+    },
+    {
+      "pr": 352,
+      "subject": "fix(cli): enumerate encounter axis populates Patient family/given names (#351) (#352)"
+    },
+    {
+      "pr": 348,
+      "subject": "fix(fhir): keep antibiotic MedicationRequest.id under 64-char FHIR limit (#347) (#348)"
+    },
+    {
+      "pr": 346,
+      "subject": "feat(cli): add `enumerate` subcommand for exhaustive debug pattern coverage (#345) (#346)"
+    },
+    {
+      "pr": 344,
+      "subject": "fix(fhir): Attachment.contentType の charset parameter を drop、bare mime type へ (#343) (#344)"
+    },
+    {
+      "pr": 342,
+      "subject": "fix(fhir): JP 汎用 Composition に HL7 R4 core clinicaldocument profile 宣言 (#340) (#342)"
+    },
+    {
+      "pr": 339,
+      "subject": "fix(document): LOS=1 でも progress_note を 1 件 emit(eDS hospitalCourseSection.entry min=1 対応) (#337) (#339)"
+    },
+    {
+      "pr": 338,
+      "subject": "fix(fhir): Observation walker で builder-populated identifier を保持しつつ JP eCS resourceIdentifier slice を必ず emit (#336) (#338)"
+    },
+    {
+      "pr": 335,
+      "subject": "fix(fhir): R53.1 は WHO ICD-10 未収録 → JP mapping で R53 へ fold (#334) (#335)"
+    },
+    {
+      "pr": 333,
+      "subject": "fix(fhir): admit-source 'hosp' → 'other' (authoritative CS 未収録) (#332) (#333)"
+    },
+    {
+      "pr": 331,
+      "subject": "fix(fhir): Composition.author + custodian の eCS Organization 参照切替 (#330) (#331)"
+    },
+    {
+      "pr": 329,
+      "subject": "fix(fhir): eReferral referralFrom/toSection.entry の eCS Organization emit (#313) (#329)"
+    },
+    {
+      "pr": 328,
+      "subject": "fix(fhir): Location OR code は v3-RoleCode 未収録 → text-only (#327) (#328)"
+    },
+    {
+      "pr": 326,
+      "subject": "fix(observation): PT/APTT に LAB_UNITS 追加 (#325) (#326)"
+    },
+    {
+      "pr": 324,
+      "subject": "fix(fhir): Observation.valueQuantity unit/code 空文字列を emit しない (#323) (#324)"
+    }
+  ]
+}
