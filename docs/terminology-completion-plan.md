@@ -167,16 +167,32 @@ jpfhir-terminology 内で `content: complete` 既に load 済 (55 + 1 concept、
   - JP Condition.code の code 実在確認完全化
   - 実 EHR data validation で ICD-10 未収録 code 警告解消
 
-### Phase 2: LOINC Japan Translation (licensing 通知後)
+### Phase 2: LOINC Japan Translation — **Not Applicable として close (2026-07-23 判定)**
 
-- Licensing: ✅ LOINC License 準拠 (但し Regenstrief への通知が事前要)
-- 期間: **通知 1-2 週間 + 実装 2-3 日**
-- 成果物:
-  - Regenstrief 通知メール送信 (`translations@loinc.org`)
-  - LOINC Japan data source 特定 (JCCLS or JAMI 経由)
-  - `scripts/build-loinc-jp-supplement.py`
-  - fhirserver に load
-- 効果: 実運用で JP display emit する data の Japanese display 検証を可能に
+**判定**: 完全な LOINC 日本語翻訳は authoritative source として現状**存在しない**。
+
+**根拠**:
+- LOINC 公式 (Regenstrief) の international languages に日本語 variant なし
+- jpfhir-terminology `jp-loinc-display` supplement は 5 concept のみ (拡張版なし)、
+  publisher = JAMI が必要な所だけ手動追加している pattern
+- JCCLS / JSLM / JAMI / MEDIS-DC いずれも公開資産無し
+- 学術・community driven の完全翻訳も未発見 (複数 AI 独立リサーチで一致)
+
+**構造的理由**: 日本の臨床検査は **JLAC10/JLAC11** で標準化されており、LOINC 完全翻訳を作る
+インセンティブが業界内に無い。JLAC 系が primary、LOINC は cross-reference 用途で英語 canonical
+のまま使う運用が定着。
+
+**推奨運用パターン** (docs/terminology-setup.md §7 参照):
+1. LOINC の validate は英語 canonical で回す (現状構成)
+2. 日本の実運用検査コードは **JLAC10 (既 complete、Phase 4-A 完了) + JLAC11 (Phase 4-B、
+   licensing 交渉要)** で検証 — こちらが JP FHIR の primary lab code
+3. UI で日本語表示が必要な場合は `Coding.display` に無理に日本語を入れず、
+   `Coding.text` 側 or client-side dictionary で対応
+4. 必要な特定 concept だけ jpfhir-terminology の 5 concept stub のように supplement 追加
+
+**将来的な再検討トリガー**:
+- JAMI or JSLM が正式 LOINC 日本語 mapping を公開したら再開
+- Regenstrief が Japanese Linguistic Variant を認可したら再開
 
 ### Phase 3: MHLW masterB/Z + MEDIS master-disease (licensing 明快)
 

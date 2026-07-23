@@ -255,11 +255,60 @@ curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://jpfhir.
 
 全て成功したら準備完了。次は `scripts/hapi-cluster.sh start` で HAPI cluster を起動して検証実行。
 
-## 6. 追加の terminology 完全版 (未実装)
+## 6. 追加の terminology 完全版 (実装済 + 計画)
 
-fhir-jp-validator の validation 完成度をさらに高めるため、以下の追加 load を計画中
-(詳細は [`terminology-completion-plan.md`](terminology-completion-plan.md)):
+- ✅ Phase 1: MHLW ICD-10 2013 完全版 (§3.5 参照、実装済)
+- ✅ Phase 3: MHLW masterB (傷病名) + masterZ (修飾語) 完全版 (§3.6 参照、実装済)
+- ❌ **Phase 2: LOINC Japan Translation** — **Not Applicable と判定**
+  ([terminology-completion-plan.md](terminology-completion-plan.md) 参照)
+- ⏳ Phase 4: JLAC11 / YJ / HOT13/9/7 / MEDIS 完全版 (licensing 交渉中、
+  [terminology-licensing-actions.md](terminology-licensing-actions.md) 参照)
 
-- Phase 2: LOINC Japan Translation (LOINC License、Regenstrief 通知要)
-- Phase 3: MHLW masterB/Z-disease (PDL 1.0、Phase 3.5 と同構造)
-- Phase 4: JLAC11 / YJ / HOT13 / MEDIS 完全版 (要各機関 licensing 問合せ)
+## 7. LOINC display の運用パターン (JP FHIR data)
+
+**Phase 2 (LOINC 日本語 translation) は現状 authoritative source が存在しないため見送り**
+判定。fhir-jp-validator では以下の運用を推奨:
+
+### 検査コードの一次選択
+
+- **JLAC10 / JLAC11 を primary** に使う (日本の臨床検査標準、jpfhir-terminology 内で
+  提供)
+  - JLAC10 CoreLabo/InfectionLabo は既 complete (jpfhir-terminology 2.2606.0 内)
+  - JLAC11 は fragment 状態、Phase 4-B で完全化予定
+- LOINC は cross-reference 用途で **英語 canonical のまま** 使う (`system: http://loinc.org`、
+  `display` は LOINC LONG_COMMON_NAME を emit)
+
+### 日本語表示の扱い
+
+- `Coding.display` に **日本語を無理に入れない** (canonical と mismatch で validator error 化)
+- 日本語 UI 表示が必要な場合は `CodeableConcept.text` field で local 日本語表現を保持
+  - text field は canonical validate されない
+  - JLAC10/11 使用時は JLAC 側の日本語 display が canonical として使える (translation 不要)
+- 部分的に必要な LOINC 日本語 display があれば個別に supplement 追加
+  (jpfhir-terminology の `Loinc-jpdisplay` 5 concept と同 pattern で個別追加)
+
+### 例
+
+```json
+{
+  "code": {
+    "coding": [
+      {
+        "system": "http://jpfhir.jp/fhir/clins/CodeSystem/JLAC11/JP_CLINS_ObsLabResult_CoreLabo_CS",
+        "code": "3B015000002327101",
+        "display": "クレアチニン [血清]"
+      },
+      {
+        "system": "http://loinc.org",
+        "code": "2160-0",
+        "display": "Creatinine [Mass/volume] in Serum or Plasma"
+      }
+    ],
+    "text": "血清クレアチニン"
+  }
+}
+```
+
+- JLAC11 が primary (日本の実運用 code + 日本語 display で canonical)
+- LOINC は cross-reference (英語 canonical で validator conformance を保つ)
+- text で UI 用日本語を保持

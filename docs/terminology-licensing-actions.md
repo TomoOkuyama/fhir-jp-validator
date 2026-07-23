@@ -17,43 +17,34 @@ licensing 確認/交渉の action list。
 | **Phase 4-E** | MEDIS master-disease シリーズ 4 CS | 🔴 MEDIS-DC 会員契約要 | 同上 (Phase 4-D と一括) |
 | Phase 5 (将来) | Dental procedure / Jfagy allergen | 未調査 | 後回し |
 
-## Action 1: LOINC Japan Translation — Regenstrief 通知 (Phase 2)
+## ~~Action 1: Regenstrief 通知~~ — **不要と判定 (2026-07-23)**
 
-**目的**: LOINC License の "translation" 条項に基づき、既存の日本語 translation を fhirserver
-に load する前の事前通知義務を履行。
+理由: 我々は **翻訳を作成しない**、既存 (もしあれば) の翻訳を build script で消費するだけ。
+LOINC License 上の "translation" 条項は「翻訳作業を行う」当事者が対象、consumer 側は notify
+不要。LOINC 本体を repo に含めず build script のみ配布する現行運用と対称。
 
-**送信先**: `translations@loinc.org`
-**CC 候補**: `office@hl7fhir.jp` (日本 FHIR 実装研究会、JP LOINC 情報保持元)
+## Action 2: JAMI 事務局 最終確認 (light) — Phase 2 close 前の最終念押し
 
-**送信内容**:
-- 事前 draft 済: `/private/tmp/.../scratchpad/regenstrief-loinc-jp-notification.md`
-- ポイント: 我々は **既存 translation を consume するだけ、新規翻訳はしない**、
-  data 自体は repo に含めず build script のみ提供
+**背景**: 他 AI 独立リサーチと構造分析により「LOINC 日本語完全翻訳は authoritative source
+として存在しない (JLAC10/11 が JP の primary lab code、LOINC 完全翻訳のインセンティブが
+業界内に無い)」で確度高い。ただし JAMI FHIR 実装研究会が非公開で保有している可能性を除外
+するため、short + focused な問合せ。
 
-**確認事項**:
-1. 既存 LOINC Japan translation を supplement 形式で load する行為に追加 license 手続き不要か
-2. LOINC 帰属表記を fhirserver の CS.copyright field に記載する形式で充足するか
-3. 実際の translation data source (LOINC Japan Committee 直か、JAMI FHIR 経由か) の推奨
+**送信先**: `office@hl7fhir.jp` (日本 FHIR 実装研究会)
 
-**期待応答**: 3-5 営業日、通常 acknowledge のみ (translation consumption は明示的制限なし)
+**Draft**: `scratchpad/jami-loinc-jp-final-check.md` (light 版)
 
-**沈黙の場合**: 通常「通知した」事実で LOINC License 上の義務履行、2 週間経過後は着手可
+**質問内容 (1 点のみ)**:
+- LOINC → 日本語 display の完全 mapping ファイルを JAMI or JSLM 項目コード委員会が保持・配布
+  しているか (jpfhir-terminology の 5 concept を超える範囲で)
 
-## Action 2: JP LOINC translation data source — JAMI/JCCLS 問合せ
+**判定フロー**:
+- 「無い」応答 or 沈黙 1 週間 → **Phase 2 Not Applicable 確定 close**、docs 運用方針明記
+- 「あり」応答 → 具体 source に個別問合せ、Phase 2 再検討
 
-**目的**: LOINC Japan translation の **実 data 入手ルート** 特定。
+**期待応答**: 1 週間程度 (light な質問なので比較的早い可能性)
 
-**送信先**: `office@hl7fhir.jp` (日本 FHIR 実装研究会、JCCLS 内 LOINC 委員会にリーチ可能)
-
-**確認事項**:
-1. JCCLS / JAMI が保持する LOINC Japan 訳データの配布状況
-2. FHIR CodeSystem supplement 形式で入手可能か、それとも CSV/Excel からの独自変換要か
-3. jpfhir-terminology 内 `CodeSystemJPDisplay/Loinc-jpdisplay` (5 concept のみ) との関係
-4. 使用条件 (無料か、会員限定か)
-
-**期待応答**: 1-2 週間 (研究会内部確認 + LOINC Japan 委員会照会が必要な可能性)
-
-**Action 1 と並行実施可**
+**優先度**: 🟡 中 (Phase 2 close の formality、送信は user 都合で任意)
 
 ## Action 3: JLAC11 — JCCLS 直接問合せ
 
