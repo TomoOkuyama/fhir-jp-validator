@@ -160,6 +160,63 @@ curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://jpfhir.
 出典明記例 (再配布時、`copyright` field に記載済み):
 > 『疾病、傷害及び死因の統計分類』(厚生労働省) を加工して作成
 
+## 3.6 MHLW レセプト電算 傷病名/修飾語マスター 完全版 (optional、推奨)
+
+jpfhir-terminology の `masterB-disease` (傷病名、27,684 concept) と `masterZ-disease-modifier`
+(修飾語、2,390 concept) は fragment (先頭 2,000 concept のみ) 版で publish されている。
+社会保険診療報酬支払基金 (SSK) から完全版 CSV を DL して override:
+
+```bash
+# 1. SSK から DL (公共データ利用規約 PDL 1.0)
+mkdir -p tx-server-build/mhlw-receipt-src && cd tx-server-build/mhlw-receipt-src
+curl -sSL -o b_20260601.zip -A "Mozilla/5.0" \
+  "https://www.ssk.or.jp/seikyushiharai/tensuhyo/kihonmasta/kihonmasta_07.files/b_20260601.zip"
+curl -sSL -o z_20260601.zip -A "Mozilla/5.0" \
+  "https://www.ssk.or.jp/seikyushiharai/tensuhyo/kihonmasta/kihonmasta_08.files/z_20260601.zip"
+unzip -o b_20260601.zip && unzip -o z_20260601.zip
+cd ../..
+
+# 2. FHIR CodeSystem 変換 (SHIFT_JIS → UTF-8、CSV → JSON)
+./scripts/build-mhlw-receipt-masters.py
+# → CodeSystem-mhlw-masterB-disease.json (2.1 MB), -masterZ-modifier.json (0.2 MB)
+
+# 3. FHIR NPM package (.tgz) 化
+./scripts/build-mhlw-receipt-package.sh
+
+# 4. terminology dir に extract、jpfhir-terminology 内の fragment CS を disable
+PKG_DIR='tx-server-build/terminology/fhir-server/fhir-jp-validator.mhlw-receipt-masters#5.18.1'
+mkdir -p "$PKG_DIR"
+tar -xzf tx-server-build/mhlw-receipt-src/fhir-jp-validator.mhlw-receipt-masters-5.18.1.tgz -C "$PKG_DIR/"
+cp tx-server-build/mhlw-receipt-src/pkg-stage/package/.index.json "$PKG_DIR/package/"
+
+for f in CodeSystem-jp-conditiondieasecodereceipt-cs.json CodeSystem-jp-conditiondieasemodifierreceipt-cs.json; do
+  mv "tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/$f" \
+     "tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/${f}.disabled"
+done
+python3 -c "
+import json
+p='tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/.index.json'
+d=json.load(open(p))
+excl={'CodeSystem-jp-conditiondieasecodereceipt-cs.json','CodeSystem-jp-conditiondieasemodifierreceipt-cs.json'}
+d['files']=[f for f in d['files'] if f.get('filename') not in excl]
+json.dump(d,open(p,'w'),ensure_ascii=False,indent=2)"
+
+# 5. config に追加、restart
+python3 -c "
+import json
+p='tx-server-build/fhirserver-config/config.json'
+c=json.load(open(p))
+pkgs=c['content']['uv']['packages']['r4']
+if 'fhir-jp-validator.mhlw-receipt-masters' not in pkgs: pkgs.append('fhir-jp-validator.mhlw-receipt-masters')
+json.dump(c,open(p,'w'),indent=2)"
+docker restart fhir-jp-validator-fhirserver && sleep 45
+
+# 動作確認
+curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://jpfhir.jp/fhir/core/mhlw/CodeSystem/masterB-disease&code=8848176" \
+  -H "Accept: application/fhir+json" | jq '.parameter[] | select(.name=="display" or .name=="result")'
+# → "result": true, "display": "１１β−水酸化酵素欠損症"
+```
+
 ## 4. HL7 terminology / FHIR core
 
 fhirserver 起動時に auto load (packages.fhir.org から DL、初回のみ):

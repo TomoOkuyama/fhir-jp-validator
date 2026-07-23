@@ -56,5 +56,6 @@ __pycache__/
 # Session resumption prompt (local, not for public repo)
 .resume-prompt.md
 
-# MHLW ICD-10 raw source と生成物 (user が個別 DL + build script で生成、tx-server-build/ 配下は全て build 生成物)
+# MHLW raw source と生成物 (user が個別 DL + build script で生成、tx-server-build/ 配下は全て build 生成物)
 tx-server-build/mhlw-icd10-src/
+tx-server-build/mhlw-receipt-src/
