@@ -1,26 +1,27 @@
 {
-  "content" : {
-    "uv" : {
-      "packages" : {
-        "r4" : [
+  "content": {
+    "uv": {
+      "packages": {
+        "r4": [
           "hl7.terminology.r4",
           "fhir.tx.support.r4",
           "jpfhir.jp.core",
           "clinical-information-sharing",
-          "jpfhir-terminology"
+          "jpfhir-terminology",
+          "fhir-jp-validator.mhlw-icd10-2013-full"
         ]
       },
-      "files" : {
-        "loinc-2.82.cache" : "loinc",
-        "snomed-int-20260601.cache" : "snomed!"
+      "files": {
+        "loinc-2.82.cache": "loinc",
+        "snomed-int-20260601.cache": "snomed!"
       }
     }
   },
-  "endpoints" : {
-    "cache" : {
-      "path" : "/post/tx-cache",
-      "type" : "folder",
-      "folder" : "/var/cache/txcache"
+  "endpoints": {
+    "cache": {
+      "path": "/post/tx-cache",
+      "type": "folder",
+      "folder": "/var/cache/txcache"
     }
   }
 }

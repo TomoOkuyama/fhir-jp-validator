@@ -104,6 +104,62 @@ docker run --rm --platform linux/amd64 \
 
 所要 (Rosetta 有効): **9 分 50 秒**、生成物: **846 MB**
 
+## 3.5 MHLW ICD-10 2013 完全版 (optional、推奨)
+
+jpfhir-terminology 2.2606.0 の `ICD10-2013-full` CS は fragment 版 (先頭 2,000 concept のみ)。
+病名 code の実在確認を complete にするため、厚労省 統計情報から 15,586 concept 全部を
+FHIR CodeSystem 化して override load する:
+
+```bash
+# 1. 厚労省 統計情報 (公共データ利用規約 PDL 1.0) から DL
+mkdir -p tx-server-build/mhlw-icd10-src
+curl -sSL -o tx-server-build/mhlw-icd10-src/kihon2013.xlsx \
+  "https://www.mhlw.go.jp/toukei/sippei/xls/kihon2013.xlsx"
+
+# 2. openpyxl 経由で FHIR CodeSystem (content=complete) に変換
+pip install openpyxl
+./scripts/build-mhlw-icd10-full.py
+
+# 3. FHIR NPM package (.tgz) に pack
+./scripts/build-mhlw-icd10-package.sh
+
+# 4. terminology dir に extract、package.ini に登録
+PKG_DIR='tx-server-build/terminology/fhir-server/fhir-jp-validator.mhlw-icd10-2013-full#1.1.2'
+mkdir -p "$PKG_DIR"
+tar -xzf tx-server-build/mhlw-icd10-src/fhir-jp-validator.mhlw-icd10-2013-full-1.1.2.tgz -C "$PKG_DIR/"
+cp tx-server-build/mhlw-icd10-src/pkg-stage/package/.index.json "$PKG_DIR/package/"
+
+# 5. jpfhir-terminology の fragment CS を disable (version 衝突回避)
+mv 'tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/CodeSystem-mhlw-codesystem-icd10-2013-jp.json' \
+   'tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/CodeSystem-mhlw-codesystem-icd10-2013-jp.json.disabled'
+python3 -c "
+import json
+p='tx-server-build/terminology/fhir-server/jpfhir-terminology#2.2606.0/package/.index.json'
+d=json.load(open(p)); d['files']=[f for f in d['files'] if f.get('filename')!='CodeSystem-mhlw-codesystem-icd10-2013-jp.json']
+json.dump(d,open(p,'w'),ensure_ascii=False,indent=2)"
+
+# 6. fhirserver-config/config.json の packages 一覧に追加、restart
+python3 -c "
+import json
+p='tx-server-build/fhirserver-config/config.json'
+c=json.load(open(p))
+pkgs=c['content']['uv']['packages']['r4']
+if 'fhir-jp-validator.mhlw-icd10-2013-full' not in pkgs:
+    pkgs.append('fhir-jp-validator.mhlw-icd10-2013-full')
+json.dump(c,open(p,'w'),indent=2)"
+
+docker restart fhir-jp-validator-fhirserver
+sleep 45   # load 完了待ち
+
+# 動作確認
+curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://jpfhir.jp/fhir/core/mhlw/CodeSystem/ICD10-2013-full&code=Z00.0" \
+  -H "Accept: application/fhir+json" | jq '.parameter[] | select(.name=="display" or .name=="result")'
+# → "result": true, "display": "一般医学的検査"
+```
+
+出典明記例 (再配布時、`copyright` field に記載済み):
+> 『疾病、傷害及び死因の統計分類』(厚生労働省) を加工して作成
+
 ## 4. HL7 terminology / FHIR core
 
 fhirserver 起動時に auto load (packages.fhir.org から DL、初回のみ):
@@ -133,6 +189,20 @@ curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://snomed.
 # JP-CLINS ValueSet expansion
 curl -sS "http://localhost:8181/r4/ValueSet/\$expand?url=http://jpfhir.jp/fhir/core/ValueSet/JP_SimpleObservationCategory_VS&count=3" \
   -H "Accept: application/fhir+json" | jq '.expansion.total, .expansion.contains'
+
+# MHLW ICD-10 (3.5 節導入時) — fragment 外 code の complete 化を検証
+curl -sS "http://localhost:8181/r4/CodeSystem/\$validate-code?url=http://jpfhir.jp/fhir/core/mhlw/CodeSystem/ICD10-2013-full&code=C34" \
+  -H "Accept: application/fhir+json" | jq '.parameter[] | select(.name=="display" or .name=="result")'
+# → "result": true, "display": "気管支及び肺の悪性新生物＜腫瘍＞"
 ```
 
 全て成功したら準備完了。次は `scripts/hapi-cluster.sh start` で HAPI cluster を起動して検証実行。
+
+## 6. 追加の terminology 完全版 (未実装)
+
+fhir-jp-validator の validation 完成度をさらに高めるため、以下の追加 load を計画中
+(詳細は [`terminology-completion-plan.md`](terminology-completion-plan.md)):
+
+- Phase 2: LOINC Japan Translation (LOINC License、Regenstrief 通知要)
+- Phase 3: MHLW masterB/Z-disease (PDL 1.0、Phase 3.5 と同構造)
+- Phase 4: JLAC11 / YJ / HOT13 / MEDIS 完全版 (要各機関 licensing 問合せ)
