@@ -143,16 +143,37 @@ Bundle は `chunk_size` 単位で構成され、`expression` は `Bundle.entry[0
 - OperationOutcome には information issue として **確実に記録される** ため、
   集計すれば発生分布を計測可能
 
+**この issue には 2 つの本質的に異なる原因がある** (混同注意):
+
+- **原因 A: 意図的多重 coding × Open slicing の副作用** (data 設計として正しい)。
+  data が「JP profile 用 coding + HL7 base 用 coding」の両方を並置している場合、
+  片方の profile 視点からもう片方の coding が余剰 unmatched と評価される。
+  data 変更で消すには片方の coding を捨てる必要があり、それは別の非準拠を招く。
+  例: `Observation.category` の HL7 base + JP_SimpleObservationCategory 併記
+- **原因 B: 真の silent-pass** (data missing required slice match)。
+  data が profile の期待する slice の discriminator に一致していない。
+  この場合、slice 内の required binding / Fixed display / cardinality は
+  全て skip されるため、実質的な非準拠が silent で見逃される。
+  例: `Observation.code.coding` の JP-CLINS 検体検査 slice に data の
+  system/display が match していない
+
 **対処方針**:
 
-- data 側: 各 slice の discriminator (Fixed Value / Pattern) に正確に match させる。
-  例えば `Observation.code.coding` に JP-CLINS の CoreLabo slice を期待するなら、
-  slice が要求する `system` + `display` (英語 abbrev) を strict に emit
-- validator 運用側: この issue を集計して JP-CLINS 準拠の実態を可視化する
-  ([§4.5](#45-tier-2-slice-unmatched-の集計-open-slicing-silent-pass) の recipe 参照)
+- **原因 B (真の silent-pass) を優先**: data 側で各 slice の discriminator
+  (Fixed Value / Pattern) に正確に match させる。例えば `Observation.code.coding`
+  に JP-CLINS の CoreLabo slice を期待するなら、slice が要求する `system` +
+  `display` (英語 abbrev) を strict に emit
+- **原因 A (Tier 2-noise) は data 設計として受容**: 生 count に含まれるが
+  データ非準拠の指標ではない。集計時は path/profile で切り分けて除外
+- validator 運用側: この issue を集計して A/B を分離し、真の silent-pass を
+  可視化する ([§4.5](#45-tier-2-slice-unmatched-の集計-open-slicing-silent-pass)
+  の recipe と切り分け方法参照)
 
-分布の実測例と背景 (v31 データ、28,334 件 / 全 issue の 22.19%):
+**分布の実測例と切り分け結果** (母数条件込み):
 [`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
+clinosim v31 合成 EHR data (1,161 Bundle) を HAPI 6.9.12 + JP Core/JP-CLINS/
+MHLW ICD-10/receipt-master load 済 fhirserver で validate した特定条件下の
+測定値のため、条件セットで参照すること。
 
 ## 4. 集計 recipe
 
@@ -299,15 +320,42 @@ PY
   silent-pass の集計軸としては本質でない
 - **英語版 message** にも対応 (validator の locale が en の場合)
 - **profile 別集計**は HAPI が meta.profile + base R4 + JP IG + HL7 vital-signs
-  自動 profile を全て評価するため、同じ要素 path でも複数 profile 由来の
-  unmatched が計上されることがある
-- **移行効果測定**: 移行前後で `unmatched / (対象要素の total)` を追えば、
-  「エラーが減った」とは別軸の **slice 適合率** を数値化できる。分母 (対象要素の
-  total 出現数) は入力 NDJSON 側から別途集計
+  自動 profile を全て評価するため、**同じ要素 path でも複数 profile 由来の
+  unmatched が計上されることがある**
 
-実測分布の例 (v31 データ、28,334 件 = 全 issue の 22.19%、7 resourceType、
-最多は `Observation.category` の 19,399 件):
+#### 生 count は Tier 2-noise と Tier 2-real の混合 (重要)
+
+上記 recipe の生 count には 2 種類が混在する:
+
+- **Tier 2-noise (意図的多重 coding の副作用)**: data が「JP profile 用 +
+  HL7 base 用」の両 coding を並置している要素で、各 profile 視点から相手側の
+  coding が余剰 unmatched と評価される。data 設計として正しい
+- **Tier 2-real (真の silent-pass)**: data が profile の期待する slice に
+  match していない、実質的な非準拠
+
+**切り分け方法**: (resourceType, element path) 別 count を profile と併記し、
+「同一 element path が複数 profile から独立して報告されているか」を確認する。
+特に `Observation.category` は複数 profile から一斉に unmatched になりやすい
+Tier 2-noise の典型。data 側の non-compliance を追うなら Tier 2-real 分
+(通常 `code.coding` / `identifier` / `bodySite.coding` / `medication.coding`
+等 個別 slice) に絞る。
+
+具体的な切り分け例と背景解説は tier2-distribution-v31.md 参照。
+
+- **移行効果測定**: **Tier 2-real** の `unmatched / (対象要素の total)` を追えば、
+  「エラーが減った」とは別軸の **slice 適合率** を数値化できる。分母 (対象要素の
+  total 出現数) は入力 NDJSON 側から別途集計。Tier 2-noise は data の多重 coding
+  設計に依存する constant で、移行効果とは無関係のため除外
+
+**実測分布 (母数条件込み)**:
 [`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
+clinosim v31 合成 EHR (1,161 Bundle) × HAPI 6.9.12 + JP Core / JP-CLINS /
+MHLW ICD-10 / receipt-master load 済 fhirserver 構成下:
+
+- 生 unmatched 28,334 件 = 全 issue の 22.19%
+- 内訳: **Tier 2-noise 19,583 件 (69%)** = data 設計上の副作用、
+  **Tier 2-real 8,751 件 (31%) = 全 issue の 6.86%** = 真の silent-pass
+- 数値は特定 data + 特定 validator 構成でのみ有効、外部引用時は条件セットで示す
 
 ## 5. failed.ndjson の意味
 

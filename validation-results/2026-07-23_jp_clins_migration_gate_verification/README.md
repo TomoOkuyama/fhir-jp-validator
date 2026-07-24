@@ -163,20 +163,34 @@ unmatched を件数で計測可能**。汎用形の集計 recipe は
 **v31 データでの実測分布** (2026-07-24 実施):
 [`tier2-distribution-v31.md`](tier2-distribution-v31.md)
 
-要点:
-- v31 で **28,334 件 = 全 issue の 22.19%** が Tier 2 silent-pass
-- **`code.coding` に限らない**: `Observation.category` が最多 (19,399 件)、
-  `identifier` 系 (Observation / Condition / AllergyIntolerance) や
-  `MedicationRequest.medication.coding`、`Procedure.code.coding` にも分布
-- 該当 profile は JP_Observation_Common / JP_Observation_LabResult_eCS /
-  JP_Condition_eCS / JP_DiagnosticReport_LabResult / JP_MedicationRequest_eCS
-  等、JP Core / JP-CLINS 全域
+要点 (切り分け後):
+- 生 count 28,334 件 = 全 issue の 22.19% (clinosim v31 合成データ、tx=8181、
+  MHLW Phase 1/3 load 済、HAPI 6.9.12 の特定条件下、外部引用時は条件セット必須)
+- 内訳を切り分けた結果:
+  - **Tier 2-noise 19,583 件 (69%)**: `Observation.category` 19,399 +
+    `DiagnosticReport.category` 184。data が「JP profile 用 coding + HL7 base
+    用 coding」を意図的に並置しており、各 profile 視点から相手側 coding が
+    余剰 unmatched と評価される。**data 設計としては正しく、非準拠ではない**
+  - **Tier 2-real 8,751 件 (31%) = 全 issue の 6.86%**: `Observation.code.coding`
+    5,032 + `Observation.identifier` 2,523 + `Condition.identifier` 736 +
+    `DiagnosticReport.code.coding` 203 + `MedicationRequest.medication.coding`
+    118 + `MedicationAdministration.dosage.rate` 47 + `Procedure.code.coding` 44
+    + `Condition.bodySite.coding` 43 + `AllergyIntolerance.identifier` 5。
+    これらは真の silent-pass = **data が profile の期待に合致していないが
+    error/warning が出ていない状態**
 
-**意味**: JLAC 移行の真の成果は「エラーが減る」ではなく、この計測軸そのものが
-手に入ることにある。移行前は unmatched がベースラインとして計測不能だが、
-移行後は 「fixed display 一致率 = matched / (matched + unmatched)」 として
-準拠性を数値化できる。また category / identifier 系の分布は移行対象外の
-他 profile でも同じ計測を可能にし、JP-CLINS 全体の準拠実態を可視化できる。
+Gate 2 で発掘した検体検査 `code.coding` pattern (Tier 2-real) は 5,032 件で
+Tier 2-real の 57.5% を占め、Tier 2-real の中では最大寄与。ただし生 count に
+対しては 17.8% で、残り Tier 2-real は他 resourceType の identifier 系や
+CodeableConcept 系に広く分布している。
+
+切り分け根拠 (JP_Observation_Common の category:first slice 定義、data 実物、
+Tier 2-noise / Tier 2-real の判定基準) は tier2-distribution-v31.md 内。
+
+**意味**: JLAC 移行の真の成果は「エラーが減る」ではなく、Tier 2-real の
+`matched / (matched + unmatched)` = **slice 適合率**という新指標が手に入る
+ことにある。Tier 2-noise (category 系) は data の多重 coding 設計に依存する
+constant で、移行効果測定からは除外する。
 
 ## clinosim 側 (workspace:1) 移行実装要件まとめ
 

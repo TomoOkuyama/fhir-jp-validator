@@ -1,12 +1,27 @@
-# Tier 2 (slice unmatched) 分布 — v31 データ実測 (2026-07-24)
+# Tier 2 (slice unmatched) 分布 — v31 データ実測
+
+## 測定条件 (先頭明記、陳腐化防止)
+
+| 項目 | 値 |
+|---|---|
+| 測定日 | 2026-07-24 |
+| データセット | clinosim v31 の合成 EHR、`fhir_r4/` (Bundle 化後 1,161 Bundle) |
+| validator | HAPI Validator 6.9.12、6 JVM cluster、tx=`http://localhost:8181/r4` |
+| fhirserver 構成 | Phase 1 (MHLW ICD-10 完全版) + Phase 3 (MHLW masterB/Z 完全版) load 済 |
+| 元 run | `validation-results/2026-07-23_full_v31_p100_phase3_receipt_complete/` |
+| 集計 script | [`docs/output-guide.md §4.5`](../../docs/output-guide.md) |
+
+**このファイル内の数値 (28,334 件 / 22.19% 等) は上記条件でのみ有効**。
+data の性質と validator 構成に強く依存するため、後日別条件で測ると変わる。
+外部への引用時は必ず条件セットで示すこと。
+
+## 何を計測したか
 
 Gate 2 で発掘した silent-pass パターン (`code.coding` の Open slicing) が、
 検体検査 Observation の code.coding 固有ではなく **JP-CLINS profile 全体に
-広範に分布する Tier 2 の一般的性質**であることを、v31 (2026-07-23、
-Phase 3 receipt-master complete、tx=8181、full-set) の `result.ndjson` で実測。
+広範に分布する構造的パターン**であることを、v31 の `result.ndjson` で実測。
 
-集計方法は [`docs/output-guide.md` §4.5](../../docs/output-guide.md) の
-汎用 recipe を使用。message pattern は日本語版
+message pattern は日本語版
 `この要素はどの既知のスライスとも一致しません` + 英語版
 `This element does not match any known slice` の両方をカバー。
 
@@ -75,32 +90,113 @@ profile を宣言している任意の CodeableConcept 系 slice で発生して
 
 path は `[N]` (array index) と `:sliceName` を除去して正規化。
 
+## 切り分け: unmatched は 2 種類に分かれる (最重要)
+
+生の unmatched カウント 28,334 件をそのまま「silent-pass の実態」と読むと誤る。
+分析すると **2 つの本質的に異なる pattern の混合**であることが確定した。
+
+### Tier 2-noise: 意図的多重 coding × Open slicing の副作用 (19,583 件)
+
+対象:
+- `Observation.category` **19,399 件** (10,908 obs)
+- `DiagnosticReport.category` **184 件**
+
+原因:
+
+- **JP_Observation_Common の `Observation.category:first` slice 定義**:
+  - discriminator = `value on coding.system`
+  - rules = `open`
+  - first slice の `coding.system` = **fixed to `JP_SimpleObservationCategory_CS`**
+  - required binding to `JP_SimpleObservationCategory_VS`
+- **data 側の category 構造 (合成 EHR 例)**:
+  - `category[0].coding`: `system=http://terminology.hl7.org/CodeSystem/observation-category, code=vital-signs`
+  - `category[1].coding`: `system=JP_SimpleObservationCategory_CS, code=vital-signs`
+
+結果として:
+
+- **JP_Observation_Common の view**: `[1] JP` は first slice に match (OK)、
+  **`[0] HL7 base` は system fixed 不一致で unmatched information** → 10,908 件
+- **各 vital-signs auto-profile の view**: `[0] HL7 base` は VSCat slice に match
+  (OK)、**`[1] JP` は unmatched information** → 合計 8,491 件
+
+**両方の profile が並行評価され、それぞれが「相手側の coding」を unmatched と
+報告している** 状態。data は両方の profile の要求を同時に満たしているのに、
+Open slicing rules=open の仕様上、余剰 coding が必ず information として残る。
+
+**Tier 2-noise の性質**:
+- **data 設計の非準拠ではない** (両 profile の要求を意図的に両立させた設計)
+- HAPI validator の欠陥でもない (spec 上正しい挙動)
+- 単純に「複数 profile 対応 + Open slicing」の構造的な副作用
+- data 変更で消すには「片方の coding を捨てる」しかなく、それは別の非準拠を招く
+
+### Tier 2-real: 真の silent-pass (data missing required slice match) (8,751 件)
+
+対象 (残り 全て):
+
+| resourceType | path | 件数 |
+|---|---|---:|
+| Observation | `.code.coding` | 5,032 |
+| Observation | `.identifier` | 2,523 |
+| Condition | `.identifier` | 736 |
+| DiagnosticReport | `.code.coding` | 203 |
+| MedicationRequest | `.medication.ofType(CodeableConcept).coding` | 118 |
+| MedicationAdministration | `.dosage.rate.ofType(Quantity)` | 47 |
+| Procedure | `.code.coding` | 44 |
+| Condition | `.bodySite.coding` | 43 |
+| AllergyIntolerance | `.identifier` | 5 |
+| **合計 (全 issue の 6.86%)** | | **8,751** |
+
+これらは data が profile の期待する slice の discriminator (Fixed value / Pattern)
+に一致していない **真の silent-pass**。Gate 2 で発掘した `Observation.code.coding`
+の JP-CLINS 検体検査 pattern がその代表例。
+
+### 混同すると起きること
+
+生 count 28,334 を「Tier 2 silent-pass の実態」として引用すると、
+- 実際は 69% (19,583 件) が **data 設計として正しいもの** の副作用
+- 真に監視すべき Tier 2-real は 31% (8,751 件)
+
+「JP-CLINS validation では issue の 22.19% が silent-pass」という一文だけ
+切り出されると、実質 6.86% が本題の割合であることが失われる。
+
 ## 観察
 
-1. **最多は Observation.category** (19,399 件 / 10,908 obs)。code.coding より
-   3.8 倍多い。Gate 2 では code.coding のみ検証したが、実データでは category が
-   より広範に silent-pass している
-2. **identifier 系** (Observation / Condition / AllergyIntolerance) も silent-pass
-   pattern。Open slicing + `S 0..*` の identifier slice (system 別 slice 等) が
-   discriminator 不一致で unmatched になっている
-3. **MedicationRequest.medication.ofType(CodeableConcept).coding** で 118 件。
-   薬剤の CodeableConcept 系 slice が unmatched
-4. **HL7 base vital-signs profile 8,491 件**は HAPI 自動適用由来。data 側 fix
-   ではなく validator 側の profile 適用方針の検討対象
-5. **MedicationAdministration.dosage.rate.ofType(Quantity) 47 件**は Quantity 型
-   の Open slicing (rate\[x\] の型別 slice) の unmatched
+1. **Tier 2-real の最多は `Observation.code.coding` (5,032 件、2,523 obs)** —
+   Gate 2 で発掘した検体検査 pattern
+2. **identifier 系** (Observation / Condition / AllergyIntolerance) は全て
+   Tier 2-real。Open slicing + system 別 slice で discriminator 不一致
+3. **`MedicationAdministration.dosage.rate.ofType(Quantity)` 47 件** は Quantity 型
+   の Open slicing (rate\[x\] の型別 slice) unmatched、Tier 2-real 型として異色
+4. **HL7 base vital-signs profile 8,491 件は Tier 2-noise 側**。HAPI 自動適用
+   自体が問題ではなく、data の意図的多重 coding と組み合わさって現れる
 
 ## 移行効果測定における意味
 
-JLAC 移行の効果測定では、これまで「エラー数の増減」を追ってきたが、Tier 2
-分布はエラーには全く現れない。この 28,334 件の分布を移行前後で比較することで:
+JLAC 移行の効果測定では、これまで「エラー数の増減」を追ってきたが、
+**Tier 2-real 分布はエラーには全く現れない**。8,751 件の分布を移行前後で比較
+することで:
 
 - **matched / (matched + unmatched)** の比率 = **slice 適合率**という新しい指標が
   取れる
 - 移行前は unmatched がベースラインとして数えられていなかったため、この計測は
   「エラーが減った」とは全く別軸の成果になる
-- code.coding だけでなく category / identifier 系にも同じ計測を広げれば、
-  JP-CLINS 全体の準拠実態が可視化される
+- ただし Tier 2-noise (category 系) を含めた生 count は移行の効果測定には使えない
+  (data の多重 coding 設計に依存する定数分)
+
+## 陳腐化リスクと更新方針
+
+Tier 2-real の 8,751 件 は generator が JLAC 移行を完了すれば **検体検査分
+(5,032 件) が変動**する。他 (identifier 系 3,264 件、medication 系 165 件、
+Procedure 44 件、bodySite 43 件、DiagnosticReport 203 件) は移行対象外のため
+変動しない見込み。
+
+Tier 2-noise の 19,583 件は clinosim generator の category emit 設計が
+変わらない限り constant。generator が JP + HL7 base の両方を出す限り、必然的に
+このカウントが出る。
+
+**別の validation run で測り直したら、必ず run ごとに測定条件 + 分布を新規
+`tier2-distribution-<run-id>.md` として記録**。このファイルを更新して古い数字を
+上書きしない (陳腐化した測定値の追跡不能を防ぐ)。
 
 ## 再現手順
 
