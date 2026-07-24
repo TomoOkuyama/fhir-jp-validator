@@ -179,12 +179,17 @@ unmatched を件数で計測可能**。汎用形の集計 recipe は
     `DiagnosticReport.category` 184): JP + HL7 base 両対応 data 設計の副作用
   - (b) 余剰 identifier 3,264 件 (`Observation.identifier[1]` 2,523 +
     `Condition.identifier[1]` 736 + `AllergyIntolerance.identifier[1]` 5):
-    generator が identifier[0] に JP canonical、[1] に internal ID を配置。
-    Observation は `resourceIdentifier` slice を satisfy、Condition/Allergy は
-    profile 側に named slice なし
-  - (c) validator quirk 47 件 (`MedicationAdministration.dosage.rate.ofType(Quantity)`):
-    HAPI が polymorphic `rate[x]` を implicit slicing と扱う挙動、data は
-    SimpleQuantity 制約適合
+    **3 種とも JP-CLINS eCS profile に `identifier:resourceIdentifier` slice
+    (min=1) が定義済** (前版で「Cond/Allergy は named slice なし」と書いたのは
+    誤り、grep バグ)。generator が identifier[0] に JP canonical を配置し
+    required slice を satisfy、[1] は generator internal ID の余剰
+  - (c) profile 側 未 named type slice への fall-through 47 件
+    (`MedicationAdministration.dosage.rate.ofType(Quantity)`):
+    JP_MedicationAdministration profile は `rate[x]` に **rateRatio slice
+    のみ named 定義**、data は rateQuantity (SimpleQuantity 適合) を使うため
+    fall-through して unmatched information (前版で「HAPI polymorphic quirk」と
+    書いたのは誤り、base R4 profile しか見ていなかった)。HAPI validator の
+    bug ではない、profile 設計 × data 選択の組み合わせ副作用
 - **Tier 2-violation 5,440 件 (19.2%) = 全 issue の 4.26%**: per-resource
   **2,898 resource** 影響、真の silent-pass
   - Observation.code.coding 5,032 件 / 2,523 resource (Gate 2 検体検査 pattern、
@@ -209,6 +214,12 @@ match すれば Observation.code 2,523 resource は violation から自動的に
 
 **Tier 2-benign は移行効果測定から除外する** (data 設計 or profile 定義依存の
 constant のため)。
+
+**移行後の残差予測**: Observation.code 2,523 が violation から外れた後、
+375 resource (DiagnosticReport.code 203 + MedicationRequest.medication 118 +
+Condition.bodySite 43 + Procedure.code 11) が残る。これらは移行対象外の
+resourceType のため base line として維持され、以降は「新規 drift を検出する軸」
+に役割が変わる。数値が小さくなることを「軸の価値が下がった」と読まないこと。
 
 ## clinosim 側 (workspace:1) 移行実装要件まとめ
 
