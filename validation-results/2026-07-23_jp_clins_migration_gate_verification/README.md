@@ -164,33 +164,51 @@ unmatched を件数で計測可能**。汎用形の集計 recipe は
 [`tier2-distribution-v31.md`](tier2-distribution-v31.md)
 
 要点 (切り分け後):
+
 - 生 count 28,334 件 = 全 issue の 22.19% (clinosim v31 合成データ、tx=8181、
   MHLW Phase 1/3 load 済、HAPI 6.9.12 の特定条件下、外部引用時は条件セット必須)
-- 内訳を切り分けた結果:
-  - **Tier 2-noise 19,583 件 (69%)**: `Observation.category` 19,399 +
-    `DiagnosticReport.category` 184。data が「JP profile 用 coding + HL7 base
-    用 coding」を意図的に並置しており、各 profile 視点から相手側 coding が
-    余剰 unmatched と評価される。**data 設計としては正しく、非準拠ではない**
-  - **Tier 2-real 8,751 件 (31%) = 全 issue の 6.86%**: `Observation.code.coding`
-    5,032 + `Observation.identifier` 2,523 + `Condition.identifier` 736 +
-    `DiagnosticReport.code.coding` 203 + `MedicationRequest.medication.coding`
-    118 + `MedicationAdministration.dosage.rate` 47 + `Procedure.code.coding` 44
-    + `Condition.bodySite.coding` 43 + `AllergyIntolerance.identifier` 5。
-    これらは真の silent-pass = **data が profile の期待に合致していないが
-    error/warning が出ていない状態**
+- **per-slice-match 原則で分類** (path 固定分類は禁止、data 依存)
+- 分類手順: profile 定義 → discriminator/Fixed 特定 → data 実物確認 →
+  required slice satisfy されているか判定
 
-Gate 2 で発掘した検体検査 `code.coding` pattern (Tier 2-real) は 5,032 件で
-Tier 2-real の 57.5% を占め、Tier 2-real の中では最大寄与。ただし生 count に
-対しては 17.8% で、残り Tier 2-real は他 resourceType の identifier 系や
-CodeableConcept 系に広く分布している。
+内訳:
 
-切り分け根拠 (JP_Observation_Common の category:first slice 定義、data 実物、
-Tier 2-noise / Tier 2-real の判定基準) は tier2-distribution-v31.md 内。
+- **Tier 2-benign 22,894 件 (80.8%)**: required slice satisfied で余剰要素が
+  unmatched or profile に required slice なし
+  - (a) 意図的多重 coding 19,583 件 (`Observation.category` 19,399 +
+    `DiagnosticReport.category` 184): JP + HL7 base 両対応 data 設計の副作用
+  - (b) 余剰 identifier 3,264 件 (`Observation.identifier[1]` 2,523 +
+    `Condition.identifier[1]` 736 + `AllergyIntolerance.identifier[1]` 5):
+    generator が identifier[0] に JP canonical、[1] に internal ID を配置。
+    Observation は `resourceIdentifier` slice を satisfy、Condition/Allergy は
+    profile 側に named slice なし
+  - (c) validator quirk 47 件 (`MedicationAdministration.dosage.rate.ofType(Quantity)`):
+    HAPI が polymorphic `rate[x]` を implicit slicing と扱う挙動、data は
+    SimpleQuantity 制約適合
+- **Tier 2-violation 5,440 件 (19.2%) = 全 issue の 4.26%**: per-resource
+  **2,898 resource** 影響、真の silent-pass
+  - Observation.code.coding 5,032 件 / 2,523 resource (Gate 2 検体検査 pattern、
+    violation の 87%)
+  - DiagnosticReport.code.coding 203 / 203
+  - MedicationRequest.medication.coding 118 / 118
+  - Procedure.code.coding 44 / 11
+  - Condition.bodySite.coding 43 / 43
+- **全 violation が同一 pattern に集約** = Open slicing CodeableConcept slice の
+  discriminator (Fixed system) 不一致
 
-**意味**: JLAC 移行の真の成果は「エラーが減る」ではなく、Tier 2-real の
-`matched / (matched + unmatched)` = **slice 適合率**という新指標が手に入る
-ことにある。Tier 2-noise (category 系) は data の多重 coding 設計に依存する
-constant で、移行効果測定からは除外する。
+切り分け根拠 (JP_Observation_Common の category:first slice / eCS の identifier
+slice / MedicationAdministration の rate[x] type slice、data 実物) は
+tier2-distribution-v31.md 内。
+
+**per-issue と per-resource**: coding を多く積むほど per-issue は膨らむため、
+準拠率指標には per-resource を使う。移行効果測定は per-resource `matched /
+(matched + unmatched)` = **slice 適合率**。移行後 CoreLabo slice が data に
+match すれば Observation.code 2,523 resource は violation から自動的に外れる
+(LOINC secondary 残置は benign (a) 側に移動するだけ)。→ **この指標は移行の
+効果を正しく反映**することが分析から裏付けられた。
+
+**Tier 2-benign は移行効果測定から除外する** (data 設計 or profile 定義依存の
+constant のため)。
 
 ## clinosim 側 (workspace:1) 移行実装要件まとめ
 

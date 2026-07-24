@@ -143,31 +143,42 @@ Bundle は `chunk_size` 単位で構成され、`expression` は `Bundle.entry[0
 - OperationOutcome には information issue として **確実に記録される** ため、
   集計すれば発生分布を計測可能
 
-**この issue には 2 つの本質的に異なる原因がある** (混同注意):
+**この issue には 2 つの本質的に異なる原因がある** (混同注意)。分類原則は
+**per-slice-match** — 「path が X なら benign」のような path 固定分類は禁止。
+同じ path が第三者データでは violation になり得る:
 
-- **原因 A: 意図的多重 coding × Open slicing の副作用** (data 設計として正しい)。
-  data が「JP profile 用 coding + HL7 base 用 coding」の両方を並置している場合、
-  片方の profile 視点からもう片方の coding が余剰 unmatched と評価される。
-  data 変更で消すには片方の coding を捨てる必要があり、それは別の非準拠を招く。
-  例: `Observation.category` の HL7 base + JP_SimpleObservationCategory 併記
-- **原因 B: 真の silent-pass** (data missing required slice match)。
-  data が profile の期待する slice の discriminator に一致していない。
-  この場合、slice 内の required binding / Fixed display / cardinality は
-  全て skip されるため、実質的な非準拠が silent で見逃される。
+- **Tier 2-benign** (`required slice が match している状態で` 余剰要素が
+  unmatched): data は profile が要求する制約を満たしており、余剰は data 設計
+  上の意図 (JP + HL7 base 両対応、または generator 内部 identifier など)。
+  data 変更で消すには余剰要素を捨てる必要があり、それは別の非準拠を招く。
+  例: `Observation.category` に JP_SimpleObservationCategory と HL7 base
+  observation-category の両方を持たせている場合、各 profile 視点から相手側が
+  benign unmatched になる
+- **Tier 2-violation** (`required slice が match していない`): data が profile
+  の期待する slice の discriminator (Fixed value / Pattern) に一致していない。
+  slice 内の required binding / Fixed display / cardinality は全て skip され、
+  実質的な非準拠が silent で見逃される。
   例: `Observation.code.coding` の JP-CLINS 検体検査 slice に data の
   system/display が match していない
 
+**判定手順** (docs/output-guide.md §4.5 の recipe 参照):
+
+1. profile 定義 (StructureDefinition) を読み、対象要素の slice 定義を確認
+2. 各 slice の discriminator と Fixed/Pattern 制約を特定
+3. data 実物を見て required slice に match する element が存在するか確認
+4. 存在すれば余剰は benign、不在なら violation
+
 **対処方針**:
 
-- **原因 B (真の silent-pass) を優先**: data 側で各 slice の discriminator
-  (Fixed Value / Pattern) に正確に match させる。例えば `Observation.code.coding`
-  に JP-CLINS の CoreLabo slice を期待するなら、slice が要求する `system` +
-  `display` (英語 abbrev) を strict に emit
-- **原因 A (Tier 2-noise) は data 設計として受容**: 生 count に含まれるが
-  データ非準拠の指標ではない。集計時は path/profile で切り分けて除外
-- validator 運用側: この issue を集計して A/B を分離し、真の silent-pass を
-  可視化する ([§4.5](#45-tier-2-slice-unmatched-の集計-open-slicing-silent-pass)
-  の recipe と切り分け方法参照)
+- **Tier 2-violation を優先修正**: data 側で各 slice の discriminator に正確に
+  match させる。例えば `Observation.code.coding` に JP-CLINS の CoreLabo slice
+  を期待するなら、slice が要求する `system` + `display` (英語 abbrev) を strict
+  に emit
+- **Tier 2-benign は data 設計として受容**: 生 count に含まれるが data 非準拠
+  の指標ではない。集計時は判定手順で切り分けて除外
+- validator 運用側: この issue を集計し benign/violation を分離、真の silent-pass
+  を可視化する ([§4.5](#45-tier-2-slice-unmatched-の集計-open-slicing-silent-pass)
+  の recipe 参照)
 
 **分布の実測例と切り分け結果** (母数条件込み):
 [`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
@@ -323,39 +334,61 @@ PY
   自動 profile を全て評価するため、**同じ要素 path でも複数 profile 由来の
   unmatched が計上されることがある**
 
-#### 生 count は Tier 2-noise と Tier 2-real の混合 (重要)
+#### 生 count は Tier 2-benign と Tier 2-violation の混合 (重要)
 
-上記 recipe の生 count には 2 種類が混在する:
+上記 recipe の生 count は 2 種類の混合。**分類は per-slice-match の原則**で
+行い、path 固定分類 (「path=X → benign」) は禁止:
 
-- **Tier 2-noise (意図的多重 coding の副作用)**: data が「JP profile 用 +
-  HL7 base 用」の両 coding を並置している要素で、各 profile 視点から相手側の
-  coding が余剰 unmatched と評価される。data 設計として正しい
-- **Tier 2-real (真の silent-pass)**: data が profile の期待する slice に
-  match していない、実質的な非準拠
+- **Tier 2-benign**: `required slice が match している状態で` 余剰要素が
+  unmatched (data 設計上意図的 or profile に required slice なし)
+- **Tier 2-violation**: `required slice が match していない` (真の silent-pass、
+  data 非準拠)
 
-**切り分け方法**: (resourceType, element path) 別 count を profile と併記し、
-「同一 element path が複数 profile から独立して報告されているか」を確認する。
-特に `Observation.category` は複数 profile から一斉に unmatched になりやすい
-Tier 2-noise の典型。data 側の non-compliance を追うなら Tier 2-real 分
-(通常 `code.coding` / `identifier` / `bodySite.coding` / `medication.coding`
-等 個別 slice) に絞る。
+**判定に必要な手順**:
 
-具体的な切り分け例と背景解説は tier2-distribution-v31.md 参照。
+1. profile 定義 (StructureDefinition) を読み、対象要素の slice 定義を確認
+2. slice の discriminator + Fixed/Pattern 制約を特定
+3. data 実物を見て required slice を satisfy している element が存在するか確認
+4. 存在すれば余剰は benign、不在なら violation
 
-- **移行効果測定**: **Tier 2-real** の `unmatched / (対象要素の total)` を追えば、
-  「エラーが減った」とは別軸の **slice 適合率** を数値化できる。分母 (対象要素の
-  total 出現数) は入力 NDJSON 側から別途集計。Tier 2-noise は data の多重 coding
-  設計に依存する constant で、移行効果とは無関係のため除外
+path (例: `Observation.category`) が同じでも、profile 定義と data の組み合わせ
+次第で benign にも violation にもなる。第三者データに対して本 recipe をそのまま
+回す場合、生 count は判定材料としては不完全で、個別の判定手順が要る。
+具体的な判定例と背景解説は tier2-distribution-v31.md 参照。
+
+#### per-issue と per-resource の使い分け
+
+生 recipe は **per-issue** で数える。1 element (例: Observation.code) が
+複数 coding (LOINC + JLAC 等) を持ち全て unmatched の場合、per-issue は
+coding 数だけ膨らむ。**準拠率の指標には per-resource** (unique_res 側) を使う:
+
+- **per-issue**: 出力量 (validator が発する message 数) の指標。運用 log 監視
+  や UX 上の noise 量測定に使う
+- **per-resource** (unique_res): 準拠実態の指標。1 resource が「compliant か
+  non-compliant か」を数える。移行効果測定はこちらで
+
+同じ非準拠を coding 多く積むほど per-issue で悪く見えるため、**generator 側の
+自己計測軸とも整合させる**ためには per-resource を primary に置く。
+
+#### 移行効果測定
+
+**Tier 2-violation の per-resource `matched / (matched + unmatched)` = slice
+適合率** を移行前後で追う。分母 (対象要素の total 出現数) は入力 NDJSON 側から
+別途集計。Tier 2-benign は data 設計 or profile 定義に依存する constant で
+効果測定からは除外。
 
 **実測分布 (母数条件込み)**:
 [`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
 clinosim v31 合成 EHR (1,161 Bundle) × HAPI 6.9.12 + JP Core / JP-CLINS /
 MHLW ICD-10 / receipt-master load 済 fhirserver 構成下:
 
-- 生 unmatched 28,334 件 = 全 issue の 22.19%
-- 内訳: **Tier 2-noise 19,583 件 (69%)** = data 設計上の副作用、
-  **Tier 2-real 8,751 件 (31%) = 全 issue の 6.86%** = 真の silent-pass
-- 数値は特定 data + 特定 validator 構成でのみ有効、外部引用時は条件セットで示す
+- 生 unmatched 28,334 件 = 全 issue の 22.19% (per-issue)
+- **Tier 2-benign 22,894 件 (80.8%)** = data 設計や profile 定義に由来する非
+  data-violation 系
+- **Tier 2-violation 5,440 件 (19.2%) = 全 issue の 4.26%** = 真の silent-pass、
+  per-resource で **2,898 resource** 影響
+- 内訳と判定根拠は tier2-distribution-v31.md 参照
+- 数値は特定 data + 特定 validator 構成でのみ有効、外部引用時は条件セット必須
 
 ## 5. failed.ndjson の意味
 
