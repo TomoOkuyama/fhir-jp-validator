@@ -1,0 +1,1 @@
+{"resourceType":"Patient","id":"pc-b-invariant","meta":{"lastUpdated":"2026-07-24T00:00:00+09:00","tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"pc-b-invariant-active"}]},"active":true,"name":[{"use":"official","family":"PC","given":["Bravo"]}]}

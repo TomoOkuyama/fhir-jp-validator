@@ -58,6 +58,33 @@ positive control** としての意味を持つ:
 test-cases framework (`test-cases/` 200+ case) は Tier 1 の positive control
 を主目的とする regression suite。
 
+### 2.1 validator 構成に依存する挙動 (Tier 1 外の記録)
+
+以下は「FHIR profile 制約として符号化されているが、HAPI 標準構成では
+発火しない or 発火が構成に依存する」項目。**inline case にすると構成を切り
+替えないと観測できない**ため、docs で挙動を記録する形にしている。
+
+- **`mustSupport` は HAPI が標準で強制しない**: JP-CLINS eCS profile には
+  1,600+ の `mustSupport=true` 要素があるが、これらは「受信側実装が処理
+  できなければならない」という**実装要件**であり、インスタンスの妥当性
+  条件ではない。HAPI validator は default で `mustSupport` の有無を error
+  化しない。将来 HAPI 側で厳密モード flag が加わった場合、または custom
+  check を実装した場合に評価されうる。**現状「発火しないことが正常」**
+- **`dom-6` (narrative missing) は Best Practice 判定**: HAPI は default で
+  warning、`-best-practice ignore` flag で downgrade される (実測では
+  suppress ではなく warning のまま出続けるケースがある — 実装/version
+  依存)。本プロジェクトの reconcile は `-best-practice ignore` を default
+  付与しているが、実データ検証時は付与しないケースがあるため、data が
+  narrative を持つべきかは data 側の設計判断
+- **profile 解決失敗は silent**: `meta.profile` に未知の URL を宣言しても
+  HAPI は「その profile は評価できない」ではなく、単に **profile 評価を
+  skip** する。error/warning は出ない。誤字や存在しない profile URL を
+  data 側で書いても、validator は静かに no-op する
+
+これらは「validator が発火しないことを assert する case」を単体で書いても
+構成切り替えの前提が伴い、regression suite として維持しにくい。docs 上の
+記録にとどめ、custom check 実装 (§4) 時に取り込む候補とする。
+
 ## 3. Tier 2: Open slicing で silent-pass する制約
 
 対象: profile が `rules=open` の slicing を宣言している要素で、data が
