@@ -87,12 +87,34 @@ violation になる)。
 
 判定手順:
 
-1. profile 定義 (StructureDefinition) を読み、対象要素の slice 定義を確認
-2. 各 slice の discriminator と Fixed/Pattern 制約を特定 (`fixedUri` /
-   `patternUri` / `patternCoding` / `patternIdentifier` / `fixedCode` など、
-   複数の field 名を漏れなく)
+1. profile 定義 (StructureDefinition) を読み、対象要素の slice 定義を確認。
+   実装上の注意:
+   - discriminator の **type** を確認する (`value` / `pattern` / `type` /
+     `profile`)。判定に使われる制約の探し方が type によって変わる
+   - **snapshot が空で differential のみの StructureDefinition がある**
+     (例: `StructureDefinition-jp-observation-common.json` は snapshot=[]、
+     differential 側に slice 定義)。snapshot と differential の両方を対象に
+2. 各 slice の discriminator と Fixed/Pattern 制約を特定。discriminator が
+   `value` / `pattern` の場合、判定制約は slice sub-element の `fixed[x]`
+   または `pattern[x]` に載る。**FHIR spec の Fixed/Pattern は 12+ 型別
+   field 名を持つため、思いつきで 2-3 個指定すると見落とす**。以下を
+   whitelist として全対象で grep:
+   ```
+   fixedUri fixedCode fixedString fixedCanonical fixedInteger fixedBoolean
+   fixedDateTime fixedInstant fixedDate fixedId
+   patternUri patternCode patternString patternCanonical
+   patternCoding patternCodeableConcept patternIdentifier
+   patternReference patternQuantity patternPeriod patternRange
+   ```
 3. data 実物を見て、required slice に match する element が存在するか確認
 4. 存在すれば余剰は **benign**、不在なら **violation** (真の silent-pass)
+
+**探索漏れの症状に注意**: Fixed/Pattern 探索の whitelist が不足すると、
+「制約が無い」と誤認して benign/violation の判定根拠を **別の (誤った) 説明で
+埋めてしまう**。たとえば `patternUri` を見落として「system は Fixed/Pattern
+なし (Tier 3 comment のみ)」と結論すると、実際は spec 符号化された制約なのに
+「HAPI が position ベースで match しているかもしれない」といった誤った仮説を
+発明する結果になる。「見つからない」は「間違った説明を発明する」形で現れる。
 
 **判定例 (短)**: JP-CLINS eCS Observation の identifier に slicing
 (discriminator=`value on system`, rules=open) と `resourceIdentifier` slice

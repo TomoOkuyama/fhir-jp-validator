@@ -345,6 +345,59 @@ JP-CLINS の JP_DiagnosticReport_LabResult_eCS も検体検査 Observation と
 未 match のまま残る。generator 側の移行実装で対象 resource スコープを
 決める際の判断材料。
 
+**DiagnosticReport 203 の内訳** (次に DR を触るときの前提、2026-07-24 追記):
+generator 側の分類では DR 210 件中 LabResult 177 / Radiology 26 /
+Microbiology 7 と報告されている。validator 実測の DR.code.coding
+per-resource 203 = LabResult 177 + Radiology 26 と一致。**Radiology 26 件も
+unmatched を出している** ことを示唆する (今すぐ調べる必要はないが、次に DR
+を扱うときの前提として)。Microbiology 7 件は 203 の外側 (Microbiology profile
+の code.coding は別 slicing 定義の可能性)。
+
+## 副次発見: SD 内 Fixed/Pattern field 分布 (JP-CLINS eCS 全域、2026-07-24)
+
+Tier 2 sibling bug sweep で判明した JP-CLINS eCS profile 全域の Fixed/
+Pattern 使用実態。今回の分析で使った 2-3 field (fixedUri, patternIdentifier)
+だけでは網羅できず、他の 12+ field 名を見逃す危険があることを実測で確認
+した副次成果。
+
+主要 field 別の使用例:
+
+- **`patternUri`** (system 系 pattern match、23+ 例):
+  - `identifier:resourceIdentifier.system`
+    (Observation/Condition/AllergyIntolerance/CarePlan)
+  - `meta.tag:lts/uninformed/undelivered.system` (Condition/Observation/
+    AllergyIntolerance) → 指定感染症検査等の tag system
+  - `Encounter.hospitalization.dischargeDisposition.coding.system`
+  - `Bundle.meta.tag:resourceType.system`
+  - `Observation.component.referenceRange.low/high.system` (UCUM)
+- **`patternString`** (display 日本語 Fixed、40+ 例、Composition.section 系
+  に集中):
+  - `Composition.section:*.code.coding.display` (`紹介元情報セクション` /
+    `入院時詳細セクション` / `アレルギー・不耐性反応セクション` 等)
+  - `Composition.section:*.title` (`紹介目的` / `主訴` 等)
+  - Composition 系 (eDischargeSummary / eReferral) を扱う実装者は、
+    section 名の 40+ 個の Fixed display を SD から機械取得する pipeline を
+    構築するのが安全
+- **`patternCode`**:
+  - `MedicationRequest.status/intent` (`completed` / `order`)
+  - `CarePlan.status/intent` (`active` / `plan`)
+  - `Encounter.location.status` (`completed`)
+  - `Observation.meta.tag:lts.code` (`LTS`)
+- **`patternCodeableConcept`**:
+  - `Practitioner.qualification:narcoticPrescriptionLicenseNumber.code`
+  - `Practitioner.qualification:medicalRegistrationNumber.code`
+- **`fixedUri`** (§3.5 の CodeableConcept slice 群): Observation.code.coding /
+  DiagnosticReport.code.coding / MedicationRequest.medication[x].coding /
+  Procedure.code.coding / Condition.bodySite.coding — 全 profile で
+  `.system` の discriminator に統一使用
+- **`fixedCode`** / **`fixedString`**:
+  DiagnosticReport.code.coding:laboratoryCode に `fixedCode = 11502-2` +
+  `patternString = 検体検査報告書` の複合 pattern。code + display の両方が
+  fixed な slice の例
+
+Fixed/Pattern 探索の完全 whitelist は [`docs/jp-clins-validation-limitations.md
+§3.2`](../../docs/jp-clins-validation-limitations.md) 判定手順内に記載。
+
 ### 移行後の役割変化 (最重要)
 
 Observation.code.coding 移行完了後、この指標は「検体検査を測る軸」から
