@@ -61,8 +61,13 @@ EXPECTED_ISSUES = {
         "pattern": r"Unknown code|未知のコード",
     },
     "wrong-codesystem-for-slice": {
-        "desc": "slice が要求する CodeSystem と異なる system が使われた",
-        "pattern": r"値は.*ですが.*でなければなりません|must be from",
+        "desc": (
+            "slice が要求する CodeSystem と異なる system or code が使われた。"
+            "system が slice-fixed と一致した上で code が VS 範囲外の場合、"
+            "'提供された値 (X) はValueSet Y に含まれていません' が発火する。"
+            "code が CS 内で unknown なら 'system で未知のコード' が発火する。"
+        ),
+        "pattern": r"提供された値.*ValueSet.*(含まれ|not in the value set|not in.*ValueSet)|system.*で未知のコード|is not in the value set|Unknown code.*in.*CodeSystem",
     },
 
     # --- JP Core / JP-CLINS profile 固有 ---
@@ -526,8 +531,13 @@ EXPECTED_ISSUES = {
         "pattern": r"(ext-1|Must have either (extensions|extension) (or|and) value\[x\], not both|(値|value\[x\]).*(のいずれか|extension.*のどちらか)|either extensions or value)",
     },
     "modifierextension-cannot-be-ignored": {
-        "desc": "modifierExtension が未知で無視できない",
-        "pattern": r"(modifierExtension.*(未知|unknown|cannot be ignored|must be recognized)|Unknown modifierExtension|変更子拡張.*(未知|unknown))",
+        "desc": (
+            "modifierExtension が未知で無視できない状態。HAPI は error で "
+            "'extension <url> は未知であり、ここでは許可されていません' を発火 "
+            "(msg 自体は modifierExtension 名を含まないが、severity=error であること "
+            "が modifierExtension 由来である証拠 = 通常 extension は warning に留まる)。"
+        ),
+        "pattern": r"(extension\s+http\S+\s+は未知であり.*許可されていません|extension\s+http\S+\s+is unknown.*not.*allowed|Unknown modifierExtension|modifierExtension.*(cannot be ignored|must be recognized))",
     },
     "extension-missing-url": {
         "desc": "extension.url 欠落 (base cardinality)",

@@ -85,6 +85,70 @@ test-cases framework (`test-cases/` 200+ case) は Tier 1 の positive control
 構成切り替えの前提が伴い、regression suite として維持しにくい。docs 上の
 記録にとどめ、custom check 実装 (§4) 時に取り込む候補とする。
 
+### 2.2 single-resource validation mode で観測できない機構
+
+fhir-jp-validator の test-cases framework は 1 resource ずつ Bundle 化して
+validate する形式。この構成下では以下の機構が **原理的に観測できない**
+(実装しても発火しない)。回帰 case 化を試みて発火しないことを実測確認 (2026-07-24):
+
+- **Bundle 内 Reference の resolve 失敗** (`Patient/does-not-exist` など):
+  single-resource mode では他 resource が同 Bundle にないため resolve check
+  自体が走らない。**contained resource 内の未解決参照 (`#pat-nonexistent`)
+  は observable** (`参照 '#X' のリソースを解決できません` が error 化)、
+  こちらは case 化可能
+- **Reference で ref-1 発火** (`Reference` の全要素が空): `performer:[{}]` の
+  ような空 Reference は ref-1 ではなく別 warning (display 推奨) に留まる
+- **choice[x] 型の複数値** (`deceasedBoolean` + `deceasedDateTime` 両方):
+  HAPI は JSON パース時に片方を採用、両方指定を error 化しない
+- **Quantity 負値、Ratio.denominator=0 (rat-1)、Duration.code の UCUM 時間
+  単位検証**: R4 base に該当 invariant なし or 実装未評価
+- **preferred binding 違反**: HAPI は preferred binding 範囲外の code に対して
+  `A definition for CodeSystem X could not be found, so the code cannot be
+  validated` (warning) を出すのみで、`not in the preferred value set` は
+  発火しない
+- **CodeableConcept で `text` のみで `coding` 空**: 該当要素の binding strength
+  が preferred 以下なら error にならず、required 相当を持つ要素に絞らない限り
+  観測できない
+
+### 2.3 profile 定義が実際に要求していない項目 (slug 想定違い)
+
+以下の slug は「JP profile が要求している」想定で定義されていたが、実測で
+profile 側に該当 constraint が無い or 発火条件が異なることが判明:
+
+- `jp-condition-code-text-missing`: JP_Condition_eCS は Condition.code.text を
+  min=1 で強制していない
+- `jp-coverage-identifier-system-missing` / `jp-coverage-identifier-value-missing`:
+  JP_Coverage は identifier に system/value min=1 slice を持たない
+- `jp-encounter-ecs-class-system-missing`: JP_Encounter_eCS は class.system を
+  min=1 で強制していない
+- `jp-medication-code-missing` / `jp-medication-ingredient-drugno-basic`:
+  JP_Medication は code min=1 を強制していない (実データでは
+  Medication.ingredient.strength min=1 が発火する別 constraint)
+- `jp-organization-identifier-system-missing`: JP_Organization は identifier
+  slice に system fixed を持たない
+- `medicationdispense-subject-missing`: MedicationDispense.subject は base R4 で
+  0..1、JP profile も強制していない
+- `person-inactive-valid`: Person profile は全 field 任意
+- `attachment-url-and-data`: att-1 invariant は「data があれば contentType 必須」
+  であり、「url と data 両方指定」は禁止していない (slug 説明の誤解釈)
+- `coding-empty` (ele-1 on Coding): 空 coding element は Observation.code の
+  文脈で ele-1 を発火しない
+- `codeableconcept-only-text-no-coding` / `codeableconcept-multiple-codings-none-valid`:
+  Observation.code は preferred binding、text/coding の組み合わせは validator が
+  許容
+- `patient-multiple-deceased` / `patient-multiple-multiplebirth`: HAPI は
+  choice[x] 複数指定を error 化しない
+- `ext-1-invariant-violation`: 未知 URL の extension は「extension is unknown」
+  が先に error 化し ext-1 到達せず
+- `reference-target-profile-mismatch` (target profile 不一致): 単純な type
+  違いは `reference-type-mismatch` で cover 済、profile-level の違いは
+  Observation.subject 系の緩い制約下で発火条件を再現困難
+
+これらの slug は expected-issues.py に **未使用状態で残置** (case は削除)。
+将来 HAPI 版更新や profile 版更新で挙動が変わった場合、または custom check
+実装時に取り込む候補。**「発火しないことを無理に PASS 化する」ためのダミー
+case は作らない** (silent-pass を偽造することになるため)。
+
 ## 3. Tier 2: Open slicing で silent-pass する制約
 
 対象: profile が `rules=open` の slicing を宣言している要素で、data が
