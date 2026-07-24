@@ -195,16 +195,28 @@ def parse_errors(output_path):
 def match_case(expected_slugs, actual_issues, module):
     """1 case について、各期待 slug が actual issues にマッチするか判定。
 
+    通常 slug: pattern match すれば PASS。
+    record-only-* 系 slug: pattern match しないほうが PASS (逆判定)。
+      HAPI/validator が検出しないことを assert する用途で、将来 fire
+      するようになれば FAIL 化して alarm する仕組み。
+
     返り値: {slug: matched_bool} の dict
     """
+    INVERTED = ("record-only-not-enforced", "record-only-spec-not-encoded")
     matched = {}
     for slug in expected_slugs:
+        entry = module.EXPECTED_ISSUES.get(slug, {})
+        expected_type = entry.get("expected_type", "error-warning")
         pattern = module.pattern_for(slug)
         if pattern is None:
             matched[slug] = False
             continue
         found = any(pattern.search(iss["text"]) for iss in actual_issues)
-        matched[slug] = found
+        if expected_type in INVERTED:
+            # 逆判定: 検出されない (found=False) ことが PASS
+            matched[slug] = not found
+        else:
+            matched[slug] = found
     return matched
 
 

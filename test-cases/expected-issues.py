@@ -1084,6 +1084,120 @@ EXPECTED_ISSUES = {
         "pattern": r"(Wrong Display Name|表示名.*正しくありません).*(2951-2|LOINC)",
         "expected_type": "positive-control",
     },
+    # --- JP 層 case (依頼 B、C-1〜C-5、2026-07-24) ---
+    # 公開リファレンスなし、fhir-jp-validator の付加価値領域
+
+    # C-1: JP profile 独自 constraint (1 case、他 2 は SD 確認で不在と判明)
+    "jp-observation-lab-value-type-restriction": {
+        "desc": (
+            "JP_Observation_LabResult_eCS が Observation.value[x] の型を "
+            "[Quantity, CodeableConcept, string] に制限。data が valueRange を "
+            "使うと 'valueRange の型が未知' error。base R4 では valueRange は "
+            "許容だが JP profile で型を絞っている実例。"
+        ),
+        "pattern": r"(valueRange.*型.*未知|type.*(Range|valueRange).*(unknown|not.*valid|invalid)|value.*(Range|Ratio|Period).*not.*(allowed|permitted|valid))",
+        "expected_type": "error-warning",
+    },
+
+    # C-2: profile 解決の silent no-op (優先度高)
+    "unknown-profile-silent-no-op": {
+        "desc": (
+            "meta.profile に架空 URL を宣言した場合、HAPI は「Canonical URL "
+            "解決不能」info と「URL は未知のため確認されていません」warning を "
+            "出し、profile が要求するはずの構造 check は silent に skip する。"
+            "本 case は挙動が変わったら (error 化 or 完全 silent 化) 即座に "
+            "気づくための positive control。"
+            "架空 URL は http://example.invalid/... で明示的に fake だと分かる形。"
+        ),
+        "pattern": r"(is not known to the FHIR validator|URL.*未知のため.*確認されて|Canonical URL.*解決できません|Canonical URL.*could not be resolved)",
+        "expected_type": "positive-control",
+    },
+
+    # C-3: JP-CLINS Fixed/Pattern (3 case、slice 外の Fixed を狙う)
+    "fixed-string-mismatch": {
+        "desc": (
+            "Composition.section の code.coding.display には patternString で "
+            "日本語 fixed 値 (`紹介元情報セクション` 等) が定義されている。"
+            "data が異なる文字列で emit すると pattern 不一致で error。"
+        ),
+        "pattern": r"(Wrong Display|表示名.*正しく|The display .*is not a valid.*|display.*(mismatch|一致しません|不一致)|section.*title.*not|pattern.*not.*match|patternString)",
+        "expected_type": "error-warning",
+    },
+    "fixed-code-mismatch": {
+        "desc": (
+            "profile の Fixed value / patternCoding で code が指定されている "
+            "要素に別 code を emit した場合の error。実測では 'system X で "
+            "未知のコード Y' として発火することが多い (Fixed slice の system 内で "
+            "未定義 code 扱い)。"
+        ),
+        "pattern": r"(system.*で未知のコード|Unknown code.*in.*CodeSystem|fixed value|Fixed value|patternCoding|is not a valid.*code)",
+        "expected_type": "error-warning",
+    },
+    "pattern-codeableconcept-mismatch": {
+        "desc": (
+            "Practitioner.qualification.code の patternCodeableConcept 制約に "
+            "反する CodeableConcept を emit した場合の error。"
+        ),
+        "pattern": r"(patternCodeableConcept|slice.*qualification|pattern-value.*not match|pattern.*(一致|match))",
+        "expected_type": "error-warning",
+    },
+
+    # C-4: 階層 CS descendent-of (Gate 1 で実測済)
+    "descendent-of-vs-expansion": {
+        "desc": (
+            "JLAC10 CoreLabo CS は hierarchyMeaning=is-a の階層 CS。ValueSet "
+            "は descendent-of フィルタで子 code のみを含む (自己除外)。data が "
+            "親 code (WBC 等) を使うと VS 範囲外で error。Gate 1 (2026-07-23) "
+            "で実測: 親 `K` `WBC` は VS に含まれない、子 17 桁 code が正解。"
+            "tx 必須 (HAPI_TX=n/a では発火せず)。"
+        ),
+        "pattern": r"(is not in the value set|ValueSet.*に含まれていません|コード.*ValueSet.*外|not.*in.*value.*set)",
+        "expected_type": "error-warning",
+    },
+
+    # C-5: Tier 3 散文規定 (4 機構、各 compliant/violation ペアで case 8 本)
+    # expected_type=record-only-spec-not-encoded で reconcile は逆判定
+    # (発火しないほうが PASS、将来検出化されたら FAIL で alarm)
+    "prose-half-width-katakana-display": {
+        "desc": (
+            "Tier 3 散文規定: display / text に半角カタカナを含めてはならない "
+            "(JP_Observation_LabResult_eCS の comment 記述、FHIR spec に "
+            "符号化されていない)。HAPI は文字種 check を実装しないため、"
+            "違反 data を渡しても error 0 が正常。custom check 実装時に発火 "
+            "するようになれば本 slug が FAIL 化し、実装完了を検出できる。"
+        ),
+        "pattern": r"(半角カタカナ|half.?width|prose-charset|character.*(class|type).*(violation|invalid))",
+        "expected_type": "record-only-spec-not-encoded",
+    },
+    "prose-localcode-with-space": {
+        "desc": (
+            "Tier 3 散文規定: LocalCode の display に空白を含めてはならない "
+            "(なるべく長い文字列名称推奨)。HAPI 未検出。"
+        ),
+        "pattern": r"(LocalCode.*space|LocalCode.*空白|prose-code-format)",
+        "expected_type": "record-only-spec-not-encoded",
+    },
+    "prose-designated-labtest-no-jlac": {
+        "desc": (
+            "Tier 3 散文規定: 指定検査 43 項目に該当する検体検査には "
+            "JLAC10/11 CoreLabo code が必須。data が LocalCode のみで JLAC 無し "
+            "でも HAPI は error 化しない (指定検査項目リストと突き合わせる "
+            "custom check なし)。"
+        ),
+        "pattern": r"(指定検査.*JLAC|designated.*labtest|prose-coding-rules)",
+        "expected_type": "record-only-spec-not-encoded",
+    },
+    "prose-hasmember-in-5info-mode": {
+        "desc": (
+            "Tier 3 散文規定: 電子カルテ情報共有サービス 5 情報送信時、"
+            "Observation.hasMember は使用禁止。HAPI は「5情報送信 mode」の "
+            "概念を validation context として持たず、hasMember が存在しても "
+            "error 化しない。"
+        ),
+        "pattern": r"(hasMember.*(5情報|not allowed|禁止)|prose-usage-condition)",
+        "expected_type": "record-only-spec-not-encoded",
+    },
+
     "pc-f-reference-eval-active": {
         "desc": (
             "Positive control (PC-F): Reference target type 制約評価が生きて "

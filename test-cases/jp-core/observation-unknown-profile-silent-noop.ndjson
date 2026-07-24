@@ -1,0 +1,1 @@
+{"resourceType":"Observation","id":"tc-unknown-profile-noop","meta":{"profile":["http://example.invalid/StructureDefinition/NotAReal_Profile"],"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"unknown-profile-silent-no-op"}]},"status":"final","code":{"text":"x","coding":[{"system":"http://loinc.org","code":"1751-7"}]},"subject":{"reference":"Patient/1"}}
