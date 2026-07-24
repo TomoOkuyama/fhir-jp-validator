@@ -1,0 +1,1 @@
+{"resourceType":"Observation","id":"tc-coding-empty","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"coding-empty"}]},"status":"final","code":{"coding":[{}]},"subject":{"reference":"Patient/1"}}

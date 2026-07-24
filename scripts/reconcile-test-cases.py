@@ -119,27 +119,76 @@ def stage_and_validate(cases, tmpdir, chunk, parallel, timeout):
 
 
 def parse_errors(output_path):
-    """OperationOutcome NDJSON から resource id → [issue] を抽出。"""
-    expr_re = re.compile(r"Bundle\.entry\[\d+\]\.resource/\*\w+/([^*]+)\*/")
+    """OperationOutcome NDJSON から resource id → [issue] を抽出。
+
+    2 形式の expression をサポート:
+      A. Bundle.entry[N].resource/*Type/id*/...  (structural / 構造レベル issue)
+      B. Bundle.entry[N].resource               (parse-level issue、type/id 情報なし)
+
+    形式 B は HAPI が resource parse 中に発火する issue (認識できない
+    プロパティ、att-1/rat-1/rng-2/per-1 等の invariant fail、ele-1、多重
+    value[x] 検出等) に典型。type/id が expression に含まれないため、以前の
+    実装では silent に落ちていた (2026-07-24 発覚、Bucket 2 として HAPI gap と
+    誤判定した根本原因)。
+
+    fix: 各 OC 内で第 1 pass で形式 A の (entry_index → resource_id) map を
+    作り、第 2 pass で形式 B の issue に entry_index から resource_id を
+    lookup して attribute する。同 OC 内に形式 A の issue が全く無く形式 B
+    のみの場合は、その OC の全 issue が同一 resource に対するものと仮定して
+    (chunk=1 前提)、entry_id 情報を fallback として使う。
+    """
+    expr_full = re.compile(r"Bundle\.entry\[(\d+)\]\.resource/\*\w+/([^*]+)\*/")
+    expr_short = re.compile(r"Bundle\.entry\[(\d+)\]\.resource(?!/)")
     per_resource = {}
+    unattributed_count = 0
     for line in output_path.read_text().splitlines():
         if not line.strip():
             continue
         obj = json.loads(line)
         if obj.get("resourceType") != "OperationOutcome":
             continue
-        for iss in obj.get("issue", []):
+        issues = obj.get("issue", [])
+        # Pass 1: entry_index → resource_id map (形式 A から作る)
+        entry_to_id = {}
+        for iss in issues:
+            for e in iss.get("expression", []) or []:
+                m = expr_full.search(e)
+                if m:
+                    entry_to_id[int(m.group(1))] = m.group(2)
+        # OC 全体で唯一の resource_id を推定 (chunk=1 fallback 用)
+        unique_id = None
+        if len(set(entry_to_id.values())) == 1:
+            unique_id = next(iter(entry_to_id.values()))
+        # Pass 2: 全 issue を attribute
+        for iss in issues:
             sev = iss.get("severity", "?")
             details = iss.get("details", {}).get("text", "")
             rid = None
-            for e in iss.get("expression", []):
-                m = expr_re.search(e)
-                if m:
-                    rid = m.group(1)
+            for e in iss.get("expression", []) or []:
+                m_full = expr_full.search(e)
+                if m_full:
+                    rid = m_full.group(2)
+                    break
+                m_short = expr_short.search(e)
+                if m_short:
+                    idx = int(m_short.group(1))
+                    if idx in entry_to_id:
+                        rid = entry_to_id[idx]
+                    elif unique_id:  # fallback: OC が 1 resource だけ扱っていた場合
+                        rid = unique_id
                     break
             if rid is None:
-                continue
+                # 最後の fallback: OC 内で unique な resource_id があればそこへ
+                if unique_id:
+                    rid = unique_id
+                else:
+                    unattributed_count += 1
+                    continue
             per_resource.setdefault(rid, []).append({"severity": sev, "text": details})
+    if unattributed_count:
+        print(f"WARN: {unattributed_count} 件の issue を resource に attribute "
+              f"できませんでした (OC 内に resource 情報が無い parse-level issue)",
+              file=sys.stderr)
     return per_resource
 
 

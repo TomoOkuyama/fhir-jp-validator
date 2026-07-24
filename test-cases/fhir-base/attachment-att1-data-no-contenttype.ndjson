@@ -1,0 +1,1 @@
+{"resourceType":"DocumentReference","id":"tc-att1-data","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"attachment-url-and-data"}]},"status":"current","content":[{"attachment":{"data":"SGVsbG8="}}]}

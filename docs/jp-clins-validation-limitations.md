@@ -85,69 +85,102 @@ test-cases framework (`test-cases/` 200+ case) は Tier 1 の positive control
 構成切り替えの前提が伴い、regression suite として維持しにくい。docs 上の
 記録にとどめ、custom check 実装 (§4) 時に取り込む候補とする。
 
-### 2.2 single-resource validation mode で観測できない機構
+### 2.2 test-cases framework 側の観測経路 (訂正、2026-07-24 v2)
 
-fhir-jp-validator の test-cases framework は 1 resource ずつ Bundle 化して
-validate する形式。この構成下では以下の機構が **原理的に観測できない**
-(実装しても発火しない)。回帰 case 化を試みて発火しないことを実測確認 (2026-07-24):
+**過去の記述の訂正**: 初版で「HAPI が実装していない check」として rat-1、
+att-1、ele-1 on Coding、choice[x] 多重値、coding-empty、Ratio.denominator=0
+等を挙げていたが、これは誤り。**HAPI はこれらを全て検出する**。誤認の原因は
+`test-cases framework` (`scripts/reconcile-test-cases.py` の
+`parse_errors`) の expression 解析不備で、issue の一部を silent に取り
+こぼしていた:
 
-- **Bundle 内 Reference の resolve 失敗** (`Patient/does-not-exist` など):
-  single-resource mode では他 resource が同 Bundle にないため resolve check
-  自体が走らない。**contained resource 内の未解決参照 (`#pat-nonexistent`)
-  は observable** (`参照 '#X' のリソースを解決できません` が error 化)、
-  こちらは case 化可能
-- **Reference で ref-1 発火** (`Reference` の全要素が空): `performer:[{}]` の
-  ような空 Reference は ref-1 ではなく別 warning (display 推奨) に留まる
-- **choice[x] 型の複数値** (`deceasedBoolean` + `deceasedDateTime` 両方):
-  HAPI は JSON パース時に片方を採用、両方指定を error 化しない
-- **Quantity 負値、Ratio.denominator=0 (rat-1)、Duration.code の UCUM 時間
-  単位検証**: R4 base に該当 invariant なし or 実装未評価
-- **preferred binding 違反**: HAPI は preferred binding 範囲外の code に対して
-  `A definition for CodeSystem X could not be found, so the code cannot be
-  validated` (warning) を出すのみで、`not in the preferred value set` は
-  発火しない
-- **CodeableConcept で `text` のみで `coding` 空**: 該当要素の binding strength
-  が preferred 以下なら error にならず、required 相当を持つ要素に絞らない限り
-  観測できない
+- HAPI は Bundle validation 時、issue の expression に 2 形式を出す
+  - 形式 A: `Bundle.entry[N].resource/*Type/id*/...` (構造レベル issue)
+  - 形式 B: `Bundle.entry[N].resource` (parse-level issue、type/id 情報なし。
+    「認識できないプロパティ」「オブジェクトには何らかのコンテンツが必要」
+    「ルール rat-1 が失敗しました」等の parse-time で発火する error)
+- 初版 framework は形式 A のみ regex match していたため、形式 B の issue は
+  resource id に attribute できず silent に落ちていた
+- 結果、期待通り検出されているのに reconcile が「検出されていない」と誤判定
+- 「validator gap」と誤って結論、upstream 報告 draft まで進みかけた
 
-### 2.3 profile 定義が実際に要求していない項目 (slug 想定違い)
+**運用ルール** (再発防止):
+- **「validator が検出しない」と判断する前に、framework を経由せず
+  `validator_cli` に直接投げて確認する**
+- framework の観測は測定器であり、測定器を疑う手段を常に持っておく必要がある
+- 「テストが無い」を「実装が無い」の根拠にしない (fhir-test-cases に該当
+  test-case が無くても、HAPI の汎用機構で cover されている可能性がある。
+  例: rat-1 は StructureDefinition の constraint[] として定義された FHIRPath
+  式で、HAPI は汎用 evaluator で処理する)
 
-以下の slug は「JP profile が要求している」想定で定義されていたが、実測で
-profile 側に該当 constraint が無い or 発火条件が異なることが判明:
+**現在の framework fix** (2026-07-24): `parse_errors` は形式 A/B の両方を
+解析し、形式 B は同 OC 内の他 issue から entry_index → resource_id map を
+作って attribute する。単一 resource 前提の OC には unique_id fallback も
+用意している。この修正で以下 11 mechanism が正常に検出・PASS 化された:
 
-- `jp-condition-code-text-missing`: JP_Condition_eCS は Condition.code.text を
-  min=1 で強制していない
-- `jp-coverage-identifier-system-missing` / `jp-coverage-identifier-value-missing`:
-  JP_Coverage は identifier に system/value min=1 slice を持たない
-- `jp-encounter-ecs-class-system-missing`: JP_Encounter_eCS は class.system を
-  min=1 で強制していない
-- `jp-medication-code-missing` / `jp-medication-ingredient-drugno-basic`:
-  JP_Medication は code min=1 を強制していない (実データでは
-  Medication.ingredient.strength min=1 が発火する別 constraint)
-- `jp-organization-identifier-system-missing`: JP_Organization は identifier
-  slice に system fixed を持たない
-- `medicationdispense-subject-missing`: MedicationDispense.subject は base R4 で
-  0..1、JP profile も強制していない
-- `person-inactive-valid`: Person profile は全 field 任意
-- `attachment-url-and-data`: att-1 invariant は「data があれば contentType 必須」
-  であり、「url と data 両方指定」は禁止していない (slug 説明の誤解釈)
-- `coding-empty` (ele-1 on Coding): 空 coding element は Observation.code の
-  文脈で ele-1 を発火しない
-- `codeableconcept-only-text-no-coding` / `codeableconcept-multiple-codings-none-valid`:
-  Observation.code は preferred binding、text/coding の組み合わせは validator が
-  許容
-- `patient-multiple-deceased` / `patient-multiple-multiplebirth`: HAPI は
-  choice[x] 複数指定を error 化しない
-- `ext-1-invariant-violation`: 未知 URL の extension は「extension is unknown」
-  が先に error 化し ext-1 到達せず
-- `reference-target-profile-mismatch` (target profile 不一致): 単純な type
-  違いは `reference-type-mismatch` で cover 済、profile-level の違いは
-  Observation.subject 系の緩い制約下で発火条件を再現困難
+- rat-1 (Ratio invariant、numerator-only 等)
+- att-1 (Attachment.data → contentType 必須)
+- ele-1 on empty Coding (`オブジェクトには何らかのコンテンツが必要です`)
+- 多重 value[x] (deceasedBoolean + deceasedDateTime 等、`認識できない
+  プロパティ 'X'`)
+- rng-2 (Range.low > Range.high)
+- per-1 (Period.start > Period.end)
+- reference-empty (Reference 完全空、ele-1 発火)
+- ext-1 (Extension で value[x] と nested extension 両方)
+- Reference target-type mismatch (`type` field 明示で observable)
+- CodeableConcept slice の system/code discriminator 不一致
+- MedicationRequest.medication の unknown system
 
-これらの slug は expected-issues.py に **未使用状態で残置** (case は削除)。
-将来 HAPI 版更新や profile 版更新で挙動が変わった場合、または custom check
-実装時に取り込む候補。**「発火しないことを無理に PASS 化する」ためのダミー
-case は作らない** (silent-pass を偽造することになるため)。
+### 2.3 profile 定義が実際に要求していない項目 / preferred binding 挙動
+
+以下の slug は当初「JP profile が要求している」想定で定義されていたが、
+framework fix 後も発火しないことを実測 (2026-07-24 v2) で確認。**HAPI 側の
+gap ではなく、profile 側 or spec 側の設計どおり**:
+
+- **JP profile 系** (slug 想定違い、profile 側に該当 constraint 無い):
+  - `jp-coverage-identifier-{system,value}-missing` — JP_Coverage は
+    identifier に system/value min=1 slice を持たない
+  - `jp-medication-code-missing` / `jp-medication-ingredient-drugno-basic` —
+    JP_Medication は code min=1 を強制せず (実データでは
+    Medication.ingredient.strength min=1 が別 constraint として発火)
+  - `jp-organization-identifier-system-missing` — JP_Organization は
+    identifier slice に system fixed を持たない
+  - `medicationdispense-subject-missing` — MedicationDispense.subject は
+    base R4 で 0..1、JP profile も強制せず
+  - `person-inactive-valid` — Person は全 field optional
+  - **判定訂正 (2026-07-24 v2)**: `jp-condition-code-text-missing` および
+    `jp-encounter-ecs-class-system-missing` は初版で「想定違い」と誤記して
+    いたが、framework fix 後の再検証で **PASS** することを確認済。
+    profile 側に該当 constraint がある (Condition.code.text min=1、
+    Encounter.class.system min=1) と判明。「framework fix 前の観測不能」
+    が「profile 想定違い」に見えていた事例。前記の §2.2 訂正と同根の失敗
+- **preferred binding の挙動どおり** (fhir-test-cases に該当 test あり、
+  HAPI は warning に留めるのが正しい):
+  - `coding-code-not-in-preferred-binding` — `A definition for CodeSystem X
+    could not be found, so the code cannot be validated` warning のみ
+  - `codeableconcept-only-text-no-coding` — preferred binding では
+    text-only は許容 (required binding element に絞れば error 化するが、
+    Observation.code は preferred)
+  - `codeableconcept-multiple-codings-none-valid` — 同上、preferred では
+    error 不発火
+- **HAPI が spec 上正しく check していない mechanism**:
+  - `quantity-negative-value-observation` — base FHIR 側に invariant 無し、
+    profile-defined `minValueQuantity` を宣言した profile で初めて error 化
+    する (fhir-test-cases の `obs-value-min-profile` が実例)。base R4 での
+    直接検出は仕様上ない
+- **Bundle mode / 環境依存で single-resource 観測不能な mechanism**:
+  - Bundle 内 Reference の resolve 失敗 (`Patient/does-not-exist`) —
+    single-resource mode で他 resource が同 Bundle に無いため resolve check
+    自体が走らない (**contained resource 内の未解決参照 (`#pat-nonexistent`)
+    は observable、こちらは case 化済**)
+  - `reference-target-profile-mismatch` — 単純 type 違いは
+    `reference-type-mismatch` で cover 済、profile-level 違いは緩い制約下で
+    再現困難
+
+これらの slug は expected-issues.py に **未使用状態で残置**。将来 HAPI 版
+更新や profile 版更新で挙動が変わった場合、または custom check 実装時に
+取り込む候補。**「発火しないことを無理に PASS 化する」ためのダミー case は
+作らない** (silent-pass を偽造することになるため)。
 
 ## 3. Tier 2: Open slicing で silent-pass する制約
 

@@ -604,12 +604,19 @@ EXPECTED_ISSUES = {
         "pattern": r"(cpt-2|ContactPoint.*(system).*(required|SHALL|必要)|value.*system.*欠落|A system is required if a value is provided)",
     },
     "patient-multiple-deceased": {
-        "desc": "Patient.deceased[x] の複数型指定 (choice violation)",
-        "pattern": r"(deceased.*(2|multiple).*value|deceased.*(only|複数.*禁止)|One or more elements are unrecognized.*deceased|Cannot have more than one value.*deceased|value\[x\].*deceased)",
+        "desc": (
+            "Patient.deceased[x] の複数型指定 (choice violation)。HAPI は 2 つ目の "
+            "value[x] を 認識できないプロパティ として弾く (最初にセットされた "
+            "value[x] が primary、後続は Unknown property 扱い)。"
+        ),
+        "pattern": r"(認識できないプロパティ.*'deceased|Unrecognized property.*deceased|Cannot have more than one value.*deceased|value\[x\].*deceased)",
     },
     "patient-multiple-multiplebirth": {
-        "desc": "Patient.multipleBirth[x] の複数型指定",
-        "pattern": r"(multipleBirth.*(2|multiple).*value|Cannot have more than one value.*multipleBirth|value\[x\].*multipleBirth)",
+        "desc": (
+            "Patient.multipleBirth[x] の複数型指定。HAPI は 認識できないプロパティ "
+            "'multipleBirthInteger' 等で弾く。"
+        ),
+        "pattern": r"(認識できないプロパティ.*'multipleBirth|Unrecognized property.*multipleBirth|Cannot have more than one value.*multipleBirth|value\[x\].*multipleBirth)",
     },
     "address-invalid-use-enum": {
         "desc": "Address.use に enum 外の値",
@@ -628,12 +635,21 @@ EXPECTED_ISSUES = {
         "pattern": r"Quantity\.comparator|quantity-comparator.*(ValueSet|でなければ|not.*valid)",
     },
     "reference-empty": {
-        "desc": "Reference 全 element 空 (ref-1)",
-        "pattern": r"(ref-1|Reference.*(reference|identifier|display).*(any|either|いずれか)|SHALL have a contained resource|At least one of|SHALL have.*(reference|identifier|display))",
+        "desc": (
+            "Reference が完全に空 (ref-1 相当、通常は ele-1 が発火)。HAPI は "
+            "'オブジェクトには何らかのコンテンツが必要です' (parse-level) で発火。"
+        ),
+        "pattern": r"(オブジェクトには何らかのコンテンツが必要です|element must have some content|ref-1|Reference.*(reference|identifier|display).*(any|either|いずれか)|SHALL have a contained resource|At least one of|SHALL have.*(reference|identifier|display))",
     },
     "coding-empty": {
-        "desc": "Coding が完全に空",
-        "pattern": r"(Coding.*(empty|空)|ele-1.*Coding|Coding.*(children|@value))",
+        "desc": (
+            "Coding が完全に空 (ele-1)。HAPI の Japanese localization では "
+            "'オブジェクトには何らかのコンテンツが必要です' (parse-level error) と "
+            "して発火。expression が Bundle.entry[N].resource 形式 (type/id 情報 "
+            "なし) で出るため、framework 側 parse_errors で attribute できるよう "
+            "expression 拡張済 (2026-07-24 fix)。"
+        ),
+        "pattern": r"(オブジェクトには何らかのコンテンツが必要です|element must have some content|Coding.*(empty|空)|ele-1.*Coding|Coding.*(children|@value))",
     },
     "meta-security-unknown-cs": {
         "desc": "Meta.security の CodeSystem が未知",

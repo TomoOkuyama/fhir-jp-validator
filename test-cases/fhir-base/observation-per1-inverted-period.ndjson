@@ -1,0 +1,1 @@
+{"resourceType":"Observation","id":"tc-per1-inverted","meta":{"tag":[{"system":"http://fhir-jp-validator.test/expected-issue","code":"coverage-period-end-before-start"}]},"status":"final","code":{"text":"x"},"subject":{"reference":"Patient/1"},"effectivePeriod":{"start":"2026-12-31","end":"2026-01-01"}}
