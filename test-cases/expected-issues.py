@@ -1009,6 +1009,49 @@ EXPECTED_ISSUES = {
         "desc": "Person 有効な最小 - inactive リソースでも profile requires name/telecom 等",
         "pattern": r"Person\.(gender|birthDate|name).*(最小必要値.*1|minimum required.*1)|_gender",
     },
+
+    # --- Tier 2 (Open slicing silent-pass) 分類の case ---
+    # 詳細な分類 (benign 3 種 / violation 1 種) と背景は
+    # validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md 参照
+    "tier2-violation-codeable-slice-unmatched": {
+        "desc": (
+            "Tier 2-violation: Open slicing の CodeableConcept slice に data の "
+            "discriminator が一致しない状態 (真の silent-pass)。JP-CLINS 検体検査 "
+            "Observation.code に CoreLabo slice 用の JLAC 17 桁 code を持たず、"
+            "LOINC-only で emit した pattern が代表。severity=information のみで "
+            "error/warning は出ないため、この case は 「message が確かに出ている」 "
+            "ことを assert する (silent-pass の再現)。JLAC 移行完了で Observation "
+            "分の 2,523 resource が消え、DiagnosticReport / MedicationRequest / "
+            "Condition.bodySite / Procedure 合計 375 resource は捉え続ける — "
+            "message 頻度の低下を退行と誤読しないための記録 case。"
+        ),
+        "pattern": r"どの既知のスライスとも一致しません.*JP_Observation_LabResult_eCS|does not match any (known )?slice.*JP_Observation_LabResult_eCS",
+    },
+    "tier2-benign-multi-coding-category": {
+        "desc": (
+            "Tier 2-benign (a): Observation.category に JP_SimpleObservationCategory "
+            "coding と HL7 base observation-category coding の両方を並置する data 設計。"
+            "JP_Observation_Common profile 視点で HL7 base coding が unmatched information、"
+            "HL7 vital-signs auto-profile 視点で JP coding が unmatched information と "
+            "並行報告される。data 側の非準拠ではなく、両 profile の要求を意図的に両立 "
+            "させた設計の副作用。この case は 「information のみで pass する」 = "
+            "benign が誤って error/warning 化していないことを assert。"
+        ),
+        "pattern": r"どの既知のスライスとも一致しません.*(JP_Observation_Common|heartrate\|4\.0\.1|vitalsigns\|4\.0\.1)|does not match any (known )?slice.*(JP_Observation_Common|heartrate\|4\.0\.1|vitalsigns\|4\.0\.1)",
+    },
+    "vital-signs-auto-profile-active": {
+        "desc": (
+            "Positive control (PC1): HAPI validator が LOINC vital-sign code を "
+            "含む Observation を検出したとき、明示 meta.profile 宣言がなくても "
+            "HL7 base vital-signs profile (heartrate|4.0.1 等) を自動適用する挙動が "
+            "有効であることの前提条件 check。auto-profile が無効化された場合、"
+            "本 slug の pattern に該当する message が消え missing で FAIL する。"
+            "Tier 2-benign 分類の 8,491 件が静かに消える failure mode の検出用。"
+            "assert は 「profile URL が message に現れる」ことに絞ることで、"
+            "同 Observation で並行報告される JP profile 由来 issue と切り分ける。"
+        ),
+        "pattern": r"defined in the profile http://hl7\.org/fhir/StructureDefinition/(heartrate|oxygensat|bp|bodytemp|resprate|vitalsigns)",
+    },
 }
 
 
