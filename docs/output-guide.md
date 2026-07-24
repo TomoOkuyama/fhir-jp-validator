@@ -125,6 +125,35 @@ Bundle は `chunk_size` 単位で構成され、`expression` は `Bundle.entry[0
   - jpfhir-terminology を最新版に更新
   - 該当 OID を含む CodeSystem リソースを自作で `-ig` に追加 load
 
+### 3.7 `[information] この要素はどの既知のスライスとも一致しません` (silent-pass)
+
+英語版: `This element does not match any known slice defined in the profile ...`
+
+**severity = information** で **error / warning は一切出ない**。Open slicing
+(`rules=open`) を持つ CodeableConcept / identifier / Quantity 系要素で、profile が
+定義する各 slice の discriminator (Fixed Value / Pattern) に **一つも match
+しなかった** 場合に発火する。
+
+重要な性質:
+
+- **slice に match しなかった時点で、その slice 内の required binding /
+  Fixed display / cardinality の check は全て skip される**。data が profile の
+  意図から外れていても error にならず、information issue が残るだけ
+- HAPI validator の欠陥ではなく、Open slicing の spec 上の当然の挙動
+- OperationOutcome には information issue として **確実に記録される** ため、
+  集計すれば発生分布を計測可能
+
+**対処方針**:
+
+- data 側: 各 slice の discriminator (Fixed Value / Pattern) に正確に match させる。
+  例えば `Observation.code.coding` に JP-CLINS の CoreLabo slice を期待するなら、
+  slice が要求する `system` + `display` (英語 abbrev) を strict に emit
+- validator 運用側: この issue を集計して JP-CLINS 準拠の実態を可視化する
+  ([§4.5](#45-tier-2-slice-unmatched-の集計-open-slicing-silent-pass) の recipe 参照)
+
+分布の実測例と背景 (v31 データ、28,334 件 / 全 issue の 22.19%):
+[`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
+
 ## 4. 集計 recipe
 
 前提: `RES=result.ndjson`
@@ -195,6 +224,90 @@ PY
 ```
 
 注: リソースに一切 issue が付かなかった場合はカウント対象外になります (完全 pass の判定には入力側の総リソース数 = `meta.json` の `resources_total` と比較)。
+
+### 4.5 Tier 2 (slice unmatched) の集計 — Open slicing silent-pass
+
+[§3.7](#37-information-この要素はどの既知のスライスとも一致しません-silent-pass)
+で説明した silent-pass (Open slicing で slice に match せず、slice 内の制約
+check が skip される) は severity = information として OperationOutcome に記録
+されるため、集計可能。**error / warning に現れない準拠性の実態**を可視化する。
+
+対象要素は `code.coding` に限定せず、`identifier` / `category` /
+`bodySite.coding` / `medication.ofType(...)` / `dosage.rate.ofType(...)` 等、
+JP-CLINS / JP Core の任意の Open slicing 要素で発生する。以下は汎用形の recipe:
+
+```bash
+python3 <<'PY'
+import json, re, collections
+
+RES = "result.ndjson"
+# 日本語版 + 英語版の両方を対象
+MSG_PATTERNS = [
+    "この要素はどの既知のスライスとも一致しません",
+    "This element does not match any known slice",
+]
+EXPR_RE    = re.compile(r'resource/\*([A-Za-z]+)/([^*]+)\*/(.*)$')
+PROFILE_RE = re.compile(r'defined in the profile (\S+)')
+# element path 正規化: [N] (array index) と :sliceName を除去
+NORM_RE    = re.compile(r'\[\d+\]|:[^.\[]+')
+
+by_res_path = collections.Counter()
+by_res      = collections.Counter()
+by_profile  = collections.Counter()
+affected    = collections.defaultdict(set)  # (rt, path) -> {resource_id}
+n_bundle = n_issue_total = n_unmatched = 0
+
+with open(RES) as f:
+    for line in f:
+        n_bundle += 1
+        oo = json.loads(line)
+        for i in oo.get("issue", []):
+            n_issue_total += 1
+            det = (i.get("details") or {}).get("text", "") or ""
+            if not any(p in det for p in MSG_PATTERNS):
+                continue
+            n_unmatched += 1
+            m = PROFILE_RE.search(det)
+            by_profile[m.group(1) if m else "(no profile)"] += 1
+            for expr in i.get("expression") or []:
+                em = EXPR_RE.search(expr)
+                if not em: continue
+                rt, rid, inner = em.groups()
+                inner_norm = NORM_RE.sub("", inner.lstrip("."))
+                by_res_path[(rt, inner_norm)] += 1
+                by_res[rt] += 1
+                affected[(rt, inner_norm)].add(rid)
+
+print(f"bundles={n_bundle} issues={n_issue_total:,} "
+      f"unmatched={n_unmatched:,} share={n_unmatched/max(n_issue_total,1)*100:.2f}%")
+print("\n-- by resourceType --")
+for rt, c in by_res.most_common():
+    uniq = len({rid for (r, _), ids in affected.items() if r == rt for rid in ids})
+    print(f"  {rt:30s} {c:>8,}  unique_res={uniq:,}")
+print("\n-- by profile --")
+for p, c in by_profile.most_common():
+    print(f"  {c:>8,}  {p}")
+print("\n-- top (resourceType, element path) --")
+for (rt, p), c in by_res_path.most_common(30):
+    print(f"  {c:>8,}  {rt:26s}  .{p:44s}  unique_res={len(affected[(rt, p)])}")
+PY
+```
+
+- **正規化 (`[N]` と `:sliceName` を除去)** により `code.coding[0]` と
+  `code.coding[1]:CoreLabo` を同じ path `code.coding` として集計する。array の
+  何番目に付いたかや、profile が名前付き slice を持っているかは Open slicing
+  silent-pass の集計軸としては本質でない
+- **英語版 message** にも対応 (validator の locale が en の場合)
+- **profile 別集計**は HAPI が meta.profile + base R4 + JP IG + HL7 vital-signs
+  自動 profile を全て評価するため、同じ要素 path でも複数 profile 由来の
+  unmatched が計上されることがある
+- **移行効果測定**: 移行前後で `unmatched / (対象要素の total)` を追えば、
+  「エラーが減った」とは別軸の **slice 適合率** を数値化できる。分母 (対象要素の
+  total 出現数) は入力 NDJSON 側から別途集計
+
+実測分布の例 (v31 データ、28,334 件 = 全 issue の 22.19%、7 resourceType、
+最多は `Observation.category` の 19,399 件):
+[`validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md`](../validation-results/2026-07-23_jp_clins_migration_gate_verification/tier2-distribution-v31.md)。
 
 ## 5. failed.ndjson の意味
 
