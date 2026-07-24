@@ -14,10 +14,24 @@ clinosim (workspace:1) 側で検体検査 Observation を LOINC → JLAC10/JP-CL
 
 | VS | v1.6.0 render 期待 | 実測 |
 |---|---:|---:|
-| `CoreLaboJLAC10_k_VS` | 10 | **14** (期待 10 全含む + suffix 4) |
-| `CoreLaboJLAC10_wbc_VS` | 2 | **3** (期待 2 全含む + suffix 1) |
+| `CoreLaboJLAC10_k_VS` | 10 | **14** (期待 10 全含む + 4) |
+| `CoreLaboJLAC10_wbc_VS` | 2 | **3** (期待 2 全含む + 1) |
 
 版差 (2026.03.31 版) による定義追加分。descendent-of フィルタ正常動作。
+
+> **訂正 (2026-07-24)**: 上記「suffix 版差追加分」の解釈は不正確。実際は以下。
+> baseline の期待値 10 / 2 は **v1.6.0 IG の render (依頼側が提示)** に由来する古い list。
+> 実測に含まれる **追加 4 件 (k_VS)** / **追加 1 件 (wbc_VS)** は全て
+> **測定法コード `998` (測定法問わず)** の子で、fhirserver に load している
+> 2026.03.31 版 CS に含まれる `<検体材料>_998_<識別>` 系 17 桁 code が
+> descendent-of で拾われた結果である。
+>
+> 結論の差分:
+> - 「CS が版差で不安定」ではなく「古い IG render を baseline としたこと」が真因
+> - **測定法 998 (測定法問わず)** の存在は generator 側の code 選択規則に直結する
+>   情報 (WBC/K 等の分類軸で 998 を選ぶかどうかの判断に必要)
+> - 教訓: 外部から渡された期待値は、実測との突き合わせで真因を確認してから
+>   結論を書く。「版差」で片付けると 998 の意味が失われる
 
 ### `$validate-code` 実測
 
@@ -99,12 +113,57 @@ fhirserver 直 curl、warm、`Accept: application/fhir+json`:
 - **Observation を `HAPI_TX=n/a` で分離している現行運用を見直せる可能性**
 - ただし移行過渡期 (LOINC + JLAC 混在) は LOINC 側 bottleneck が残る
 
+> **訂正 (2026-07-24)**: 「6-7 倍高速」および「obs 分離運用を見直せる」の主張は取り下げ。
+> - CoreLabo 113 ms は **fhirserver 直・単発・warm** の測定
+> - LOINC ~700 ms は **HAPI cluster 経由・並列実行下** (P=24 相当)。
+>   真因は tx-cache miss + VS expansion + **`FLock` mutex による直列化** の合算で、
+>   `FLock` の影響は並列度が上がって初めて顕在化する
+> - 測定条件 (単発 vs 並列) が揃っていないため両者の比較は成立しない
+> - **移行運用 (`HAPI_TX=n/a` 分離見直し) の性能根拠にできるかは、P=24 相当の
+>   並列下で JLAC を測り直してから判断する**。それまでは未確定として扱い、
+>   移行の動機に性能改善を含めない
+> - 現時点で確度あるのは「fhirserver 直・単発・warm で JLAC = 113 ms、
+>   小規模 CS の descendent-of 展開が軽い」のみ
+
 ## 総合判定
 
 - **Gate 1: ✅ PASS** — 実装着手可
 - **Gate 2: ⚠️ SILENT-PASS 確認** — 移行可、ただし display strict 一致は generator 側 invariant で担保する義務
 - **Uncoded slice**: ✅ 利用可、Phase 1 fallback 成立
 - **性能**: JLAC 系は LOINC 比 6-7 倍高速、obs 分割戦略見直しの余地
+
+## 未検証項目 (明示、2026-07-24 追記)
+
+本 gate 検証で扱っていない領域。移行実装や第三者利用で踏む可能性があるため明示する。
+
+- **InfectionLabo (指定感染症 5 項目)**: 現行 data で emit 0 件のため実害なし。
+  ただし Fixed display が **日本語** (`HBs抗原(定性)` / `梅毒STS(定性)` /
+  `HCV核酸増幅検査(定量)` 等) であり、英語 abbrev の CoreLabo と挙動が同じとは
+  限らない。移行実装で InfectionLabo を emit する前に別途 gate 検証が必要
+- **cold / cache-miss 時 latency**: 実測は全て warm cache 前提。cold state の
+  `$validate-code` / `$expand` latency は未測定
+- **`JP_CLINS_ObsLabResult_LocalUncoded_CS`**: fhirserver に未 load。
+  `JP_CLINS_ObsLabResult_Uncoded_CS` (§ 補助 で疎通確認済) とは **別 CodeSystem**。
+  LocalCode fallback で必要になった際に別途 load が要る
+
+## Tier 2 の計測可能性 (2026-07-24 追記)
+
+Gate 2 の silent-pass は OperationOutcome に severity=information として残る:
+
+```
+[information] code.coding[N]: この要素はどの既知のスライスとも一致しません
+              defined in JP_Observation_LabResult_eCS|1.12.0
+```
+
+`result.ndjson` から `expression` で集計すれば **JP-CLINS Open slicing 下の
+unmatched を件数で計測可能**。これは JP-CLINS 全体で発生し得るパターン
+(`code.coding` に限らず、Open slicing + `0..1` slice の組合せがある要素で共通)
+のため、汎用形の集計 recipe を `docs/output-guide.md` に追加予定 (優先 2)。
+
+**意味**: JLAC 移行の真の成果は「エラーが減る」ではなく、この計測軸そのものが
+手に入ることにある。移行前は unmatched がベースラインとして計測不能だが、
+移行後は 「fixed display 一致率 = matched / (matched + unmatched)」 として
+準拠性を数値化できる。
 
 ## clinosim 側 (workspace:1) 移行実装要件まとめ
 
