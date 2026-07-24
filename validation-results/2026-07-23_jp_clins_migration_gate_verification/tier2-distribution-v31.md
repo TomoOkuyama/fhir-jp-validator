@@ -315,6 +315,14 @@ resource が残る (v31 時点、いずれも移行対象外の resourceType):
 落ちた際、想定内 vs 未把握 drift かを判断可能にするため。予測 375 と実測値の
 乖離があれば、それは移行過程で新たに導入された非準拠 or 発生条件の変化を示す。
 
+**generator 側 移行スコープの示唆** (workspace:1 検討材料、docs 化しない
+内部記録): 残 375 の最多が DiagnosticReport.code の 203 resource である点は、
+JP-CLINS の JP_DiagnosticReport_LabResult_eCS も検体検査 Observation と
+対になる profile であることを反映している。Observation.code のみを移行対象と
+すると、対の DiagnosticReport.code は同じ CoreLabo slice を用意しても
+未 match のまま残る。generator 側の移行実装で対象 resource スコープを
+決める際の判断材料。
+
 ### 移行後の役割変化 (最重要)
 
 Observation.code.coding 移行完了後、この指標は「検体検査を測る軸」から
